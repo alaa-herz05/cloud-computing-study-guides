@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing Study Guide – Chapter 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7fd;--card:#fff;--ink:#0b1220;--mut:#44536b;--blue:#1565d8;--blue2:#e3eeff;--black:#0b1220;--line:#cfdcf0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}}
+:root[data-theme="dark"]{--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.9;font-size:16px}
+header{background:var(--black);color:#fff;padding:40px 20px 30px;text-align:center;border-bottom:6px solid var(--blue)}
+header h1{margin:0 0 6px;font-size:clamp(24px,5vw,38px);font-weight:800}
+header p{margin:0;color:#9cc2ff;direction:ltr}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:var(--card);border-bottom:1px solid var(--line)}
+nav a{color:var(--blue);text-decoration:none;font-size:14px;font-weight:600;padding:4px 12px;border:1px solid var(--line);border-radius:20px}
+main{max-width:900px;margin:auto;padding:16px}
+section{background:var(--card);border:1px solid var(--line);border-inline-start:6px solid var(--blue);position:relative;border-radius:14px;padding:18px 20px;margin:18px 0}
+h2{margin:0 0 10px;color:var(--blue);font-size:24px;font-weight:800}
+h3{margin:16px 0 4px;font-size:18px;font-weight:700}
+.def{background:var(--black);color:#fff;border-radius:10px;padding:12px 16px;margin:10px 0}
+.ex{background:var(--blue2);border-inline-start:4px solid var(--blue);border-radius:8px;padding:10px 14px;margin:10px 0}
+.ex b{color:var(--blue)}
+.key{border:1px dashed var(--blue);border-radius:8px;padding:8px 14px;margin:10px 0;font-weight:600}
+ul{padding-inline-start:22px;margin:6px 0}
+.tw{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th{background:var(--black);color:#fff;padding:8px 10px}
+td{padding:8px 10px;border:1px solid var(--line)}
+td:first-child{font-weight:700;background:var(--blue2)}
+.e{display:block}.a{display:none;text-align:right}
+section.ar .e{display:none}section.ar .a{display:block}
+.tr,#all{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:20px;padding:4px 14px;font-weight:700;font-size:14px}
+.tr{position:absolute;top:12px;inset-inline-end:14px}
+.e h2{padding-inline-end:90px}.a h2{padding-inline-start:90px}
+.a .q ol{direction:ltr}.e .q ol{direction:ltr;text-align:left}
+td:first-child{text-align:start}th{text-align:start}
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 52px);z-index:5;background:var(--black);color:#fff;border-radius:10px;padding:6px 14px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.score button{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:14px;padding:2px 12px}
+.opts{display:grid;gap:6px;margin:6px 0}
+.top{position:sticky;top:0;z-index:20;direction:ltr;display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--black);color:#fff;padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;border-bottom:2px solid var(--blue)}
+.top a,.top summary{color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:var(--blue);padding:5px 14px;border-radius:18px;cursor:pointer;list-style:none;display:inline-block}
+.top summary::-webkit-details-marker{display:none}
+.top b{font-size:14px;color:#9cc2ff}
+.menu{position:relative}
+.mn{position:absolute;inset-inline-end:0;top:38px;width:min(320px,86vw);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mn a{display:block;background:none;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:14px;font-weight:600}
+.mn a:hover{background:var(--blue2)}
+.mn .cur{background:var(--blue2);color:var(--blue)}
+.opt{font-family:inherit;font-size:15px;text-align:start;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.opt:not(:disabled):hover{border-color:var(--blue);background:var(--blue2)}
+.opt.ok{background:#12803c;color:#fff;border-color:#12803c}.opt.bad{background:#c62828;color:#fff;border-color:#c62828}
+.fb{margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--blue2);font-weight:600}
+.q p.n{color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.box{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:10px 14px}
+.box h4{margin:0;color:var(--blue)}
+.q{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.q p{margin:0 0 4px;font-weight:700}
+details summary{cursor:pointer;color:var(--blue);font-weight:700}
+details div{background:var(--blue2);padding:8px 12px;border-radius:8px;margin-top:6px}
+footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="top"><a href="index.html">🏠 Home · الرئيسية</a><b>Chapter 4 · الشابتر 4</b><details class="menu"><summary>☰ Chapters · الشباتر</summary><div class="mn"><a href="ch1.html">01 Fundamentals of Cloud Computing – Part 1</a><a href="ch2.html">02 Fundamentals – Part 2</a><a href="ch3.html">03 Cloud Deployment Models</a><a class="cur" href="ch4.html">04 Infrastructure as a Service (IaaS) ✓</a><a href="ch5.html">05 Platform as a Service (PaaS)</a><a href="ch6.html">06 Software as a Service (SaaS)</a><a href="ch7.html">07 Virtual Private Networks (VPN)</a></div></details></div>
+<header>
+<h1>Cloud Computing Study Guide: Chapter 4</h1>
+<p>Infrastructure as a Service (IaaS) · Amazon EC2</p>
+</header>
+<nav><button id="all" type="button">ترجمة الكل للعربية</button><a href="#a1">What is IaaS</a><a href="#a2">Features &amp; Benefits</a><a href="#a3">Highlights</a><a href="#a4">EC2</a><a href="#a5">AMI &amp; Instance</a><a href="#a6">Regions</a><a href="#a7">Storage</a><a href="#a8">Network &amp; Security</a><a href="#a9">Monitoring</a><a href="#a10">Access</a><a href="#a11">Summary</a><a href="#a12">Questions</a></nav>
+<main>
+
+<section id="a1">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>1) What is IaaS?</h2>
+<div class="def">Infrastructure-as-a-Service (IaaS) is a service model that involves outsourcing the basic infrastructure used to support operations, including storage, hardware, servers and networking components. IaaS provides virtualized computing resources over the internet.</div>
+<ul><li>The <b>service provider owns</b> the infrastructure equipment and is responsible for housing, running and maintaining it.</li><li>The customer typically <b>pays on a per-use basis</b>.</li><li>The customer uses <b>their own platform</b> (Windows, Unix) and applications.</li></ul>
+<h3>Components</h3>
+<div class="grid"><div class="box"><h4>Virtual Machines (VMs)</h4>Virtual servers rented from the provider.</div><div class="box"><h4>Storage</h4>Disks and online storage.</div><div class="box"><h4>Networking</h4>IPs, firewalls, load balancers, VLANs.</div></div>
+<div class="ex"><b>Analogy:</b> think of it as renting IT infrastructure instead of owning it.</div>
+<h3>Who manages what? (stack)</h3>
+<div class="tw"><table><tr><th>Layer</th><th>On-premise</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>Applications, Data</td><td>You</td><td>You</td><td>You (apps/data)</td><td>Vendor</td></tr>
+<tr><td>Runtime, Middleware, OS</td><td>You</td><td>You</td><td>Vendor</td><td>Vendor</td></tr>
+<tr><td>Virtualization, Servers, Storage, Networking</td><td>You</td><td>Vendor</td><td>Vendor</td><td>Vendor</td></tr></table></div>
+<p>The cloud stack: <b>Cloud Clients</b> (browser, mobile app, thin client, terminal emulator) → <b>SaaS</b> (CRM, email, virtual desktop, communication, games) → <b>PaaS</b> (execution runtime, database, web server, development tools) → <b>IaaS</b> (virtual machines, servers, storage, load balancers, network).</p>
+<div class="key">IaaS clouds often add: VM disk-image library, block and file-based storage, firewalls, load balancers, IP addresses, VLANs and software bundles.</div></div>
+<div class="a" dir="rtl"><h2>1) ما هي IaaS؟</h2>
+<div class="def">IaaS (البنية التحتية كخدمة) نموذج خدمة يعتمد على إسناد البنية التحتية الأساسية لدعم العمليات (تخزين، أجهزة، سيرفرات، مكونات شبكة) لطرف خارجي. وتوفر موارد حوسبة افتراضية (virtualized) عبر الإنترنت.</div>
+<ul><li>مزود الخدمة <b>يملك</b> المعدات ومسؤول عن إيوائها وتشغيلها وصيانتها.</li><li>العميل عادةً <b>يدفع حسب الاستخدام</b> (per-use).</li><li>العميل يستخدم <b>منصته الخاصة</b> (Windows, Unix) وتطبيقاته.</li></ul>
+<h3>المكونات</h3>
+<div class="grid"><div class="box"><h4>أجهزة افتراضية (VMs)</h4>سيرفرات افتراضية مستأجرة من المزود.</div><div class="box"><h4>التخزين</h4>أقراص وتخزين أونلاين.</div><div class="box"><h4>الشبكات</h4>عناوين IP وجدران حماية وموزعات أحمال وVLANs.</div></div>
+<div class="ex"><b>تشبيه:</b> مثل استئجار البنية التحتية بدل امتلاكها.</div>
+<h3>من يدير ماذا؟ (الـ Stack)</h3>
+<div class="tw"><table><tr><th>الطبقة</th><th>On-premise</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>التطبيقات والبيانات</td><td>أنت</td><td>أنت</td><td>أنت (تطبيقات/بيانات)</td><td>المزود</td></tr>
+<tr><td>Runtime وMiddleware وOS</td><td>أنت</td><td>أنت</td><td>المزود</td><td>المزود</td></tr>
+<tr><td>Virtualization وServers وStorage وNetworking</td><td>أنت</td><td>المزود</td><td>المزود</td><td>المزود</td></tr></table></div>
+<p>الـ Stack: <b>Cloud Clients</b> (متصفح، تطبيق موبايل، thin client) ← <b>SaaS</b> (CRM، إيميل، ألعاب...) ← <b>PaaS</b> (runtime، قاعدة بيانات، web server، أدوات تطوير) ← <b>IaaS</b> (أجهزة افتراضية، سيرفرات، تخزين، load balancers، شبكة).</p>
+<div class="key">سحابات IaaS غالباً تضيف: مكتبة disk images للـ VM، تخزين block وfile، firewalls، load balancers، عناوين IP، VLANs، وحزم برمجيات.</div></div>
+</section>
+
+<section id="a2">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>2) Features, Benefits, Providers &amp; Challenges</h2>
+<div class="grid"><div class="box"><h4>Key features</h4><ul><li><b>Scalability:</b> resources scale up or down on demand.</li><li><b>Pay-as-you-go:</b> cost-efficient billing.</li><li><b>Self-service:</b> users provision resources on demand.</li><li><b>Multi-tenancy:</b> many users share resources securely.</li></ul></div>
+<div class="box"><h4>Benefits</h4><ul><li><b>Cost savings:</b> no on-premises hardware.</li><li><b>Flexibility:</b> deploy and test environments rapidly.</li><li><b>Reliability:</b> redundant infrastructure ensures uptime.</li><li><b>Global reach:</b> access from anywhere with internet.</li></ul></div>
+<div class="box"><h4>Challenges</h4><ul><li><b>Security risks:</b> shared infrastructure may pose vulnerabilities.</li><li><b>Cost management:</b> over-provisioning increases expenses.</li><li><b>Dependency:</b> risk of vendor lock-in.</li></ul></div></div>
+<h3>Examples of IaaS providers</h3>
+<ul><li><b>Amazon Web Services (AWS):</b> EC2, S3</li><li><b>Microsoft Azure:</b> Virtual Machines</li><li><b>Google Cloud Platform (GCP):</b> Compute Engine</li><li><b>IBM Cloud:</b> Bare Metal Servers</li></ul></div>
+<div class="a" dir="rtl"><h2>2) الخصائص والفوائد والمزودون والتحديات</h2>
+<div class="grid"><div class="box"><h4>أهم الخصائص</h4><ul><li><b>Scalability:</b> زيادة/تقليل الموارد حسب الطلب.</li><li><b>Pay-as-you-go:</b> فوترة اقتصادية.</li><li><b>Self-service:</b> المستخدم يجهز الموارد بنفسه.</li><li><b>Multi-tenancy:</b> عدة مستخدمين يتشاركون الموارد بأمان.</li></ul></div>
+<div class="box"><h4>الفوائد</h4><ul><li><b>توفير التكلفة:</b> بدون أجهزة داخلية.</li><li><b>المرونة:</b> نشر واختبار البيئات بسرعة.</li><li><b>الموثوقية:</b> بنية احتياطية تضمن التشغيل.</li><li><b>انتشار عالمي:</b> الوصول من أي مكان بالإنترنت.</li></ul></div>
+<div class="box"><h4>التحديات</h4><ul><li><b>مخاطر أمنية:</b> البنية المشتركة قد تسبب ثغرات.</li><li><b>إدارة التكلفة:</b> الإفراط بالحجز يرفع النفقات.</li><li><b>الاعتمادية:</b> خطر الارتباط بمزود واحد (vendor lock-in).</li></ul></div></div>
+<h3>أمثلة على مزودي IaaS</h3>
+<ul><li><b>Amazon Web Services (AWS):</b> EC2 وS3</li><li><b>Microsoft Azure:</b> Virtual Machines</li><li><b>Google Cloud Platform (GCP):</b> Compute Engine</li><li><b>IBM Cloud:</b> Bare Metal Servers</li></ul></div>
+</section>
+
+<section id="a3">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>3) Highlights of IaaS</h2>
+<ul><li><b>On-demand computing resources:</b> eliminates the need for far-ahead planning.</li><li><b>No up-front commitment:</b> start small and grow as required; no contract, only a credit card.</li><li><b>Pay for what you use.</b></li><li><b>No maintenance.</b></li><li><b>Measured service.</b></li><li><b>Scalability</b> and <b>Reliability</b>.</li></ul></div>
+<div class="a" dir="rtl"><h2>3) أبرز نقاط IaaS</h2>
+<ul><li><b>موارد حوسبة عند الطلب:</b> تلغي الحاجة للتخطيط المسبق الطويل.</li><li><b>بدون التزام مسبق:</b> ابدأ صغيراً وكبّر حسب الحاجة؛ بدون عقد، فقط بطاقة ائتمان.</li><li><b>ادفع مقابل ما تستخدمه فقط.</b></li><li><b>بدون صيانة.</b></li><li><b>خدمة مقاسة (Measured service).</b></li><li><b>قابلية التوسع</b> و<b>الموثوقية</b>.</li></ul></div>
+</section>
+
+<section id="a4">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>4) What is Amazon EC2?</h2>
+<div class="def">Amazon Elastic Compute Cloud (EC2) is a web service that provides resizable computing capacity used to build and host different software systems.</div>
+<ul><li>Designed to make <b>web-scale computing</b> easier for developers.</li><li>A user can <b>create, launch and terminate</b> server instances as needed, paying <b>by the hour</b> for active servers, hence the term “elastic”.</li><li>Scalable, pay-as-you-go compute capacity; elastic means it <b>scales in both directions</b>.</li><li>An EC2 instance looks much like physical hardware, and users control nearly the entire software stack, from the kernel upwards.</li></ul>
+<h3>EC2 concepts</h3>
+<div class="grid"><div class="box"><h4>1. AMI &amp; Instance</h4></div><div class="box"><h4>2. Region &amp; Zones</h4></div><div class="box"><h4>3. Storage</h4></div><div class="box"><h4>4. Networking &amp; Security</h4></div><div class="box"><h4>5. Monitoring</h4></div><div class="box"><h4>6. Auto Scaling</h4></div><div class="box"><h4>7. Load Balancer</h4></div></div></div>
+<div class="a" dir="rtl"><h2>4) ما هي Amazon EC2؟</h2>
+<div class="def">Amazon Elastic Compute Cloud (EC2) خدمة ويب توفر قدرة حوسبة قابلة لتغيير الحجم تُستخدم لبناء واستضافة أنظمة برمجية مختلفة.</div>
+<ul><li>مصممة لتسهيل الحوسبة بحجم الويب (<b>web-scale</b>) على المطورين.</li><li>المستخدم يستطيع <b>إنشاء وتشغيل وإنهاء</b> instances حسب الحاجة، ويدفع <b>بالساعة</b> للسيرفرات الفعالة، ومن هنا اسم "elastic".</li><li>قدرة حوسبة قابلة للتوسع بنظام الدفع حسب الاستخدام؛ المرونة تعني التوسع <b>بالاتجاهين</b> (زيادة ونقصان).</li><li>الـ instance يشبه الجهاز الفعلي، والمستخدم يتحكم بمعظم الـ software stack من الـ kernel للأعلى.</li></ul>
+<h3>مفاهيم EC2</h3>
+<div class="grid"><div class="box"><h4>1. AMI وInstance</h4></div><div class="box"><h4>2. Region وZones</h4></div><div class="box"><h4>3. التخزين</h4></div><div class="box"><h4>4. الشبكات والأمان</h4></div><div class="box"><h4>5. المراقبة</h4></div><div class="box"><h4>6. Auto Scaling</h4></div><div class="box"><h4>7. Load Balancer</h4></div></div></div>
+</section>
+
+<section id="a5">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>5) AMI &amp; Instance</h2>
+<div class="def">An Amazon Machine Image (AMI) is an immutable representation of a set of disks containing an operating system, user applications and/or data. It is a template for software configuration (OS, application server, applications).</div>
+<ul><li>From one AMI you can launch <b>multiple instances</b>, which are running copies of the AMI.</li><li>An <b>instance</b> is an AMI running on virtual servers in the cloud.</li><li>Each <b>instance type</b> offers different compute and memory capabilities (a different operating environment).</li></ul>
+<h3>Sources of AMIs</h3>
+<ul><li>Amazon publishes many AMIs for public use.</li><li>Custom AMIs provided by community members.</li><li>Users can create their own AMI.</li></ul>
+<div class="key">Amazon’s bet: by statistically multiplexing multiple instances onto a single physical box, that box can be rented to many customers who generally won’t interfere with each other.</div></div>
+<div class="a" dir="rtl"><h2>5) AMI وInstance</h2>
+<div class="def">الـ AMI (Amazon Machine Image) تمثيل ثابت (immutable) لمجموعة أقراص تحوي نظام تشغيل وتطبيقات و/أو بيانات. وهو قالب (template) لإعدادات البرمجيات (OS، application server، التطبيقات).</div>
+<ul><li>من AMI واحد تستطيع تشغيل <b>عدة instances</b>، وهي نسخ شغّالة منه.</li><li>الـ <b>Instance</b> هو AMI يعمل على سيرفرات افتراضية في السحابة.</li><li>كل <b>instance type</b> يوفر قدرات معالجة وذاكرة مختلفة (بيئة تشغيل مختلفة).</li></ul>
+<h3>مصادر الـ AMI</h3>
+<ul><li>أمازون تنشر AMIs كثيرة للاستخدام العام.</li><li>AMIs مخصصة من أعضاء المجتمع.</li><li>المستخدم يقدر ينشئ AMI خاص به.</li></ul>
+<div class="key">رهان أمازون: دمج عدة instances إحصائياً (statistical multiplexing) على جهاز فيزيائي واحد، فيُؤجَّر لعدة عملاء دون أن يتداخلوا عادةً.</div></div>
+</section>
+
+<section id="a6">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>6) Regions &amp; Availability Zones</h2>
+<ul><li>Amazon has data centers in different <b>regions</b> across the globe (e.g. North America, Europe, Asia).</li><li>An instance can be launched in different regions, chosen for: being <b>closer to specific customers</b>, or to <b>meet legal or other requirements</b>.</li><li>Prices of EC2 usage <b>vary by region</b>.</li><li>Each region has a set of <b>Availability Zones</b>; zones are <b>isolated from failures</b> in other zones.</li><li>Zones in the same region have <b>inexpensive, low-latency</b> connectivity.</li></ul></div>
+<div class="a" dir="rtl"><h2>6) المناطق ومناطق التوفر (Regions &amp; Zones)</h2>
+<ul><li>لدى أمازون مراكز بيانات في <b>مناطق (regions)</b> مختلفة حول العالم (مثل أمريكا الشمالية وأوروبا وآسيا).</li><li>يمكن تشغيل instance في أي region حسب الحاجة: <b>أقرب لعملاء معينين</b> أو <b>لتلبية متطلبات قانونية</b> وغيرها.</li><li>أسعار EC2 <b>تختلف حسب المنطقة</b>.</li><li>كل region فيه مجموعة <b>Availability Zones</b>؛ وكل zone <b>معزولة عن أعطال</b> الـ zones الأخرى.</li><li>الاتصال بين zones في نفس الـ region <b>رخيص وبتأخير قليل</b>.</li></ul></div>
+</section>
+
+<section id="a7">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>7) Storage</h2>
+<p>EC2 provides three storage options: <b>Amazon EBS</b>, <b>Amazon S3</b> and <b>Instance Storage</b>. Amazon SimpleDB is a related data service.</p>
+<div class="grid"><div class="box"><h4>Amazon EBS (Elastic Block Store)</h4><ul><li>Persistent, <b>block-level</b> storage: basically an additional hard disk you attach to an instance.</li><li>Suited for databases, file systems and raw block-level access.</li><li>Operations: <b>create, attach, detach, delete</b>.</li><li>An EBS volume is a read/write disk created from an AMI and mounted by an instance.</li><li><b>Snapshots</b> are stored in S3; a new EBS volume can be re-created from a snapshot.</li></ul></div>
+<div class="box"><h4>Amazon S3 (Simple Storage Service)</h4><ul><li>A SOA (Service-Oriented Architecture) providing online storage via web services.</li><li>Read, write and delete permissions on <b>objects</b>.</li><li>Uses <b>REST and SOAP</b> protocols for messaging.</li></ul></div>
+<div class="box"><h4>Amazon SimpleDB</h4><ul><li>Highly available, flexible, scalable <b>non-relational</b> data store that offloads database administration.</li><li>Automatically creates multiple <b>geographically distributed replicas</b> for availability and durability.</li><li>Charges only for resources actually consumed.</li></ul></div></div></div>
+<div class="a" dir="rtl"><h2>7) التخزين (Storage)</h2>
+<p>توفر EC2 ثلاثة خيارات تخزين: <b>Amazon EBS</b> و<b>Amazon S3</b> و<b>Instance Storage</b>. وهناك خدمة Amazon SimpleDB لقواعد البيانات.</p>
+<div class="grid"><div class="box"><h4>Amazon EBS (Elastic Block Store)</h4><ul><li>تخزين دائم (persistent) على مستوى <b>block</b>: ببساطة هارد ديسك إضافي تربطه بالـ instance.</li><li>مناسب لقواعد البيانات ونظم الملفات والوصول الخام للـ block.</li><li>العمليات: <b>إنشاء، ربط، فصل، حذف</b>.</li><li>الـ EBS volume قرص قراءة/كتابة يُنشأ من AMI ويُركَّب على instance.</li><li>الـ <b>Snapshots</b> تُخزَّن في S3، ويمكن إعادة إنشاء EBS جديد منها.</li></ul></div>
+<div class="box"><h4>Amazon S3 (Simple Storage Service)</h4><ul><li>SOA (معمارية موجهة للخدمات) توفر تخزين أونلاين عبر web services.</li><li>صلاحيات قراءة وكتابة وحذف على <b>objects</b>.</li><li>تستخدم بروتوكولي <b>REST وSOAP</b> للمراسلة.</li></ul></div>
+<div class="box"><h4>Amazon SimpleDB</h4><ul><li>مخزن بيانات <b>غير علائقي</b> عالي التوفر ومرن وقابل للتوسع، يخفف عبء إدارة قواعد البيانات.</li><li>ينشئ تلقائياً عدة <b>نسخ موزعة جغرافياً</b> للتوفر والمتانة.</li><li>تدفع فقط مقابل الموارد المستهلكة فعلياً.</li></ul></div></div></div>
+</section>
+
+<section id="a8">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>8) Networking &amp; Security</h2>
+<ul><li>Instances launch on one of two platforms: <b>EC2-Classic</b> or <b>EC2-VPC</b>.</li><li>Each instance gets <b>two addresses</b>: a private address and a public IP address.</li><li>The IP is <b>dynamic</b>: a new one is assigned every time an instance is launched, and a replacement instance has a different public IP.</li><li><b>Elastic IP</b> = static IP address for dynamic cloud computing. Remap it to a new instance to <b>mask failure</b>. Separate pools for EC2-Classic and VPC.</li><li><b>Security Groups</b> control access to instances.</li></ul>
+<div class="grid"><div class="box"><h4>VPC</h4>Launch AWS resources into a virtual network you define: choose the IP range, create subnets, configure route tables, network gateways and security settings.</div><div class="box"><h4>Security Group</h4>Specifies the protocols, ports and source IP ranges allowed to reach your instances. Create several groups and assign each instance to a group to determine its traffic.</div></div></div>
+<div class="a" dir="rtl"><h2>8) الشبكات والأمان</h2>
+<ul><li>تُشغَّل الـ instances على منصتين: <b>EC2-Classic</b> أو <b>EC2-VPC</b>.</li><li>كل instance يحصل على <b>عنوانين</b>: عنوان خاص (private) وعنوان IP عام (public).</li><li>الـ IP <b>ديناميكي</b>: يُعطى عنوان جديد في كل مرة يُشغَّل فيها الـ instance، والـ instance البديل له IP عام مختلف.</li><li>الـ <b>Elastic IP</b> = عنوان IP ثابت للحوسبة السحابية الديناميكية. يُعاد ربطه بـ instance جديد <b>لإخفاء العطل</b>. مجموعتان منفصلتان لـ Classic وVPC.</li><li>الـ <b>Security Groups</b> تتحكم بالوصول للـ instances.</li></ul>
+<div class="grid"><div class="box"><h4>VPC</h4>تشغيل موارد AWS داخل شبكة افتراضية تحددها أنت: اختيار نطاق IP، إنشاء subnets، إعداد route tables وnetwork gateways وإعدادات الأمان.</div><div class="box"><h4>Security Group</h4>تحدد البروتوكولات والمنافذ ونطاقات IP المصدر المسموح لها بالوصول للـ instances. تنشئ عدة مجموعات وتعيّن كل instance لمجموعة لتحديد حركة المرور.</div></div></div>
+</section>
+
+<section id="a9">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>9) Monitoring, Auto Scaling &amp; Load Balancing</h2>
+<div class="grid"><div class="box"><h4>CloudWatch (monitoring)</h4>Monitors statistics of instances and EBS; monitor, manage and publish metrics; configure <b>alarms</b> based on metrics.</div><div class="box"><h4>Auto Scaling</h4>Automatically scales EC2 capacity <b>up and down based on rules</b>: adds/removes compute resources by demand. Suited for businesses with variable usage.</div><div class="box"><h4>Elastic Load Balancing</h4>Distributes incoming traffic across multiple instances.</div></div></div>
+<div class="a" dir="rtl"><h2>9) المراقبة والتوسع التلقائي وموزع الأحمال</h2>
+<div class="grid"><div class="box"><h4>CloudWatch (المراقبة)</h4>يراقب إحصائيات الـ instances والـ EBS؛ يراقب ويدير وينشر metrics؛ ويضبط <b>تنبيهات (alarms)</b> بناءً عليها.</div><div class="box"><h4>Auto Scaling</h4>يزيد وينقص سعة EC2 تلقائياً <b>حسب قواعد</b>: يضيف/يزيل موارد حسب الطلب. مناسب للأعمال ذات الاستخدام المتغير.</div><div class="box"><h4>Elastic Load Balancing</h4>يوزع حركة الدخول على عدة instances.</div></div></div>
+</section>
+
+<section id="a10">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>10) How to Access EC2</h2>
+<ul><li><b>AWS Management Console</b> (web): console.aws.amazon.com</li><li><b>Command-line tools</b></li><li><b>Programmatic interface:</b> EC2 APIs and the AWS SDK</li></ul></div>
+<div class="a" dir="rtl"><h2>10) كيف تصل إلى EC2</h2>
+<ul><li><b>AWS Management Console</b> (واجهة ويب): console.aws.amazon.com</li><li><b>أدوات سطر الأوامر</b> (Command-line tools)</li><li><b>واجهة برمجية:</b> EC2 APIs وAWS SDK</li></ul></div>
+</section>
+
+<section id="a11">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>11) Quick Summary Table</h2>
+<p>My own summary to help you revise:</p>
+<div class="tw"><table><tr><th>Term</th><th>Meaning</th><th>Remember</th></tr>
+<tr><td>AMI</td><td>Template of OS + apps</td><td>Immutable</td></tr>
+<tr><td>Instance</td><td>AMI running on a virtual server</td><td>Many from one AMI</td></tr>
+<tr><td>Region / Zone</td><td>Geographic area / isolated location inside it</td><td>Price varies by region</td></tr>
+<tr><td>EBS</td><td>Block storage attached to instance</td><td>Persistent, snapshots to S3</td></tr>
+<tr><td>S3</td><td>Object storage via web services</td><td>REST and SOAP</td></tr>
+<tr><td>SimpleDB</td><td>Non-relational data store</td><td>Auto replicas</td></tr>
+<tr><td>Elastic IP</td><td>Static public IP</td><td>Remap to mask failure</td></tr>
+<tr><td>Security Group</td><td>Firewall rules for instances</td><td>Protocols, ports, IP ranges</td></tr>
+<tr><td>CloudWatch</td><td>Monitoring and alarms</td><td>Metrics</td></tr>
+<tr><td>Auto Scaling</td><td>Adds/removes instances by rules</td><td>Variable load</td></tr>
+<tr><td>ELB</td><td>Distributes traffic</td><td>Across instances</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>11) جدول ملخص سريع</h2>
+<p>من عندي لمساعدتك بالمراجعة:</p>
+<div class="tw"><table><tr><th>المصطلح</th><th>المعنى</th><th>تذكّر</th></tr>
+<tr><td>AMI</td><td>قالب نظام تشغيل + تطبيقات</td><td>ثابت (Immutable)</td></tr>
+<tr><td>Instance</td><td>AMI شغّال على سيرفر افتراضي</td><td>عدة instances من AMI واحد</td></tr>
+<tr><td>Region / Zone</td><td>منطقة جغرافية / موقع معزول داخلها</td><td>السعر يختلف حسب الـ region</td></tr>
+<tr><td>EBS</td><td>تخزين block مربوط بالـ instance</td><td>دائم، snapshots في S3</td></tr>
+<tr><td>S3</td><td>تخزين objects عبر web services</td><td>REST وSOAP</td></tr>
+<tr><td>SimpleDB</td><td>مخزن بيانات غير علائقي</td><td>نسخ تلقائية</td></tr>
+<tr><td>Elastic IP</td><td>IP عام ثابت</td><td>يُعاد ربطه لإخفاء العطل</td></tr>
+<tr><td>Security Group</td><td>قواعد جدار حماية للـ instances</td><td>بروتوكولات ومنافذ ونطاقات IP</td></tr>
+<tr><td>CloudWatch</td><td>مراقبة وتنبيهات</td><td>Metrics</td></tr>
+<tr><td>Auto Scaling</td><td>يضيف/يزيل instances حسب قواعد</td><td>الأحمال المتغيرة</td></tr>
+<tr><td>ELB</td><td>يوزع حركة المرور</td><td>على عدة instances</td></tr></table></div></div>
+</section>
+
+<section id="a12">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>12) Interactive Practice Questions</h2>
+<p>Pick an answer: you get instant feedback and the correct answer with an explanation.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>Essay questions</h3>
+<div class="q"><p>1) Define IaaS, its components and who manages which layers.<br>2) List the key features, benefits and challenges of IaaS.<br>3) What is EC2 and why is it called “elastic”?<br>4) Explain AMI vs instance.<br>5) Explain regions and availability zones.<br>6) Compare EBS, S3 and SimpleDB.<br>7) Explain Elastic IP and Security Groups.<br>8) Explain CloudWatch, Auto Scaling and Elastic Load Balancing.</p><details><summary>Hint</summary><div>Review sections 1 to 10.</div></details></div></div>
+<div class="a" dir="rtl"><h2>12) أسئلة تدريبية تفاعلية</h2>
+<p>اختر إجابة: بتطلع لك النتيجة فوراً مع الإجابة الصحيحة والشرح.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>أسئلة مقالية</h3>
+<div class="q"><p>1) عرّف IaaS ومكوناتها ومن يدير أي طبقات.<br>2) اذكر الخصائص والفوائد والتحديات.<br>3) ما هي EC2 ولماذا تُسمّى "elastic"؟<br>4) اشرح الفرق بين AMI وinstance.<br>5) اشرح الـ regions وavailability zones.<br>6) قارن بين EBS وS3 وSimpleDB.<br>7) اشرح Elastic IP وSecurity Groups.<br>8) اشرح CloudWatch وAuto Scaling وElastic Load Balancing.</p><details><summary>إرشاد</summary><div>ارجع للأقسام 1 إلى 10.</div></details></div></div>
+</section>
+</main>
+<footer>Good luck in the exam! · بالتوفيق 💙</footer>
+<script>
+function m(qe,qa,oe,oa,a,xe,xa){return{q:[qe,qa],o:[oe,oa||oe],a:a,x:[xe,xa]}}
+var TF=[['True','False'],['صح','خطأ']];
+function tf(qe,qa,t,xe,xa){return{q:[qe,qa],o:TF,a:t?0:1,x:[xe,xa]}}
+var Q=[
+m('IaaS stands for:','IaaS تعني:',['Infrastructure as a Service','Internet as a Service','Integration as a Service','Information as a Service'],['Infrastructure as a Service','Internet as a Service','Integration as a Service','Information as a Service'],0,'Infrastructure-as-a-Service.','Infrastructure-as-a-Service.'),
+m('IaaS provides:','توفر IaaS:',['virtualized computing resources over the internet','only finished applications','only a programming language','only printers'],['موارد حوسبة افتراضية عبر الإنترنت','تطبيقات جاهزة فقط','لغة برمجة فقط','طابعات فقط'],0,'VMs, storage and networking.','أجهزة افتراضية وتخزين وشبكات.'),
+m('Who owns and maintains the infrastructure in IaaS?','من يملك البنية التحتية ويصونها في IaaS؟',['The service provider','The customer','The government','Nobody'],['مزود الخدمة','العميل','الحكومة','لا أحد'],0,'The provider houses, runs and maintains it.','المزود يؤويها ويشغلها ويصونها.'),
+m('How does the IaaS customer typically pay?','كيف يدفع عميل IaaS عادةً؟',['Per use','One lifetime fee','Never','Only yearly contract'],['حسب الاستخدام','رسم واحد مدى الحياة','لا يدفع','عقد سنوي فقط'],0,'Pay-per-use billing.','فوترة حسب الاستخدام.'),
+m('In IaaS the customer uses:','في IaaS يستخدم العميل:',['their own platform (Windows, Unix) and applications','the provider’s applications only','no OS','no applications'],['منصته الخاصة (Windows, Unix) وتطبيقاته','تطبيقات المزود فقط','بدون OS','بدون تطبيقات'],0,'The customer manages OS and above.','العميل يدير الـ OS وما فوقه.'),
+m('Which is NOT a main IaaS component?','أي مما يلي ليس مكوناً رئيسياً لـ IaaS؟',['Finished email application','Virtual machines','Storage','Networking'],['تطبيق إيميل جاهز','أجهزة افتراضية','تخزين','شبكات'],0,'Email is SaaS.','الإيميل SaaS.'),
+m('The IaaS analogy is:','تشبيه IaaS هو:',['renting IT infrastructure instead of owning it','buying a finished product','building your own data center','hiring staff'],['استئجار البنية التحتية بدل امتلاكها','شراء منتج جاهز','بناء مركز بيانات خاص','توظيف موظفين'],0,'Rent vs own.','استئجار مقابل امتلاك.'),
+m('Which layers are managed by the vendor in IaaS?','أي الطبقات يديرها المزود في IaaS؟',['Virtualization, servers, storage, networking','Applications and data','OS and runtime','Middleware'],['Virtualization وServers وStorage وNetworking','التطبيقات والبيانات','OS وruntime','Middleware'],0,'The customer manages OS and above.','العميل يدير OS وما فوقه.'),
+m('Self-service in IaaS means:','Self-service في IaaS تعني:',['users provision resources on demand','the provider does all setup','no internet needed','fixed resources'],['المستخدم يجهز الموارد بنفسه عند الطلب','المزود يجهز كل شيء','بدون إنترنت','موارد ثابتة'],0,'No need to ask the provider each time.','بدون الرجوع للمزود كل مرة.'),
+m('Multi-tenancy means:','Multi-tenancy تعني:',['multiple users share resources securely','one user only','no sharing','free usage'],['عدة مستخدمين يتشاركون الموارد بأمان','مستخدم واحد فقط','بدون مشاركة','استخدام مجاني'],0,'Shared infrastructure.','بنية مشتركة.'),
+m('Which is a benefit of IaaS?','أي مما يلي فائدة لـ IaaS؟',['No need for on-premises hardware','Zero vendor dependency','No security risks','Fixed cost always'],['لا حاجة لأجهزة داخلية','لا اعتماد على المزود','بدون مخاطر أمنية','تكلفة ثابتة دائماً'],0,'Cost savings.','توفير التكلفة.'),
+m('Which is a challenge of IaaS?','أي مما يلي تحدٍّ لـ IaaS؟',['Vendor lock-in','No scalability','No global reach','No flexibility'],['Vendor lock-in','لا توسع','لا انتشار عالمي','لا مرونة'],0,'Also security risks and cost management.','وأيضاً المخاطر الأمنية وإدارة التكلفة.'),
+m('Over-provisioning in IaaS leads to:','الإفراط بالحجز في IaaS يؤدي إلى:',['increased expenses','lower cost','better security','vendor lock-in'],['زيادة النفقات','تكلفة أقل','أمان أفضل','vendor lock-in'],0,'Cost management challenge.','تحدي إدارة التكلفة.'),
+m('Google’s IaaS offering is:','عرض IaaS من جوجل هو:',['Compute Engine','Virtual Machines','Bare Metal Servers','EC2'],['Compute Engine','Virtual Machines','Bare Metal Servers','EC2'],0,'Azure: Virtual Machines; IBM: Bare Metal; AWS: EC2.','Azure: Virtual Machines؛ IBM: Bare Metal؛ AWS: EC2.'),
+m('“No contract, only a credit card” refers to:','"بدون عقد، فقط بطاقة ائتمان" تشير إلى:',['no up-front commitment','measured service','reliability','maintenance'],['بدون التزام مسبق','الخدمة المقاسة','الموثوقية','الصيانة'],0,'Start small and grow as required.','ابدأ صغيراً وكبّر حسب الحاجة.'),
+m('EC2 stands for:','EC2 تعني:',['Elastic Compute Cloud','Easy Cloud Computing','Enterprise Cloud Core','Elastic Cloud Container'],['Elastic Compute Cloud','Easy Cloud Computing','Enterprise Cloud Core','Elastic Cloud Container'],0,'Amazon Elastic Compute Cloud.','Amazon Elastic Compute Cloud.'),
+m('Why is EC2 called “elastic”?','لماذا تُسمّى EC2 "elastic"؟',['It scales in both directions and is paid by the hour','It is made of rubber','It has fixed size','It is free'],['تتوسع بالاتجاهين وتُدفع بالساعة','مصنوعة من المطاط','حجم ثابت','مجانية'],0,'Create, launch and terminate instances as needed.','إنشاء وتشغيل وإنهاء instances حسب الحاجة.'),
+m('An AMI is:','الـ AMI هو:',['an immutable template of OS, applications and/or data','a running server','a storage service','a firewall'],['قالب ثابت لنظام تشغيل وتطبيقات و/أو بيانات','سيرفر شغّال','خدمة تخزين','جدار حماية'],0,'An instance is the running copy.','الـ instance هو النسخة الشغّالة.'),
+m('An instance is:','الـ Instance هو:',['an AMI running on a virtual server','a storage volume','a region','an IP address'],['AMI يعمل على سيرفر افتراضي','وحدة تخزين','منطقة','عنوان IP'],0,'Many instances can come from one AMI.','عدة instances من AMI واحد.'),
+m('Each instance type offers different:','كل instance type يوفر:',['compute and memory capabilities','colors','languages','prices only'],['قدرات معالجة وذاكرة مختلفة','ألواناً','لغات','أسعاراً فقط'],0,'Different operating environments.','بيئات تشغيل مختلفة.'),
+m('Why can Amazon rent one physical box to many customers?','لماذا تستطيع أمازون تأجير جهاز فيزيائي لعدة عملاء؟',['Statistical multiplexing of instances','Each customer gets a separate building','It is illegal','Instances are physical'],['Statistical multiplexing للـ instances','كل عميل بمبنى منفصل','ممنوع','الـ instances فيزيائية'],0,'Customers generally won’t interfere with each other.','العملاء عادةً لا يتداخلون.'),
+m('Why choose a specific region?','لماذا نختار region معيناً؟',['Closer to customers or to meet legal requirements','Only for colors','No reason','Because it is free'],['أقرب للعملاء أو لتلبية متطلبات قانونية','للألوان فقط','لا سبب','لأنه مجاني'],0,'Prices also vary by region.','والأسعار تختلف حسب المنطقة.'),
+m('Availability Zones are:','الـ Availability Zones هي:',['isolated from failures in other zones','all one single building','mobile phones','pricing plans'],['معزولة عن أعطال الـ zones الأخرى','كلها مبنى واحد','هواتف','خطط أسعار'],0,'With low-latency links inside a region.','وبينها اتصال بتأخير قليل داخل الـ region.'),
+m('How many storage options does EC2 provide?','كم خيار تخزين توفر EC2؟',['Three: EBS, S3, Instance Storage','Two','Five','One'],['ثلاثة: EBS وS3 وInstance Storage','اثنان','خمسة','واحد'],0,'EBS, S3 and instance storage.','EBS وS3 وInstance Storage.'),
+m('EBS provides:','يوفر EBS:',['persistent block-level storage','object storage only','a database','a firewall'],['تخزين دائم على مستوى block','تخزين objects فقط','قاعدة بيانات','جدار حماية'],0,'Like an additional hard disk.','مثل هارد ديسك إضافي.'),
+m('Which operations apply to an EBS volume?','أي عمليات تنطبق على EBS volume؟',['Create, attach, detach, delete','Only read','Only print','None'],['إنشاء، ربط، فصل، حذف','قراءة فقط','طباعة فقط','لا شيء'],0,'Plus snapshots.','بالإضافة للـ snapshots.'),
+m('EBS snapshots are stored in:','تُخزَّن snapshots الـ EBS في:',['S3','SimpleDB','CloudWatch','Instance storage'],['S3','SimpleDB','CloudWatch','Instance storage'],0,'A new EBS volume can be re-created from a snapshot.','يمكن إنشاء EBS جديد منها.'),
+m('S3 stands for:','S3 تعني:',['Simple Storage Service','Secure Server System','Scalable Sync Service','Shared Storage Space'],['Simple Storage Service','Secure Server System','Scalable Sync Service','Shared Storage Space'],0,'Object storage via web services.','تخزين objects عبر web services.'),
+m('S3 uses which messaging protocols?','أي بروتوكولات مراسلة تستخدمها S3؟',['REST and SOAP','FTP and Telnet','SMTP only','None'],['REST وSOAP','FTP وTelnet','SMTP فقط','لا شيء'],0,'S3 is a SOA.','S3 هي SOA.'),
+m('Amazon SimpleDB is:','Amazon SimpleDB هي:',['a non-relational data store','a relational database only','a firewall','a load balancer'],['مخزن بيانات غير علائقي','قاعدة علائقية فقط','جدار حماية','load balancer'],0,'With automatic geographically distributed replicas.','مع نسخ موزعة جغرافياً تلقائياً.'),
+m('Each launched instance is assigned:','كل instance يُشغَّل يُعطى:',['a private address and a public IP address','only a private address','no address','only an email'],['عنوان خاص وعنوان IP عام','عنوان خاص فقط','بدون عنوان','إيميل فقط'],0,'The public IP is dynamic.','الـ IP العام ديناميكي.'),
+m('An Elastic IP is:','الـ Elastic IP هو:',['a static IP address remapped to mask failure','a dynamic IP','a private IP only','a domain name'],['IP ثابت يُعاد ربطه لإخفاء العطل','IP ديناميكي','IP خاص فقط','اسم نطاق'],0,'Remap to a new instance.','يُعاد ربطه بـ instance جديد.'),
+m('The two EC2 networking platforms are:','منصتا الشبكات في EC2 هما:',['EC2-Classic and EC2-VPC','IaaS and PaaS','S3 and EBS','Public and Private'],['EC2-Classic وEC2-VPC','IaaS وPaaS','S3 وEBS','Public وPrivate'],0,'Separate Elastic IP pools for each.','مجموعة Elastic IP منفصلة لكل منصة.'),
+m('A Security Group specifies:','الـ Security Group يحدد:',['allowed protocols, ports and source IP ranges','instance colors','prices','regions'],['البروتوكولات والمنافذ ونطاقات IP المسموحة','ألوان الـ instances','الأسعار','المناطق'],0,'Access control to instances.','التحكم بالوصول للـ instances.'),
+m('Which service monitors instances and EBS and sets alarms?','أي خدمة تراقب الـ instances والـ EBS وتضبط التنبيهات؟',['CloudWatch','Auto Scaling','S3','Elastic IP'],['CloudWatch','Auto Scaling','S3','Elastic IP'],0,'Metrics and alarms.','Metrics وتنبيهات.'),
+m('Auto Scaling adds or removes compute resources based on:','يضيف Auto Scaling أو يزيل الموارد بناءً على:',['rules and demand','random choice','the weather','the region name'],['قواعد والطلب','اختيار عشوائي','الطقس','اسم الـ region'],0,'Suited for variable usage.','مناسب للاستخدام المتغير.'),
+m('Elastic Load Balancing:','Elastic Load Balancing:',['distributes incoming traffic across multiple instances','stores snapshots','creates AMIs','assigns regions'],['يوزع حركة الدخول على عدة instances','يخزن snapshots','ينشئ AMIs','يعيّن regions'],0,'Spreads load.','يوزع الحمل.'),
+m('Which is a way to access EC2?','أي مما يلي طريقة للوصول إلى EC2؟',['AWS Console, command-line tools, APIs/SDK','Only by phone call','Only by mail','Not possible'],['AWS Console وأدوات سطر الأوامر وAPIs/SDK','بمكالمة فقط','بالبريد فقط','غير ممكن'],0,'Web console and programmatic interfaces.','واجهة ويب وواجهات برمجية.'),
+tf('In IaaS the provider manages the customer’s applications.','في IaaS المزود يدير تطبيقات العميل.',false,'False: the customer manages OS, apps and data.','خطأ: العميل يدير الـ OS والتطبيقات والبيانات.'),
+tf('An AMI is a running virtual server.','الـ AMI هو سيرفر افتراضي شغّال.',false,'False: that is an instance; an AMI is the template.','خطأ: هذا الـ instance؛ الـ AMI قالب.'),
+tf('The public IP of an instance stays the same after it is replaced.','الـ IP العام للـ instance يبقى نفسه بعد استبداله.',false,'False: use an Elastic IP to keep it.','خطأ: استخدم Elastic IP للحفاظ عليه.'),
+tf('EBS is persistent block-level storage.','EBS تخزين دائم على مستوى block.',true,'True.','صح.'),
+tf('Prices of EC2 are the same in every region.','أسعار EC2 نفسها في كل region.',false,'False: they vary by region.','خطأ: تختلف حسب الـ region.')
+];
+var st={};
+function render(){
+ var n=Object.keys(st).length,c=0;for(var k in st)if(st[k]===Q[k].a)c++;
+ [['e',0],['a',1]].forEach(function(p){
+  var L=p[1],box=document.querySelector('#a12 .'+p[0]);
+  var sc=box.querySelector('.score'),qs=box.querySelector('.qs');
+  sc.innerHTML='<span>'+(L?'النتيجة: ':'Score: ')+c+' / '+n+' ('+(L?'من ':'of ')+Q.length+')</span><button type="button">'+(L?'إعادة':'Reset')+'</button>';
+  sc.querySelector('button').onclick=function(){st={};render()};
+  qs.innerHTML='';
+  Q.forEach(function(q,i){
+   var d=document.createElement('div');d.className='q';
+   var o=q.o[L];
+   var h='<p class="n">'+(i+1)+') '+q.q[L]+'</p><div class="opts">';
+   o.forEach(function(t,j){
+    var cl='opt';if(i in st){if(j===q.a)cl+=' ok';else if(j===st[i])cl+=' bad'}
+    h+='<button type="button" class="'+cl+'" data-i="'+i+'" data-j="'+j+'"'+(i in st?' disabled':'')+'>'+t+'</button>'});
+   h+='</div>';
+   if(i in st){var r=st[i]===q.a;h+='<div class="fb">'+(r?(L?'✅ صح! ':'✅ Correct! '):(L?'❌ خطأ. الإجابة الصحيحة: '+o[q.a]+'. ':'❌ Wrong. Correct answer: '+o[q.a]+'. '))+q.x[L]+'</div>'}
+   d.innerHTML=h;qs.appendChild(d)});
+  qs.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){st[b.dataset.i]=+b.dataset.j;render()}})});
+}
+render();
+(function(){var secs=[].slice.call(document.querySelectorAll('section')),all=document.getElementById('all');
+function lab(s){s.querySelector('.tr').textContent=s.classList.contains('ar')?'English':'العربية'}
+function sync(){var n=secs.filter(function(s){return s.classList.contains('ar')}).length;all.textContent=n===secs.length?'Back to English':'ترجمة الكل للعربية'}
+secs.forEach(function(s){s.querySelector('.tr').onclick=function(){s.classList.toggle('ar');lab(s);sync()}});
+all.onclick=function(){var to=!secs.every(function(s){return s.classList.contains('ar')});secs.forEach(function(s){s.classList.toggle('ar',to);lab(s)});sync()}})();
+</script>
+</body>
+</html>
