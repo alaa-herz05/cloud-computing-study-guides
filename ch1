@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>دليل دراسة الحوسبة السحابية – الفصل الأول</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7fd;--card:#fff;--ink:#0b1220;--mut:#44536b;--blue:#1565d8;--blue2:#e3eeff;--black:#0b1220;--line:#cfdcf0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}}
+:root[data-theme="dark"]{--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.9;font-size:16px}
+header{background:var(--black);color:#fff;padding:40px 20px 30px;text-align:center;border-bottom:6px solid var(--blue)}
+header h1{margin:0 0 6px;font-size:clamp(24px,5vw,38px);font-weight:800}
+header p{margin:0;color:#9cc2ff;direction:ltr}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:var(--card);border-bottom:1px solid var(--line)}
+nav a{color:var(--blue);text-decoration:none;font-size:14px;font-weight:600;padding:4px 12px;border:1px solid var(--line);border-radius:20px}
+main{max-width:900px;margin:auto;padding:16px}
+section{background:var(--card);border:1px solid var(--line);border-inline-start:6px solid var(--blue);position:relative;border-radius:14px;padding:18px 20px;margin:18px 0}
+h2{margin:0 0 10px;color:var(--blue);font-size:24px;font-weight:800}
+h3{margin:16px 0 4px;font-size:18px;font-weight:700}
+.en{direction:ltr;unicode-bidi:embed;font-weight:600;color:var(--blue)}
+.def{background:var(--black);color:#fff;border-radius:10px;padding:12px 16px;margin:10px 0}
+.def .en{color:#8ec1ff;display:block;font-weight:400;margin-top:4px}
+.ex{background:var(--blue2);border-inline-start:4px solid var(--blue);border-radius:8px;padding:10px 14px;margin:10px 0}
+.ex b{color:var(--blue)}
+.key{border:1px dashed var(--blue);border-radius:8px;padding:8px 14px;margin:10px 0;font-weight:600}
+ul{padding-inline-start:22px;margin:6px 0}
+.tw{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th{background:var(--black);color:#fff;padding:8px 10px}
+td{padding:8px 10px;border:1px solid var(--line)}
+td:first-child{font-weight:700;background:var(--blue2)}
+.e{display:block}.a{display:none;text-align:right}
+section.ar .e{display:none}section.ar .a{display:block}
+.tr,#all{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:20px;padding:4px 14px;font-weight:700;font-size:14px}
+.tr{position:absolute;top:12px;inset-inline-end:14px}
+.e h2{padding-inline-end:90px}.a h2{padding-inline-start:90px}
+.a .q ol{direction:ltr}.e .q ol{direction:ltr;text-align:left}
+td:first-child{text-align:start}th{text-align:start}
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 52px);z-index:5;background:var(--black);color:#fff;border-radius:10px;padding:6px 14px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.score button{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:14px;padding:2px 12px}
+.opts{display:grid;gap:6px;margin:6px 0}
+.top{position:sticky;top:0;z-index:20;direction:ltr;display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--black);color:#fff;padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;border-bottom:2px solid var(--blue)}
+.top a,.top summary{color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:var(--blue);padding:5px 14px;border-radius:18px;cursor:pointer;list-style:none;display:inline-block}
+.top summary::-webkit-details-marker{display:none}
+.top b{font-size:14px;color:#9cc2ff}
+.menu{position:relative}
+.mn{position:absolute;inset-inline-end:0;top:38px;width:min(320px,86vw);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mn a,.mn span{display:block;background:none;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:14px;font-weight:600}
+.mn a:hover{background:var(--blue2)}
+.mn .cur{background:var(--blue2);color:var(--blue)}
+.mn span{color:var(--mut);opacity:.8}
+.opt{font-family:inherit;font-size:15px;text-align:start;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.opt:not(:disabled):hover{border-color:var(--blue);background:var(--blue2)}
+.opt.ok{background:#12803c;color:#fff;border-color:#12803c}.opt.bad{background:#c62828;color:#fff;border-color:#c62828}
+.fb{margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--blue2);font-weight:600}
+.q p.n{color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.box{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:10px 14px}
+.box h4{margin:0;color:var(--blue)}
+.q{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.q p{margin:0 0 4px;font-weight:700}
+.q ol{margin:4px 0;padding-right:24px;list-style:upper-alpha;direction:ltr;text-align:left}
+details summary{cursor:pointer;color:var(--blue);font-weight:700}
+details div{background:var(--blue2);padding:8px 12px;border-radius:8px;margin-top:6px}
+footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="top"><a href="https://claude.ai/artifact/GNnMmk2AY3oyUo2jVhm5vR">🏠 Home · الرئيسية</a><b>Chapter 1 · الشابتر 1</b><details class="menu"><summary>☰ Chapters · الشباتر</summary><div class="mn"><a class="cur" href="#">01 Fundamentals of Cloud Computing – Part 1 ✓</a><span>02 Fundamentals – Part 2 · قريباً</span><span>03 Cloud Deployment Models · قريباً</span><span>04 Infrastructure as a Service (IaaS) · قريباً</span><span>05 Platform as a Service (PaaS) · قريباً</span><span>06 Software as a Service (SaaS) · قريباً</span><span>07 Virtual Private Networks (VPN) · قريباً</span></div></details></div>
+<header>
+<h1>Cloud Computing Study Guide: Chapter 1</h1>
+<p>Part 1 · Fundamentals of Cloud Computing</p>
+</header>
+<nav><button id="all" type="button">ترجمة الكل للعربية</button><a href="#s1">Objectives</a><a href="#s2">Definition</a><a href="#s4">Architecture</a><a href="#s5">Operations &amp; SLA</a><a href="#s6">Characteristics</a><a href="#s7">On/Off-Premise</a><a href="#s8">Deployment</a><a href="#s9">Service Models</a><a href="#s10">Questions</a></nav>
+<main>
+<section id="s1">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>1) Learning Objectives &amp; Marking</h2>
+<p>After completing this chapter you should be able to:</p>
+<ul><li>Define cloud computing.</li><li>Define the cloud service models: SaaS, PaaS, IaaS.</li><li>Define the cloud deployment models: Public, Private, Hybrid.</li><li>Explain the essential characteristics.</li><li>Explain the advantages of cloud computing.</li></ul>
+<h3>Assessment and marking</h3>
+<div class="tw"><table><tr><th>Item</th><th>Marks</th></tr>
+<tr><td>Coursework: attendance and classwork, participation, assignments and quizzes, presentations and projects</td><td>30</td></tr>
+<tr><td>Midterm exam</td><td>30</td></tr><tr><td>Final exam</td><td>40</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>1) أهداف الفصل وتوزيع العلامات</h2>
+<p>بعد ما تخلص هذا الفصل لازم تكون قادر على (Learning Objectives):</p>
+<ul>
+<li>تعريف الحوسبة السحابية <span class="en">Define cloud computing</span></li>
+<li>تعريف نماذج الخدمة <span class="en">Service models: SaaS, PaaS, IaaS</span></li>
+<li>تعريف نماذج النشر <span class="en">Deployment models: Public, Private, Hybrid</span></li>
+<li>الخصائص الأساسية <span class="en">Essential Characteristics</span></li>
+<li>مزايا الحوسبة السحابية <span class="en">Advantages of Cloud Computing</span></li>
+</ul>
+<h3>توزيع علامات المادة (Assessment and marking)</h3>
+<div class="tw"><table>
+<tr><th>البند</th><th>العلامة</th></tr>
+<tr><td>أعمال الفصل: الحضور والـ Classwork، المشاركة Participations، الواجبات والكويزات Assignments &amp; Quiz، العروض والمشاريع Presentations &amp; projects</td><td>30</td></tr>
+<tr><td>الامتحان النصفي Midterm</td><td>30</td></tr>
+<tr><td>الامتحان النهائي Final</td><td>40</td></tr>
+</table></div>
+</div>
+</section>
+
+<section id="s2">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>2) What is Cloud Computing?</h2>
+<div class="def">Cloud computing is a general term for a new class of network-based computing that takes place over the Internet. It is a technology that uses remote servers on the internet to store, manage, and access data online rather than on local drives. The data can be anything: files, images, documents, audio, video, and more.</div>
+<h3>The NIST definition</h3>
+<div class="def">Cloud computing is a model for enabling convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort.</div>
+<ul><li>It provides a high level of abstraction of the computation and storage model: the user does not see the hardware details.</li>
+<li>It has essential characteristics, service models, and deployment models.</li></ul>
+<p>In the slide’s picture, the cloud sits in the middle and connects mobile, laptop, server, desktop, storage, applications, database and network, with Private, Public and Hybrid clouds below it.</p>
+<div class="ex"><b>Example:</b> Instead of keeping your photos on a flash drive, you upload them to Google Photos or iCloud. They are stored on the company’s servers and you can open them from any device with internet.</div>
+<h3>What cloud computing provides</h3>
+<ul><li>Shared services instead of local servers or storage resources.</li><li>Access to information from most web-enabled hardware.</li><li>Cost savings: reduced facility, hardware/software investment and support.</li></ul></div>
+<div class="a" dir="rtl"><h2>2) ما هي الحوسبة السحابية؟ <span class="en">What is Cloud Computing?</span></h2>
+<div class="def">الحوسبة السحابية مصطلح عام يصف نوعاً جديداً من الحوسبة المعتمدة على الشبكة، تتم عبر الإنترنت. هي تقنية تستخدم سيرفرات بعيدة (Remote Servers) على الإنترنت لتخزين البيانات وإدارتها والوصول إليها أونلاين بدل الأقراص المحلية. والبيانات ممكن تكون ملفات، صور، مستندات، صوت، فيديو وغيرها.
+<span class="en">Cloud Computing is a general term used to describe a new class of network-based computing that takes place over the Internet. It uses remote servers on the internet to store, manage, and access data online rather than local drives.</span></div>
+<h3>تعريف ثاني (NIST)</h3>
+<div class="def">الحوسبة السحابية نموذج يتيح وصولاً مريحاً وعند الطلب عبر الشبكة إلى مجموعة مشتركة من الموارد الحاسوبية القابلة للضبط (شبكات، سيرفرات، تخزين، تطبيقات، خدمات)، ويمكن توفيرها وتحريرها بسرعة وبأقل جهد إدارة.
+<span class="en">A model for enabling convenient, on-demand network access to a shared pool of configurable computing resources (networks, servers, storage, applications, services) that can be rapidly provisioned and released with minimal management effort.</span></div>
+<ul>
+<li>توفر مستوى عالٍ من التجريد <span class="en">(high level abstraction)</span> لنموذج الحوسبة والتخزين: المستخدم ما يشوف تفاصيل الأجهزة.</li>
+<li>لها: خصائص أساسية + نماذج خدمة + نماذج نشر.</li>
+</ul>
+<p>شكل الشريحة: السحابة في المنتصف وحولها Mobile, Laptop, Server, Desktop, Storage, Applications, Database, Network وغيرها، وتحتها أنواعها: Private cloud, Public cloud, Hybrid cloud. أي أنها تربط كل الأجهزة والخدمات عبر الإنترنت.</p>
+<div class="ex"><b>مثال:</b> بدل ما تخزن صورك على فلاشة أو قرص جهازك، ترفعها على Google Photos أو iCloud. الصور مخزنة على سيرفرات الشركة وتفتحها من أي جهاز عنده إنترنت.</div>
+<h3>ماذا توفر لنا؟ <span class="en">What cloud computing provides</span></h3>
+<ul>
+<li>خدمات مشتركة بدل السيرفرات أو التخزين المحلي (Shared services).</li>
+<li>الوصول للمعلومات من أغلب الأجهزة المتصلة بالويب.</li>
+<li>توفير بالتكلفة: تقليل الاستثمار في المرافق والأجهزة/البرمجيات والدعم (Cost savings).</li>
+</ul>
+</div>
+</section>
+
+<section id="s4">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>3) Cloud Computing Architecture</h2>
+<p>The architecture is divided into two parts:</p>
+<div class="grid">
+<div class="box"><h4>Front End</h4>Used by the client. It contains the client-side interfaces and applications needed to access cloud platforms: web browsers (Chrome, Firefox, Internet Explorer), thin and thick clients, tablets and mobile devices.</div>
+<div class="box"><h4>Back End</h4>Used by the service provider. It manages all the resources needed to provide cloud services: huge data storage, security mechanisms, virtual machines, deployment models, servers, traffic-control mechanisms, etc.</div></div>
+<h3>Architecture layers (from the diagram)</h3>
+<div class="tw"><table><tr><th>Part</th><th>Layers</th></tr>
+<tr><td>Front End</td><td>Client Infrastructure, then the Internet</td></tr>
+<tr><td>Back End</td><td>Top to bottom: Application, Service, Cloud Runtime, Storage, Infrastructure, surrounded by Management and Security</td></tr></table></div>
+<p>Another diagram shows the flow: end-user devices (mobile, laptop, printer, desktops), then switch/router, then the Internet, then the cloud (servers, virtual desktop, software platform, application, storage data). A third diagram splits the cloud into three layers: Application (monitoring, content, collaboration, communication, finance), Platform (identity, runtime, queue, database, object storage) and Infrastructure (compute, block storage, network).</p>
+<h3>Front End vs Back End</h3>
+<div class="tw"><table><tr><th>Feature</th><th>Front End (Client Side)</th><th>Back End (Provider Side)</th></tr>
+<tr><td>Primary user</td><td>End-users and clients</td><td>Cloud service providers and administrators</td></tr>
+<tr><td>Visibility</td><td>Visible: the user interface you see and click</td><td>Invisible: runs in the background</td></tr>
+<tr><td>Core function</td><td>Accessing and requesting cloud services</td><td>Processing, storing, and securing data</td></tr>
+<tr><td>Key components</td><td>Web browsers, mobile apps, thin/thick clients</td><td>Servers, databases, virtual machines, storage</td></tr>
+<tr><td>Responsibility</td><td>User device performance and internet connection</td><td>System uptime, security, scaling, and backups</td></tr></table></div>
+<h3>Thin Client vs Thick Client</h3>
+<div class="tw"><table><tr><th>Feature</th><th>Thin Client</th><th>Thick Client</th></tr>
+<tr><td>Installation</td><td>Web-based: runs inside a browser, no local install</td><td>Installed locally on the user’s device</td></tr>
+<tr><td>Processing</td><td>Most work is done on the server side</td><td>Most work is done locally on the client side</td></tr>
+<tr><td>Dependency</td><td>Relies heavily on a constant network connection</td><td>Can often work offline and sync later</td></tr>
+<tr><td>Examples</td><td>Google Docs, iCloud Web, Salesforce</td><td>Microsoft Word (desktop), PC games, Photoshop</td></tr></table></div>
+<h3>Components of the architecture</h3>
+<ul><li><b>1. Client Infrastructure:</b> a front-end component that provides a GUI (Graphical User Interface) to interact with the cloud.</li>
+<li><b>2. Application:</b> any software or platform that a client wants to access.</li>
+<li><b>3. Service:</b> manages which type of service you access according to the client’s requirement.</li></ul>
+<div class="ex"><b>Example:</b> You open Google Docs in Chrome. Chrome = front end (client infrastructure), Google Docs = application, and Google’s servers that store and process the file = back end.</div></div>
+<div class="a" dir="rtl"><h2>3) معمارية الحوسبة السحابية <span class="en">Cloud Computing Architecture</span></h2>
+<p>تنقسم إلى جزئين:</p>
+<div class="grid">
+<div class="box"><h4>Front End (الواجهة الأمامية)</h4>يستخدمها العميل. فيها الواجهات والتطبيقات المطلوبة للوصول للمنصات السحابية: المتصفحات (Chrome, Firefox, Internet Explorer)، thin &amp; thick clients، التابلت والموبايل.</div>
+<div class="box"><h4>Back End (الواجهة الخلفية)</h4>يستخدمها مزود الخدمة. تدير كل الموارد المطلوبة: تخزين ضخم، آليات الأمان، Virtual Machines، نماذج النشر، السيرفرات، آليات التحكم بالترافيك.</div>
+</div>
+<h3>طبقات المعمارية (حسب الشكل)</h3>
+<div class="tw"><table>
+<tr><th>الجزء</th><th>الطبقات</th></tr>
+<tr><td>Front End</td><td>Client Infrastructure ثم Internet</td></tr>
+<tr><td>Back End</td><td>من الأعلى للأسفل: Application ← Service ← Cloud Runtime ← Storage ← Infrastructure، ويحيط بها Management (الإدارة) وSecurity (الأمان)</td></tr>
+</table></div>
+<p>شكل آخر في الشرائح يوضح الترتيب: الأجهزة (موبايل، لابتوب، طابعة، ديسكتوب) ← Switch/Router ← Internet ← السحابة (Servers, Virtual Desktop, Software Platform, Application, Storage Data). وشكل ثالث يقسم السحابة إلى 3 طبقات: Application (Monitoring, Content, Collaboration, Communication, Finance) ثم Platform (Identity, Runtime, Queue, Database, Object Storage) ثم Infrastructure (Compute, Block Storage, Network).</p>
+<h3>مقارنة Front End و Back End</h3>
+<div class="tw"><table>
+<tr><th>الميزة</th><th>Front End (Client Side)</th><th>Back End (Provider Side)</th></tr>
+<tr><td>المستخدم الأساسي</td><td>المستخدمون النهائيون والعملاء</td><td>مزودو الخدمة والمسؤولون (Administrators)</td></tr>
+<tr><td>الظهور</td><td>مرئية: الواجهة التي تشوفها وتضغط عليها</td><td>غير مرئية: تعمل بالخلفية</td></tr>
+<tr><td>الوظيفة الأساسية</td><td>الوصول للخدمات السحابية وطلبها</td><td>معالجة البيانات وتخزينها وحمايتها</td></tr>
+<tr><td>المكونات</td><td>متصفحات، تطبيقات موبايل، thin/thick clients</td><td>سيرفرات، قواعد بيانات، VMs، تخزين</td></tr>
+<tr><td>المسؤولية</td><td>أداء جهاز المستخدم واتصاله بالإنترنت</td><td>استمرارية النظام (uptime)، الأمان، التوسع (scaling)، النسخ الاحتياطي</td></tr>
+</table></div>
+<h3>Thin Client مقابل Thick Client</h3>
+<div class="tw"><table>
+<tr><th>الميزة</th><th>Thin Client</th><th>Thick Client</th></tr>
+<tr><td>التثبيت</td><td>Web-based: يعمل داخل المتصفح بدون تثبيت</td><td>يُثبّت محلياً على جهاز المستخدم</td></tr>
+<tr><td>المعالجة</td><td>أغلب العمل على جهة السيرفر</td><td>أغلب العمل محلياً على جهة العميل</td></tr>
+<tr><td>الاعتماد</td><td>يعتمد بشدة على اتصال شبكة مستمر</td><td>يشتغل غالباً Offline ويزامن لاحقاً</td></tr>
+<tr><td>أمثلة</td><td>Google Docs, iCloud Web, Salesforce</td><td>Microsoft Word (Desktop), PC Games, Photoshop</td></tr>
+</table></div>
+<h3>مكونات المعمارية <span class="en">Components</span></h3>
+<ul>
+<li><b>1. Client Infrastructure:</b> مكوّن Front End، يوفر GUI (واجهة رسومية) للتفاعل مع السحابة.</li>
+<li><b>2. Application:</b> أي برنامج أو منصة يريد العميل الوصول لها.</li>
+<li><b>3. Service:</b> تحدد نوع الخدمة التي تصل إليها حسب احتياج العميل.</li>
+</ul>
+<div class="ex"><b>مثال:</b> تفتح Google Docs من Chrome: المتصفح = Front End (Client Infrastructure)، Google Docs = Application، وسيرفرات Google التي تخزن وتعالج الملف = Back End.</div>
+</div>
+</section>
+
+<section id="s5">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>4) Operations &amp; SLA</h2>
+<h3>Cloud computing operations</h3>
+<ul><li>Developing new applications and services</li><li>Storage, backup, and recovery of data</li><li>Hosting blogs and websites</li><li>Delivery of software on demand</li><li>Analysis of data</li><li>Streaming videos and audios</li></ul>
+<h3>Service Level Agreement (SLA)</h3>
+<div class="def">An SLA is a contract between a network service provider and a customer that specifies, usually in measurable terms (QoS), what services the provider will furnish.</div>
+<p>Common contents of the contract:</p>
+<ul><li>Performance guarantee metrics</li><li>Up-time and down-time ratio</li><li>System throughput</li><li>Response time</li><li>Problem management details</li><li>Penalties for non-performance</li><li>Documented security capabilities</li></ul>
+<div class="ex"><b>Example:</b> The provider guarantees 99.9% uptime; if the service falls below that, the customer gets a discount (penalty).</div>
+<h3>Some commercial cloud providers</h3>
+<p>Logos on the slide include: Amazon Web Services, Microsoft Azure, Salesforce, Oracle Marketing Cloud, Zoho CRM, Microsoft Dynamics, Joyent, Engine Yard, GoGrid, Verio, Bitrix24, Insightly, SuperOffice, Mosso, 3tera, Sun and others.</p></div>
+<div class="a" dir="rtl"><h2>4) العمليات والـ SLA</h2>
+<h3>العمليات التي نقوم بها عبر السحابة <span class="en">Cloud Operations</span></h3>
+<ul>
+<li>تطوير تطبيقات وخدمات جديدة</li>
+<li>التخزين والنسخ الاحتياطي واسترجاع البيانات (Storage, backup, recovery)</li>
+<li>استضافة المدونات والمواقع (Hosting)</li>
+<li>تسليم البرمجيات عند الطلب (Software on demand)</li>
+<li>تحليل البيانات (Data analysis)</li>
+<li>بث الفيديو والصوت (Streaming)</li>
+</ul>
+<h3>اتفاقية مستوى الخدمة <span class="en">Service Level Agreement (SLA)</span></h3>
+<div class="def">عقد بين مزود خدمة الشبكة والعميل يحدد عادة بمصطلحات قابلة للقياس (QoS) ما الخدمات التي سيقدمها المزود.
+<span class="en">A contract between a network service provider and a customer that specifies, usually in measurable terms (QoS), what services the provider will furnish.</span></div>
+<p>محتويات العقد الشائعة:</p>
+<ul>
+<li>مقاييس ضمان الأداء (Performance guarantee metrics)</li>
+<li>نسبة التشغيل والتعطل (Up-time and down-time ratio)</li>
+<li>سرعة معالجة النظام (System throughput)</li>
+<li>زمن الاستجابة (Response time)</li>
+<li>تفاصيل إدارة المشاكل (Problem management)</li>
+<li>غرامات عدم الالتزام (Penalties for non-performance)</li>
+<li>القدرات الأمنية الموثقة (Documented security capabilities)</li>
+</ul>
+<div class="ex"><b>مثال:</b> المزود يضمن uptime بنسبة 99.9% وإذا نزلت الخدمة عن ذلك يعوّض العميل بخصم (penalty).</div>
+<h3>أمثلة على مزودي خدمة تجاريين <span class="en">Commercial Cloud Providers</span></h3>
+<p>الشريحة تعرض شعارات منها: <span class="en">Amazon Web Services, Microsoft Azure, Salesforce, Oracle Marketing Cloud, Zoho CRM, Microsoft Dynamics, Joyent, Engine Yard, GoGrid, Verio, Bitrix24, Insightly, SuperOffice, Mosso, 3tera, Sun</span> وغيرها.</p>
+</div>
+</section>
+
+<section id="s6">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>5) Essential Characteristics</h2>
+<div class="grid">
+<div class="box"><h4>On-Demand Self Service</h4>A consumer can unilaterally provision computing capabilities (server time, network storage, number of servers) automatically, without human interaction with each service provider.</div>
+<div class="box"><h4>Heterogeneous (Broad) Access</h4>Capabilities are available over the network and accessed through standard mechanisms that support heterogeneous thin or thick client platforms. A thin client is web-based with most processing on the server; a thick client is installed on the client side and does most processing locally.</div>
+<div class="box"><h4>Resource Pooling</h4>The provider’s resources are pooled to serve multiple consumers using a multi-tenant model. Physical and virtual resources are dynamically assigned and reassigned according to consumer demand.</div>
+<div class="box"><h4>Measured Service</h4>Cloud systems automatically control and optimize resource use through a metering capability. This gives an analyzable and predictable computing platform.</div></div>
+<div class="ex"><b>Examples:</b> On-demand: you create a server with one click, with no call to anyone. Pooling: several companies share one physical server without seeing each other’s data. Measured: you pay only for the hours or gigabytes you used.</div>
+<h3>Where is my data?</h3>
+<ul><li>Data resides on servers that the customer cannot physically access.</li><li>Vendors may store data anywhere at the lowest cost if not restrained by agreement, which is why the SLA matters.</li></ul></div>
+<div class="a" dir="rtl"><h2>5) الخصائص الأساسية <span class="en">Essential Characteristics</span></h2>
+<div class="grid">
+<div class="box"><h4>On-Demand Self Service</h4>المستخدم يوفر قدرات الحوسبة (وقت السيرفر، تخزين الشبكة، عدد السيرفرات) تلقائياً وبمفرده بدون تدخل بشري من المزود.</div>
+<div class="box"><h4>Heterogeneous (Broad) Access</h4>القدرات متاحة عبر الشبكة بآليات قياسية تدعم منصات عميل متنوعة thin أو thick.</div>
+<div class="box"><h4>Resource Pooling</h4>موارد المزود تُجمّع لخدمة عدة مستهلكين بنموذج Multi-tenant، وتُوزَّع وتُعاد توزيعها ديناميكياً (فيزيائية وافتراضية) حسب الطلب.</div>
+<div class="box"><h4>Measured Service</h4>النظام يتحكم تلقائياً ويحسّن الموارد باستخدام قدرة قياس (Metering)، فيوفر منصة قابلة للتحليل والتنبؤ.</div>
+</div>
+<div class="ex"><b>أمثلة:</b> On-demand: تنشئ سيرفراً بضغطة زر بدون اتصال بأحد · Pooling: عدة شركات تشارك نفس السيرفر المادي بدون ما ترى بيانات بعض · Measured: تدفع حسب الساعات أو الغيغابايتات التي استخدمتها فقط.</div>
+<h3>أين بياناتي؟ <span class="en">Where Is My Data?</span></h3>
+<ul>
+<li>البيانات موجودة على سيرفرات لا يستطيع العميل الوصول إليها فيزيائياً.</li>
+<li>الموردون ممكن يخزنون البيانات في أي مكان بأقل تكلفة إذا ما قيّدهم الاتفاق، لذلك أهمية الـ SLA.</li>
+</ul>
+</div>
+</section>
+
+<section id="s7">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>6) On-Premise vs Off-Premise</h2>
+<p>On-premise software is installed on local servers or computers, while off-premise software is hosted on remote servers or in the cloud. On-premise deployment requires the organization to purchase, install, and maintain the hardware and software infrastructure. (“Premises” means the building: on = inside it, off = outside it.)</p>
+<div class="tw"><table><tr><th>Feature</th><th>On-Premises</th><th>Off-Premises (Cloud)</th></tr>
+<tr><td>Location</td><td>Physically inside your company’s building</td><td>Hosted remotely in a provider’s data center</td></tr>
+<tr><td>Cost structure</td><td>High upfront capital expense (CapEx) for hardware</td><td>Predictable monthly/annual subscription (OpEx)</td></tr>
+<tr><td>Control &amp; security</td><td>Full ownership of data, hardware and configurations</td><td>Shared responsibility; physical security managed by the vendor</td></tr>
+<tr><td>Maintenance</td><td>Handled entirely by your in-house IT team</td><td>Managed, updated and maintained by the provider</td></tr>
+<tr><td>Scalability</td><td>Slow and expensive (buy new servers)</td><td>Instant and flexible (scale resources up or down online)</td></tr>
+<tr><td>Reliability</td><td>Vulnerable to local power outages and disasters</td><td>High uptime backed by global redundancy networks</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>6) On-Premise مقابل Off-Premise</h2>
+<p>On-premise: البرنامج مثبت على سيرفرات أو أجهزة محلية، وتحتاج المؤسسة لشراء وتثبيت وصيانة البنية التحتية. Off-premise: مستضاف على سيرفرات بعيدة أو في السحابة. (Premises يعني "المبنى"؛ on = داخله، off = خارجه.)</p>
+<div class="tw"><table>
+<tr><th>الميزة</th><th>On-Premises</th><th>Off-Premises (Cloud)</th></tr>
+<tr><td>الموقع</td><td>داخل مبنى شركتك فيزيائياً</td><td>مستضاف عن بعد في مركز بيانات المزود</td></tr>
+<tr><td>هيكل التكلفة</td><td>نفقات رأسمالية أولية عالية (CapEx) للأجهزة</td><td>اشتراك شهري/سنوي متوقع (OpEx)</td></tr>
+<tr><td>التحكم والأمان</td><td>ملكية كاملة للبيانات والأجهزة والإعدادات</td><td>مسؤولية مشتركة؛ الأمان الفيزيائي على المزود</td></tr>
+<tr><td>الصيانة</td><td>بالكامل على فريق IT الداخلي</td><td>المزود يديرها ويحدثها ويصونها</td></tr>
+<tr><td>قابلية التوسع</td><td>بطيئة ومكلفة (شراء سيرفرات جديدة)</td><td>فورية ومرنة (زيادة/تقليل الموارد أونلاين)</td></tr>
+<tr><td>الموثوقية</td><td>عرضة لانقطاع الكهرباء المحلي والكوارث</td><td>uptime عالٍ بفضل شبكات redundancy عالمية</td></tr>
+</table></div>
+</div>
+</section>
+
+<section id="s8">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>7) Cloud Deployment Models</h2>
+<div class="grid">
+<div class="box"><h4>Private Cloud</h4>Operated solely for one organization. It may be managed by the organization or a third party and may exist on-premise or off-premise.</div>
+<div class="box"><h4>Community Cloud</h4>Shared by several organizations and supports a specific community with shared concerns. May be managed by the organizations or a third party, on-premise or off-premise.</div>
+<div class="box"><h4>Public Cloud</h4>Made available to the general public or a large industry group, and owned by an organization selling cloud services.</div>
+<div class="box"><h4>Hybrid Cloud</h4>A composition of two or more clouds (private, community or public) that enables data and application portability.</div></div>
+<div class="ex"><b>Examples:</b> Private: a bank’s cloud inside its own data center. Community: several universities sharing a research cloud. Public: AWS / Azure. Hybrid: a company keeps sensitive data on a private cloud and runs its website on a public cloud.</div></div>
+<div class="a" dir="rtl"><h2>7) نماذج النشر <span class="en">Cloud Deployment Models</span></h2>
+<div class="grid">
+<div class="box"><h4>Private Cloud</h4>مُشغَّلة لمؤسسة واحدة فقط. تديرها المؤسسة أو طرف ثالث، وقد تكون on-premise أو off-premise.</div>
+<div class="box"><h4>Community Cloud</h4>البنية مشتركة بين عدة مؤسسات تدعم مجتمعاً له اهتمامات مشتركة. تديرها المؤسسات أو طرف ثالث، on/off premise.</div>
+<div class="box"><h4>Public Cloud</h4>متاحة للعامة أو لمجموعة صناعية كبيرة، وتملكها منظمة تبيع الخدمات السحابية.</div>
+<div class="box"><h4>Hybrid Cloud</h4>مزيج من سحابتين أو أكثر (private, community, public) يتيح قابلية نقل البيانات والتطبيقات (portability).</div>
+</div>
+<div class="ex"><b>أمثلة:</b> Private: سحابة بنك داخل مركز بياناته · Community: عدة جامعات تتشارك سحابة بحثية · Public: AWS / Azure · Hybrid: شركة تحتفظ بالبيانات الحساسة على private وتشغّل موقعها على public.</div>
+</div>
+</section>
+
+<section id="s9">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>8) Service Models &amp; Advantages</h2>
+<p>The “Types of Cloud Computing” slide splits the cloud by deployment (Private, Public, Hybrid) and by service model (IaaS, PaaS, SaaS). Note: the lecture file does not explain the three service models in detail, so this is a basic summary:</p>
+<div class="grid">
+<div class="box"><h4>IaaS</h4>Infrastructure as a Service: servers, storage and networks, e.g. AWS EC2.</div>
+<div class="box"><h4>PaaS</h4>Platform as a Service: a platform to build and deploy apps without managing infrastructure, e.g. Google App Engine.</div>
+<div class="box"><h4>SaaS</h4>Software as a Service: ready-made software through the browser, e.g. Google Docs, Salesforce.</div></div>
+<div class="key">Advantages: cost savings, access from any device, instant scaling, provider-managed maintenance, high reliability.</div></div>
+<div class="a" dir="rtl"><h2>8) نماذج الخدمة والمزايا <span class="en">Service Models &amp; Advantages</span></h2>
+<p>الشريحة (Types of Cloud Computing) تقسم السحابة إلى: حسب النشر (Private, Public, Hybrid) وحسب نموذج الخدمة (IaaS, PaaS, SaaS). ملاحظة: ملف المحاضرة لا يشرح النماذج الثلاثة بالتفصيل، فهذا ملخص أساسي لتكون جاهز:</p>
+<div class="grid">
+<div class="box"><h4>IaaS</h4>Infrastructure as a Service: بنية تحتية (سيرفرات، تخزين، شبكات) مثل AWS EC2.</div>
+<div class="box"><h4>PaaS</h4>Platform as a Service: منصة لتطوير التطبيقات ونشرها بدون إدارة البنية، مثل Google App Engine.</div>
+<div class="box"><h4>SaaS</h4>Software as a Service: برنامج جاهز عبر المتصفح، مثل Google Docs وSalesforce.</div>
+</div>
+<div class="key">مزايا السحابة: توفير التكلفة، وصول من أي جهاز، توسع فوري، صيانة من المزود، موثوقية عالية.</div>
+</div>
+</section>
+
+<section id="s10">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>9) Interactive Practice Questions</h2>
+<p>Pick an answer: you get instant feedback and the correct answer with an explanation.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>Essay questions</h3>
+<div class="q"><p>1) Define cloud computing in your own words with an example.<br>2) Compare on-premise and off-premise in four points.<br>3) Explain the four essential characteristics with an example for each.<br>4) What does an SLA contain, and why does it matter for “Where is my data?”<br>5) List the four deployment models and the differences between them.</p><details><summary>Hint</summary><div>Review sections 2, 6, 5, 4 and 7 in that order.</div></details></div></div>
+<div class="a" dir="rtl"><h2>9) أسئلة تدريبية تفاعلية</h2>
+<p>اختر إجابة: بتطلع لك النتيجة فوراً مع الإجابة الصحيحة والشرح.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>أسئلة مقالية</h3>
+<div class="q"><p>1) عرّف الحوسبة السحابية بأسلوبك مع مثال.<br>2) قارن بين On-premise وOff-premise في 4 نقاط.<br>3) اشرح الخصائص الأربع مع مثال لكل واحدة.<br>4) ما محتويات الـ SLA؟ ولماذا هي مهمة لسؤال "أين بياناتي؟"<br>5) اذكر أنواع نماذج النشر الأربعة مع الفرق بينها.</p><details><summary>إرشاد</summary><div>ارجع للأقسام 2 و6 و5 و4 و7 على الترتيب.</div></details></div></div>
+</section>
+
+</main>
+<footer>Good luck in the exam! · بالتوفيق 💙</footer>
+<script>
+var T=['True','False'],TA=['صح','خطأ'];
+var Q=[
+['What does cloud computing use to store and access data?','ماذا تستخدم الحوسبة السحابية لتخزين البيانات والوصول إليها؟',['Remote servers on the internet','Local drives only','USB flash drives','Printers'],['سيرفرات بعيدة على الإنترنت','الأقراص المحلية فقط','فلاشات USB','الطابعات'],0,'It uses remote servers on the internet instead of local drives.','تستخدم سيرفرات بعيدة على الإنترنت بدل الأقراص المحلية.'],
+['In the NIST definition, the shared pool consists of ___ computing resources.','في تعريف NIST، المجموعة المشتركة تتكون من موارد حاسوبية ___.',['configurable','fixed','physical only','private only'],['قابلة للضبط','ثابتة','فيزيائية فقط','خاصة فقط'],0,'A shared pool of configurable resources (networks, servers, storage, applications, services).','مجموعة مشتركة من موارد قابلة للضبط (شبكات، سيرفرات، تخزين، تطبيقات، خدمات).'],
+['“High level of abstraction” means:','معنى "مستوى عالٍ من التجريد":',['The user does not see the hardware details','The user must manage the hardware','Only experts can use it','It works without internet'],['المستخدم لا يرى تفاصيل الأجهزة','المستخدم لازم يدير الأجهزة','الخبراء فقط يستخدمونها','تعمل بدون إنترنت'],0,'Abstraction hides the underlying computation and storage details.','التجريد يخفي تفاصيل الحوسبة والتخزين الأساسية.'],
+['Who uses the Back End?','من يستخدم الـ Back End؟',['End-users','Service providers','Browsers','Mobile apps'],['المستخدمون النهائيون','مزودو الخدمة','المتصفحات','تطبيقات الموبايل'],1,'The back end is used by the service provider and administrators.','يستخدمه مزود الخدمة والمسؤولون.'],
+['Which belongs to the Front End?','أي مما يلي ينتمي للـ Front End؟',['Virtual machines','Web browsers and mobile devices','Traffic control','Data storage'],['الأجهزة الافتراضية','المتصفحات وأجهزة الموبايل','التحكم بالترافيك','تخزين البيانات'],1,'The front end contains client-side interfaces: browsers, thin/thick clients, tablets, mobiles.','الـ front end يحتوي واجهات العميل: المتصفحات، thin/thick clients، التابلت والموبايل.'],
+['Which component provides the GUI to interact with the cloud?','أي مكوّن يوفر الواجهة الرسومية للتفاعل مع السحابة؟',['Service','Application','Client Infrastructure','Storage'],['Service','Application','Client Infrastructure','Storage'],2,'Client Infrastructure is the front-end component that provides the GUI.','Client Infrastructure مكوّن front end يوفر الـ GUI.'],
+['Google Docs is an example of a:','Google Docs مثال على:',['Thick client','Thin client','SLA','Private cloud'],['Thick client','Thin client','SLA','Private cloud'],1,'It runs inside the browser and most processing is on the server.','يعمل داخل المتصفح والمعالجة على السيرفر.'],
+['Photoshop is an example of a:','Photoshop مثال على:',['Thin client','Thick client','Public cloud','Back end'],['Thin client','Thick client','Public cloud','Back end'],1,'It is installed locally and processes most work on the client side.','مثبت محلياً وأغلب المعالجة على جهة العميل.'],
+['Which client can often work offline and sync later?','أي عميل يشتغل غالباً Offline ويزامن لاحقاً؟',['Thin client','Thick client','Both always','Neither'],['Thin client','Thick client','الاثنان دائماً','لا أحد'],1,'A thick client can work offline; a thin client needs a constant connection.','الـ thick client يشتغل offline، والـ thin يحتاج اتصال دائم.'],
+['Which is a cloud computing operation?','أي مما يلي من عمليات الحوسبة السحابية؟',['Hosting websites','Replacing RAM','Defragmenting a disk','Printing locally'],['استضافة المواقع','تبديل الرام','ترتيب القرص','الطباعة محلياً'],0,'Operations include hosting blogs and websites, backup, streaming, analysis, etc.','من العمليات: استضافة المدونات والمواقع، النسخ الاحتياطي، البث، تحليل البيانات.'],
+['An SLA is:','الـ SLA هو:',['A contract between provider and customer','A type of server','A programming language','A cloud deployment model'],['عقد بين المزود والعميل','نوع من السيرفرات','لغة برمجة','نموذج نشر'],0,'A service-level agreement specifies, in measurable terms (QoS), what the provider will furnish.','يحدد بمصطلحات قابلة للقياس (QoS) ما سيقدمه المزود.'],
+['Which is commonly included in an SLA?','أي مما يلي يُضمَّن عادة في الـ SLA؟',['Penalties for non-performance','The customer’s hardware brand','Office furniture','Employee salaries'],['غرامات عدم الالتزام','ماركة جهاز العميل','أثاث المكتب','رواتب الموظفين'],0,'Also: up-time/down-time ratio, throughput, response time, problem management, security.','وأيضاً: نسبة uptime/downtime، throughput، زمن الاستجابة، إدارة المشاكل، الأمان.'],
+['Provisioning computing capability automatically without human interaction describes:','توفير القدرات الحوسبية تلقائياً بدون تدخل بشري يصف:',['On-Demand Self Service','Measured Service','Resource Pooling','Hybrid Cloud'],['On-Demand Self Service','Measured Service','Resource Pooling','Hybrid Cloud'],0,'This is On-Demand Self Service.','هذه خاصية On-Demand Self Service.'],
+['Serving multiple consumers with a multi-tenant model describes:','خدمة عدة مستهلكين بنموذج multi-tenant تصف:',['Measured Service','Resource Pooling','Broad Access','SLA'],['Measured Service','Resource Pooling','Broad Access','SLA'],1,'Resources are pooled and dynamically reassigned by demand.','الموارد تُجمّع وتُعاد توزيعها ديناميكياً حسب الطلب.'],
+['Which characteristic uses a metering capability?','أي خاصية تستخدم قدرة القياس (Metering)؟',['Measured Service','Resource Pooling','On-Demand Self Service','Heterogeneous Access'],['Measured Service','Resource Pooling','On-Demand Self Service','Heterogeneous Access'],0,'Measured Service meters usage, giving an analyzable, predictable platform.','تقيس الاستخدام وتعطي منصة قابلة للتحليل والتنبؤ.'],
+['Which is NOT an essential characteristic?','أي مما يلي ليس من الخصائص الأساسية؟',['On-Demand Self Service','Resource Pooling','Measured Service','High upfront CapEx'],['On-Demand Self Service','Resource Pooling','Measured Service','High upfront CapEx'],3,'High upfront CapEx is typical of on-premises.','النفقات الرأسمالية العالية صفة On-Premise.'],
+['“Where is my data?” highlights that data:','سؤال "أين بياناتي؟" يوضح أن البيانات:',['Is on servers the customer cannot physically access','Is always on your laptop','Is never stored','Is stored only in your building'],['على سيرفرات لا يستطيع العميل الوصول لها فيزيائياً','دائماً على لابتوبك','لا تُخزَّن أبداً','تُخزَّن فقط في مبناك'],0,'Vendors may store data anywhere at lowest cost unless restrained by agreement.','المورد قد يخزنها في أي مكان بأقل تكلفة إذا ما قيّده الاتفاق.'],
+['High upfront capital expense (CapEx) belongs to:','النفقات الرأسمالية الأولية العالية (CapEx) تخص:',['On-premises','Off-premises (Cloud)','SaaS only','Front end'],['On-premises','Off-premises (Cloud)','SaaS فقط','Front end'],0,'On-premises needs hardware purchases; the cloud uses OpEx subscriptions.','On-premises يحتاج شراء أجهزة؛ السحابة اشتراك OpEx.'],
+['Which offers instant, flexible scalability?','أيهما يوفر توسعاً فورياً ومرناً؟',['On-premises','Off-premises (Cloud)','Both equally','Neither'],['On-premises','Off-premises (Cloud)','الاثنان بالتساوي','لا أحد'],1,'Cloud resources scale up or down online; on-premises means buying servers.','موارد السحابة تكبر وتصغر أونلاين؛ on-premises يعني شراء سيرفرات.'],
+['Maintenance handled entirely by the in-house IT team is:','الصيانة بالكامل على فريق IT الداخلي في:',['On-premises','Off-premises (Cloud)','Public cloud','SaaS'],['On-premises','Off-premises (Cloud)','Public cloud','SaaS'],0,'In the cloud, the provider manages and updates the system.','في السحابة المزود هو من يدير ويحدّث.'],
+['A cloud operated solely for one organization is:','سحابة مُشغَّلة لمؤسسة واحدة فقط هي:',['Public','Private','Community','Hybrid'],['Public','Private','Community','Hybrid'],1,'Private cloud; managed by the organization or a third party, on or off premise.','Private cloud؛ تديرها المؤسسة أو طرف ثالث، on أو off premise.'],
+['A cloud shared by several organizations with shared concerns is:','سحابة مشتركة بين عدة مؤسسات لها اهتمامات مشتركة هي:',['Private','Public','Community','Hybrid'],['Private','Public','Community','Hybrid'],2,'This is a community cloud.','هذه Community cloud.'],
+['A public cloud is owned by:','السحابة العامة (Public) يملكها:',['The general public','An organization selling cloud services','Every customer','A government only'],['عامة الناس','منظمة تبيع الخدمات السحابية','كل عميل','الحكومة فقط'],1,'It is available to the public or a large industry group and owned by a cloud-selling organization.','متاحة للعامة أو لمجموعة صناعية كبيرة وتملكها منظمة تبيع خدمات سحابية.'],
+['A composition of two or more clouds enabling data and application portability is:','تركيبة من سحابتين أو أكثر تتيح قابلية نقل البيانات والتطبيقات:',['Private','Community','Public','Hybrid'],['Private','Community','Public','Hybrid'],3,'Hybrid cloud.','Hybrid cloud.'],
+['Which is an example of IaaS?','أي مما يلي مثال على IaaS؟',['Google Docs','AWS EC2','Salesforce','Google App Engine'],['Google Docs','AWS EC2','Salesforce','Google App Engine'],1,'IaaS provides infrastructure (servers, storage, networks), e.g. AWS EC2.','IaaS يوفر بنية تحتية، مثل AWS EC2.'],
+['A thick client depends heavily on a constant network connection.','الـ thick client يعتمد بشدة على اتصال شبكة دائم.',T,TA,1,'False: that is a thin client.','خطأ: هذا الـ thin client.'],
+['A private cloud may be on-premise or off-premise.','السحابة الخاصة قد تكون on-premise أو off-premise.',T,TA,0,'True.','صح.'],
+['In resource pooling, each consumer always gets a dedicated server.','في Resource Pooling كل مستهلك يحصل دائماً على سيرفر مخصص.',T,TA,1,'False: it is a shared multi-tenant model.','خطأ: نموذج multi-tenant مشترك.'],
+['The back end is invisible to users and runs in the background.','الـ Back End غير مرئي للمستخدمين ويعمل بالخلفية.',T,TA,0,'True.','صح.'],
+['On-premises uses a monthly subscription (OpEx) model.','On-premises يعتمد اشتراكاً شهرياً (OpEx).',T,TA,1,'False: on-premises is CapEx; the cloud is OpEx.','خطأ: on-premises هو CapEx، والسحابة OpEx.'],
+['Cloud computing enables access to information from most web-enabled hardware.','السحابة تتيح الوصول للمعلومات من أغلب الأجهزة المتصلة بالويب.',T,TA,0,'True.','صح.'],
+['Vendors must always keep your data in your own country, whatever the agreement.','المورد لازم دائماً يبقي بياناتك ببلدك مهما كان الاتفاق.',T,TA,1,'False: they may store it anywhere at lowest cost if not restrained by agreement.','خطأ: قد يخزنها في أي مكان بأقل تكلفة إذا لم يقيده الاتفاق.'],
+['Measured Service provides an analyzable and predictable computing platform.','Measured Service توفر منصة حوسبة قابلة للتحليل والتنبؤ.',T,TA,0,'True.','صح.'],
+['A community cloud serves a single organization only.','الـ Community cloud تخدم مؤسسة واحدة فقط.',T,TA,1,'False: it is shared by several organizations.','خطأ: مشتركة بين عدة مؤسسات.'],
+['A hybrid cloud limits data and application portability.','الـ Hybrid cloud تحدّ من قابلية نقل البيانات والتطبيقات.',T,TA,1,'False: it enables portability.','خطأ: هي تتيح قابلية النقل.']
+];
+var st={};
+function render(){
+ var n=Object.keys(st).length,c=0;for(var k in st)if(st[k]===Q[k][4])c++;
+ [['e',0],['a',1]].forEach(function(p){
+  var L=p[1],box=document.querySelector('#s10 .'+p[0]);
+  var sc=box.querySelector('.score'),qs=box.querySelector('.qs');
+  sc.innerHTML='<span>'+(L?'النتيجة: ':'Score: ')+c+' / '+n+' ('+(L?'من ':'of ')+Q.length+')</span><button type="button">'+(L?'إعادة':'Reset')+'</button>';
+  sc.querySelector('button').onclick=function(){st={};render()};
+  qs.innerHTML='';
+  Q.forEach(function(q,i){
+   var d=document.createElement('div');d.className='q';
+   var h='<p class="n">'+(i+1)+') '+q[L]+'</p><div class="opts">';
+   q[2+L].forEach(function(o,j){
+    var cl='opt';if(i in st){if(j===q[4])cl+=' ok';else if(j===st[i])cl+=' bad'}
+    h+='<button type="button" class="'+cl+'" data-i="'+i+'" data-j="'+j+'"'+(i in st?' disabled':'')+'>'+o+'</button>'});
+   h+='</div>';
+   if(i in st){var r=st[i]===q[4];h+='<div class="fb">'+(r?(L?'✅ صح! ':'✅ Correct! '):(L?'❌ خطأ. الإجابة الصحيحة: '+q[3][q[4]]+'. ':'❌ Wrong. Correct answer: '+q[2][q[4]]+'. '))+q[5+L]+'</div>'}
+   d.innerHTML=h;qs.appendChild(d)});
+  qs.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){st[b.dataset.i]=+b.dataset.j;render()}})});
+}
+render();
+(function(){var secs=[].slice.call(document.querySelectorAll('section')),all=document.getElementById('all');
+function lab(s){s.querySelector('.tr').textContent=s.classList.contains('ar')?'English':'العربية'}
+function sync(){var n=secs.filter(function(s){return s.classList.contains('ar')}).length;all.textContent=n===secs.length?'Back to English':'ترجمة الكل للعربية'}
+secs.forEach(function(s){s.querySelector('.tr').onclick=function(){s.classList.toggle('ar');lab(s);sync()}});
+all.onclick=function(){var to=!secs.every(function(s){return s.classList.contains('ar')});secs.forEach(function(s){s.classList.toggle('ar',to);lab(s)});sync()}})();
+</script>
+</body>
+</html>
