@@ -6,41 +6,56 @@
 <title>Cloud Computing Study Guides – Index</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f7fd;--card:#fff;--ink:#0b1220;--mut:#44536b;--blue:#1565d8;--blue2:#e3eeff;--black:#0b1220;--line:#cfdcf0;
+:root{--bg:#f3f7fd;--card:#fff;--ink:#0b1220;--mut:#44536b;--blue:#1565d8;--blue2:#e3eeff;--black:#0b1220;--line:#cfdcf0;--cloud:#1565d8;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}}
-:root[data-theme="dark"]{--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a;--cloud:#4c9aff}}
+:root[data-theme="dark"]{--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a;--cloud:#4c9aff}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.8;font-size:16px}
-header{position:relative;overflow:hidden;background:var(--black);color:#fff;padding:48px 20px 56px;text-align:center;border-bottom:6px solid var(--blue)}
-header svg{position:absolute;opacity:.18;fill:#4c9aff}
-.c1{width:220px;top:14px;inset-inline-start:-40px}.c2{width:300px;bottom:-60px;inset-inline-end:-60px}.c3{width:120px;top:24px;inset-inline-end:18%}
-header .in{position:relative}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.8;font-size:16px;overflow-x:hidden}
+/* floating clouds */
+.cl{position:absolute;left:0;fill:currentColor;will-change:transform;animation:drift linear infinite,bob ease-in-out infinite alternate}
+@keyframes drift{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+@keyframes bob{from{translate:0 -8px}to{translate:0 10px}}
+header{position:relative;overflow:hidden;color:#fff;padding:56px 20px 70px;text-align:center;background:linear-gradient(180deg,#000 0%,#0a1a38 55%,#123a7a 100%);border-bottom:6px solid var(--blue)}
+header .cl{color:#9cc2ff}
+header .in{position:relative;z-index:2}
+.hero{width:92px;margin:0 auto 6px;display:block;fill:#fff;filter:drop-shadow(0 0 14px #4c9aff);animation:bob 3s ease-in-out infinite alternate}
 h1{margin:0 0 6px;font-size:clamp(26px,5vw,42px);font-weight:800}
-header p{margin:0 auto 18px;color:#9cc2ff;max-width:560px}
-button{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:20px;padding:6px 18px;font-weight:700;font-size:15px}
-main{max-width:900px;margin:auto;padding:20px 16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.card{display:block;position:relative;background:var(--card);border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:14px;padding:16px 18px;color:inherit;text-decoration:none}
-.card .n{position:absolute;top:8px;inset-inline-end:14px;font-size:40px;font-weight:800;color:var(--blue2);line-height:1}
-.card h2{margin:0 0 4px;font-size:18px;color:var(--blue);padding-inline-end:48px}
-.card p{margin:0 0 10px;color:var(--mut);font-size:14px}
-.tag{display:inline-block;font-size:13px;font-weight:700;padding:2px 12px;border-radius:14px}
-.on{background:var(--blue);color:#fff}.soon{background:var(--blue2);color:var(--mut)}
-a.card:hover{box-shadow:0 0 0 2px var(--blue)}
-.card.off{opacity:.85}
+header p{margin:0 auto 18px;color:#bcd6ff;max-width:560px}
+button{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:20px;padding:6px 20px;font-weight:700;font-size:15px;box-shadow:0 4px 14px rgba(21,101,216,.45)}
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;color:var(--cloud)}
+.sky .cl{opacity:.07}
+main,footer{position:relative;z-index:1}
+main{max-width:900px;margin:auto;padding:26px 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:16px;padding:18px 20px;color:inherit;text-decoration:none;min-height:190px;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-5px);box-shadow:0 10px 26px rgba(21,101,216,.28),0 0 0 2px var(--blue)}
+.card .n{position:absolute;top:6px;inset-inline-end:14px;font-size:46px;font-weight:800;color:var(--blue2);line-height:1}
+.card h2{margin:0 0 6px;font-size:18px;color:var(--blue);padding-inline-end:52px;position:relative}
+.card p{margin:0 0 14px;color:var(--mut);font-size:14px;position:relative}
+.tag{margin-top:auto;align-self:flex-start;font-size:13px;font-weight:700;padding:3px 14px;border-radius:14px;background:var(--blue);color:#fff;position:relative}
 .ar{display:none}
 body.ar-mode .ar{display:revert}body.ar-mode .en{display:none}
-footer{text-align:center;color:var(--mut);padding:20px;font-size:14px}
+footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
+@media (prefers-reduced-motion:reduce){.cl,.hero{animation:none}.cl{left:20%}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="c" viewBox="0 0 64 40"><path d="M52 40H14A14 14 0 0 1 11 12.3 18 18 0 0 1 46 14a13 13 0 0 1 6 26Z"/></symbol></defs></svg>
+<div class="sky" aria-hidden="true">
+<svg class="cl" viewBox="0 0 64 40" style="top:18%;width:200px;animation-duration:70s,7s;animation-delay:-20s,0s"><use href="#c"/></svg>
+<svg class="cl" viewBox="0 0 64 40" style="top:45%;width:300px;animation-duration:95s,9s;animation-delay:-60s,-3s"><use href="#c"/></svg>
+<svg class="cl" viewBox="0 0 64 40" style="top:72%;width:240px;animation-duration:80s,8s;animation-delay:-35s,-5s"><use href="#c"/></svg>
+</div>
 <header>
-<svg class="c1" viewBox="0 0 64 40"><path d="M52 40H14A14 14 0 0 1 11 12.300 18 18 0 0 1 46 14a13 13 0 0 1 6 26Z"/></svg>
-<svg class="c2" viewBox="0 0 64 40"><path d="M52 40H14A14 14 0 0 1 11 12.300 18 18 0 0 1 46 14a13 13 0 0 1 6 26Z"/></svg>
-<svg class="c3" viewBox="0 0 64 40"><path d="M52 40H14A14 14 0 0 1 11 12.300 18 18 0 0 1 46 14a13 13 0 0 1 6 26Z"/></svg>
+<svg class="cl" viewBox="0 0 64 40" style="top:10%;width:170px;opacity:.22;animation-duration:38s,6s;animation-delay:-10s,0s"><use href="#c"/></svg>
+<svg class="cl" viewBox="0 0 64 40" style="top:55%;width:260px;opacity:.14;animation-duration:55s,8s;animation-delay:-30s,-2s"><use href="#c"/></svg>
+<svg class="cl" viewBox="0 0 64 40" style="top:30%;width:110px;opacity:.3;animation-duration:26s,5s;animation-delay:-5s,-1s"><use href="#c"/></svg>
+<svg class="cl" viewBox="0 0 64 40" style="top:70%;width:140px;opacity:.2;animation-duration:44s,7s;animation-delay:-22s,-4s"><use href="#c"/></svg>
+<svg class="cl" viewBox="0 0 64 40" style="top:5%;width:90px;opacity:.18;animation-duration:32s,6s;animation-delay:-18s,-3s"><use href="#c"/></svg>
 <div class="in">
-<h1><span class="en">☁️ Cloud Computing Study Guides</span><span class="ar">☁️ أدلة دراسة الحوسبة السحابية</span></h1>
+<svg class="hero" viewBox="0 0 64 40"><use href="#c"/></svg>
+<h1><span class="en">Cloud Computing Study Guides</span><span class="ar">أدلة دراسة الحوسبة السحابية</span></h1>
 <p><span class="en">Pick a chapter to open its full study guide, with explanations, examples and interactive questions.</span><span class="ar">اختر الشابتر لتفتح دليل الدراسة الكامل: شرح وأمثلة وأسئلة تفاعلية.</span></p>
 <button id="t" type="button">العربية</button>
 </div>
@@ -50,40 +65,40 @@ footer{text-align:center;color:var(--mut);padding:20px;font-size:14px}
 <a class="card" href="ch1.html"><span class="n">01</span>
 <h2><span class="en">Fundamentals of Cloud Computing – Part 1</span><span class="ar">أساسيات الحوسبة السحابية – الجزء 1</span></h2>
 <p><span class="en">Definition, architecture, SLA, essential characteristics, on/off-premise, deployment models.</span><span class="ar">التعريف، المعمارية، الـ SLA، الخصائص الأساسية، On/Off-Premise، نماذج النشر.</span></p>
-<span class="tag on"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
+<span class="tag"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
 
-<a class="card off" href="ch2.html"><span class="n">02</span>
+<a class="card" href="ch2.html"><span class="n">02</span>
 <h2><span class="en">Fundamentals of Cloud Computing – Part 2</span><span class="ar">أساسيات الحوسبة السحابية – الجزء 2</span></h2>
-<p><span class="en">Continues the fundamentals of cloud computing.</span><span class="ar">تكملة أساسيات الحوسبة السحابية.</span></p>
-<span class="tag on"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
+<p><span class="en">Service models (SaaS, PaaS, IaaS), advantages and disadvantages of the cloud.</span><span class="ar">نماذج الخدمة (SaaS, PaaS, IaaS)، مزايا وعيوب السحابة.</span></p>
+<span class="tag"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
 
-<a class="card off" href="ch3.html"><span class="n">03</span>
+<a class="card" href="ch3.html"><span class="n">03</span>
 <h2><span class="en">Cloud Deployment Models</span><span class="ar">نماذج النشر السحابية</span></h2>
 <p><span class="en">Private, public, community and hybrid clouds in depth.</span><span class="ar">السحابة الخاصة والعامة والمجتمعية والهجينة بالتفصيل.</span></p>
-<span class="tag on"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
+<span class="tag"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
 
-<a class="card off" href="ch4.html"><span class="n">04</span>
+<a class="card" href="ch4.html"><span class="n">04</span>
 <h2><span class="en">Infrastructure as a Service (IaaS)</span><span class="ar">البنية التحتية كخدمة (IaaS)</span></h2>
 <p><span class="en">Servers, storage and networks delivered as a service.</span><span class="ar">السيرفرات والتخزين والشبكات كخدمة.</span></p>
-<span class="tag on"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
+<span class="tag"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
 
-<a class="card off" href="ch5.html"><span class="n">05</span>
+<a class="card" href="ch5.html"><span class="n">05</span>
 <h2><span class="en">Platform as a Service (PaaS)</span><span class="ar">المنصة كخدمة (PaaS)</span></h2>
 <p><span class="en">Platforms for building and deploying applications.</span><span class="ar">منصات لبناء التطبيقات ونشرها.</span></p>
-<span class="tag on"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
+<span class="tag"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
 
-<a class="card off" href="ch6.html"><span class="n">06</span>
+<a class="card" href="ch6.html"><span class="n">06</span>
 <h2><span class="en">Software as a Service (SaaS)</span><span class="ar">البرمجيات كخدمة (SaaS)</span></h2>
 <p><span class="en">Ready-made software delivered through the browser.</span><span class="ar">برمجيات جاهزة تُقدَّم عبر المتصفح.</span></p>
-<span class="tag on"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
+<span class="tag"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
 
-<a class="card off" href="ch7.html"><span class="n">07</span>
+<a class="card" href="ch7.html"><span class="n">07</span>
 <h2><span class="en">Virtual Private Networks (VPN)</span><span class="ar">الشبكات الافتراضية الخاصة (VPN)</span></h2>
 <p><span class="en">Secure private connections over public networks.</span><span class="ar">اتصالات خاصة آمنة عبر الشبكات العامة.</span></p>
-<span class="tag on"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
+<span class="tag"><span class="en">Open guide →</span><span class="ar">افتح الدليل ←</span></span></a>
 </div>
 </main>
-
+<footer><span class="en">Good luck in the exam! 💙</span><span class="ar">بالتوفيق في الامتحان! 💙</span></footer>
 <script>
 (function(){var b=document.getElementById('t'),h=document.documentElement;
 b.onclick=function(){var a=document.body.classList.toggle('ar-mode');h.dir=a?'rtl':'ltr';h.lang=a?'ar':'en';b.textContent=a?'English':'العربية'}})();
