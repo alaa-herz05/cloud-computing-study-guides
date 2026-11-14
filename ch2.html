@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing Study Guide – Chapter 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7fd;--card:#fff;--ink:#0b1220;--mut:#44536b;--blue:#1565d8;--blue2:#e3eeff;--black:#0b1220;--line:#cfdcf0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}}
+:root[data-theme="dark"]{--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.9;font-size:16px}
+header{background:var(--black);color:#fff;padding:40px 20px 30px;text-align:center;border-bottom:6px solid var(--blue)}
+header h1{margin:0 0 6px;font-size:clamp(24px,5vw,38px);font-weight:800}
+header p{margin:0;color:#9cc2ff;direction:ltr}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:var(--card);border-bottom:1px solid var(--line)}
+nav a{color:var(--blue);text-decoration:none;font-size:14px;font-weight:600;padding:4px 12px;border:1px solid var(--line);border-radius:20px}
+main{max-width:900px;margin:auto;padding:16px}
+section{background:var(--card);border:1px solid var(--line);border-inline-start:6px solid var(--blue);position:relative;border-radius:14px;padding:18px 20px;margin:18px 0}
+h2{margin:0 0 10px;color:var(--blue);font-size:24px;font-weight:800}
+h3{margin:16px 0 4px;font-size:18px;font-weight:700}
+.en{direction:ltr;unicode-bidi:embed;font-weight:600;color:var(--blue)}
+.def{background:var(--black);color:#fff;border-radius:10px;padding:12px 16px;margin:10px 0}
+.def .en{color:#8ec1ff;display:block;font-weight:400;margin-top:4px}
+.ex{background:var(--blue2);border-inline-start:4px solid var(--blue);border-radius:8px;padding:10px 14px;margin:10px 0}
+.ex b{color:var(--blue)}
+.key{border:1px dashed var(--blue);border-radius:8px;padding:8px 14px;margin:10px 0;font-weight:600}
+ul{padding-inline-start:22px;margin:6px 0}
+.tw{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th{background:var(--black);color:#fff;padding:8px 10px}
+td{padding:8px 10px;border:1px solid var(--line)}
+td:first-child{font-weight:700;background:var(--blue2)}
+.e{display:block}.a{display:none;text-align:right}
+section.ar .e{display:none}section.ar .a{display:block}
+.tr,#all{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:20px;padding:4px 14px;font-weight:700;font-size:14px}
+.tr{position:absolute;top:12px;inset-inline-end:14px}
+.e h2{padding-inline-end:90px}.a h2{padding-inline-start:90px}
+.a .q ol{direction:ltr}.e .q ol{direction:ltr;text-align:left}
+td:first-child{text-align:start}th{text-align:start}
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 52px);z-index:5;background:var(--black);color:#fff;border-radius:10px;padding:6px 14px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.score button{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:14px;padding:2px 12px}
+td.y{background:var(--blue2);color:var(--blue);font-weight:700;text-align:center}td.v{background:var(--black);color:#fff;text-align:center}
+.opts{display:grid;gap:6px;margin:6px 0}
+.top{position:sticky;top:0;z-index:20;direction:ltr;display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--black);color:#fff;padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;border-bottom:2px solid var(--blue)}
+.top a,.top summary{color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:var(--blue);padding:5px 14px;border-radius:18px;cursor:pointer;list-style:none;display:inline-block}
+.top summary::-webkit-details-marker{display:none}
+.top b{font-size:14px;color:#9cc2ff}
+.menu{position:relative}
+.mn{position:absolute;inset-inline-end:0;top:38px;width:min(320px,86vw);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mn a,.mn span{display:block;background:none;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:14px;font-weight:600}
+.mn a:hover{background:var(--blue2)}
+.mn .cur{background:var(--blue2);color:var(--blue)}
+.mn span{color:var(--mut);opacity:.8}
+.opt{font-family:inherit;font-size:15px;text-align:start;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.opt:not(:disabled):hover{border-color:var(--blue);background:var(--blue2)}
+.opt.ok{background:#12803c;color:#fff;border-color:#12803c}.opt.bad{background:#c62828;color:#fff;border-color:#c62828}
+.fb{margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--blue2);font-weight:600}
+.q p.n{color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.box{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:10px 14px}
+.box h4{margin:0;color:var(--blue)}
+.q{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.q p{margin:0 0 4px;font-weight:700}
+.q ol{margin:4px 0;padding-right:24px;list-style:upper-alpha;direction:ltr;text-align:left}
+details summary{cursor:pointer;color:var(--blue);font-weight:700}
+details div{background:var(--blue2);padding:8px 12px;border-radius:8px;margin-top:6px}
+footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="top"><a href="index">🏠 Home · الرئيسية</a><b>Chapter 2 · الشابتر 2</b><details class="menu"><summary>☰ Chapters · الشباتر</summary><div class="mn"><a href="ch1">01 Fundamentals of Cloud Computing – Part 1</a><a class="cur" href="ch2">02 Fundamentals – Part 2 ✓</a><a href="ch3">03 Cloud Deployment Models</a><a href="ch4">04 Infrastructure as a Service (IaaS)</a><a href="ch5">05 Platform as a Service (PaaS)</a><a href="ch6">06 Software as a Service (SaaS)</a><a href="ch7">07 Virtual Private Networks (VPN)</a></div></details></div>
+<header>
+<h1>Cloud Computing Study Guide: Chapter 2</h1>
+<p>Part 2 · Service Models, Advantages &amp; Disadvantages</p>
+</header>
+<nav><button id="all" type="button">ترجمة الكل للعربية</button><a href="#a1">Service models</a><a href="#a2">SaaS</a><a href="#a3">PaaS</a><a href="#a4">IaaS</a><a href="#a5">Comparison</a><a href="#a6">Advantages</a><a href="#a7">Disadvantages</a><a href="#a8">Questions</a></nav>
+<main>
+<section id="a1">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>1) Cloud Service Models: Overview</h2>
+<p>Cloud computing is classified in two ways: <b>based on deployment</b> (Private, Public, Hybrid) and <b>based on service model</b> (IaaS, PaaS, SaaS). This chapter covers the three service models:</p>
+<div class="grid"><div class="box"><h4>IaaS = HOST</h4>Infrastructure as a Service: you <b>host</b> your systems on the provider’s infrastructure.</div><div class="box"><h4>PaaS = BUILD</h4>Platform as a Service: you <b>build</b> applications on the provider’s platform.</div><div class="box"><h4>SaaS = CONSUME</h4>Software as a Service: you <b>consume</b> ready-made software.</div></div>
+<div class="key">Memory trick: IaaS → Host, PaaS → Build, SaaS → Consume.</div></div>
+<div class="a" dir="rtl"><h2>1) نماذج الخدمة السحابية: نظرة عامة</h2>
+<p>تُصنَّف الحوسبة السحابية بطريقتين: <b>حسب النشر</b> (Private, Public, Hybrid) و<b>حسب نموذج الخدمة</b> (IaaS, PaaS, SaaS). هذا الشابتر يشرح نماذج الخدمة الثلاثة:</p>
+<div class="grid"><div class="box"><h4>IaaS = HOST</h4>البنية التحتية كخدمة: تستضيف (Host) أنظمتك على بنية المزود.</div><div class="box"><h4>PaaS = BUILD</h4>المنصة كخدمة: تبني (Build) تطبيقاتك على منصة المزود.</div><div class="box"><h4>SaaS = CONSUME</h4>البرمجيات كخدمة: تستهلك (Consume) برنامجاً جاهزاً.</div></div>
+<div class="key">للحفظ: IaaS ← Host، PaaS ← Build، SaaS ← Consume.</div></div>
+</section>
+
+<section id="a2">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>2) Software as a Service (SaaS)</h2>
+<div class="def">Also called “software on demand”. This model involves outsourcing the infrastructure, the platform and the software/applications. SaaS is a model of software deployment where applications are provided to customers as a service.</div>
+<ul><li>Usually available to the customer for a fee, pay-as-you-go, or at no charge.</li><li>The customer accesses the applications over the internet.</li><li>Typical users: end users.</li></ul>
+<div class="ex"><b>Examples:</b> Salesforce CRM, LotusLive, Google Docs.</div></div>
+<div class="a" dir="rtl"><h2>2) البرمجيات كخدمة (SaaS)</h2>
+<div class="def">تُسمّى أيضاً "software on demand" (برمجيات عند الطلب). في هذا النموذج يتم تفويض (outsourcing) البنية التحتية والمنصة والبرمجيات/التطبيقات كلها للمزود. هي نموذج لنشر البرمجيات حيث تُقدَّم التطبيقات للعملاء كخدمة.</div>
+<ul><li>تكون متاحة غالباً بمقابل، أو حسب الاستخدام (pay-as-you-go)، أو مجاناً.</li><li>العميل يصل للتطبيقات عبر الإنترنت.</li><li>المستخدمون المعتادون: End users.</li></ul>
+<div class="ex"><b>أمثلة:</b> Salesforce CRM، LotusLive، Google Docs.</div></div>
+</section>
+
+<section id="a3">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>3) Platform as a Service (PaaS)</h2>
+<div class="def">A service model that involves outsourcing the basic infrastructure and the platform (Windows, Unix). PaaS delivers a computing platform where developers can develop their own applications.</div>
+<ul><li>Facilitates deploying applications without the cost and complexity of buying and managing the underlying hardware and software.</li><li>The customer uses their own applications.</li><li>Typical users: application developers.</li></ul>
+<div class="ex"><b>Examples:</b> Google App Engine, Windows Azure Platform.</div></div>
+<div class="a" dir="rtl"><h2>3) المنصة كخدمة (PaaS)</h2>
+<div class="def">نموذج خدمة يتم فيه تفويض البنية التحتية الأساسية والمنصة (Windows, Unix). يوفر PaaS منصة حوسبة يطوّر عليها المطورون تطبيقاتهم الخاصة.</div>
+<ul><li>يسهّل نشر التطبيقات بدون كلفة وتعقيد شراء وإدارة الأجهزة والبرمجيات الأساسية.</li><li>العميل يستخدم تطبيقاته الخاصة.</li><li>المستخدمون المعتادون: مطورو التطبيقات (Application developers).</li></ul>
+<div class="ex"><b>أمثلة:</b> Google App Engine، Windows Azure Platform.</div></div>
+</section>
+
+<section id="a4">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>4) Infrastructure as a Service (IaaS)</h2>
+<div class="def">A service model that involves outsourcing the basic infrastructure used to support operations, including storage, hardware, servers and networking components. IaaS delivers computer infrastructure, typically a platform virtualization environment, as a service.</div>
+<ul><li>The provider owns the equipment and is responsible for housing, running and maintaining it.</li><li>The customer typically pays on a per-use basis.</li><li>The customer uses their own platform (Windows, Unix) and applications.</li><li>Instead of purchasing servers, software, data-center space or network equipment, clients buy these resources as a fully outsourced service.</li><li>Typical users: infrastructure and network architects.</li></ul>
+<div class="ex"><b>Examples:</b> Amazon Web Services (EC2), Rackspace.</div></div>
+<div class="a" dir="rtl"><h2>4) البنية التحتية كخدمة (IaaS)</h2>
+<div class="def">نموذج خدمة يتم فيه تفويض البنية التحتية الأساسية التي تدعم العمليات: التخزين، الأجهزة، السيرفرات ومكونات الشبكات. يوفر IaaS بنية الحاسوب (عادة بيئة virtualization) كخدمة.</div>
+<ul><li>المزود يملك المعدات وهو المسؤول عن إيوائها وتشغيلها وصيانتها.</li><li>العميل يدفع عادةً حسب الاستخدام (per-use).</li><li>العميل يستخدم منصته الخاصة (Windows, Unix) وتطبيقاته.</li><li>بدل شراء سيرفرات وبرمجيات ومساحة مركز بيانات ومعدات شبكة، يشتري العملاء هذه الموارد كخدمة مفوّضة بالكامل.</li><li>المستخدمون المعتادون: مهندسو البنية التحتية والشبكات.</li></ul>
+<div class="ex"><b>أمثلة:</b> Amazon Web Services (EC2)، Rackspace.</div></div>
+</section>
+
+<section id="a5">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>5) Comparing the Service Models</h2>
+<h3>Who manages each layer? (from the diagram)</h3><div class="tw"><table><tr><th>Layer</th><th>On-premise</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr><tr><td>Applications</td><td class="y">You</td><td class="y">You</td><td class="y">You</td><td class="v">Vendor</td></tr><tr><td>Data</td><td class="y">You</td><td class="y">You</td><td class="y">You</td><td class="v">Vendor</td></tr><tr><td>Runtime</td><td class="y">You</td><td class="y">You</td><td class="v">Vendor</td><td class="v">Vendor</td></tr><tr><td>Middleware</td><td class="y">You</td><td class="y">You</td><td class="v">Vendor</td><td class="v">Vendor</td></tr><tr><td>OS</td><td class="y">You</td><td class="y">You</td><td class="v">Vendor</td><td class="v">Vendor</td></tr><tr><td>Virtualization</td><td class="y">You</td><td class="v">Vendor</td><td class="v">Vendor</td><td class="v">Vendor</td></tr><tr><td>Servers</td><td class="y">You</td><td class="v">Vendor</td><td class="v">Vendor</td><td class="v">Vendor</td></tr><tr><td>Storage</td><td class="y">You</td><td class="v">Vendor</td><td class="v">Vendor</td><td class="v">Vendor</td></tr><tr><td>Networking</td><td class="y">You</td><td class="v">Vendor</td><td class="v">Vendor</td><td class="v">Vendor</td></tr></table></div>
+<div class="tw"><table><tr><th>Model</th><th>What it contains</th><th>Main users</th></tr>
+<tr><td>SaaS</td><td>Packaged software, OS and application stack, servers, storage, network</td><td>End users</td></tr>
+<tr><td>PaaS</td><td>OS and application stack, servers, storage, network</td><td>Application developers</td></tr>
+<tr><td>IaaS</td><td>Server, storage, network</td><td>Infrastructure &amp; network architects</td></tr></table></div>
+<div class="tw"><table><tr><th>Model</th><th>Example providers</th></tr><tr><td>SaaS</td><td>Salesforce CRM, LotusLive</td></tr><tr><td>PaaS</td><td>Google App Engine, Windows Azure</td></tr><tr><td>IaaS</td><td>Amazon Web Services, Rackspace</td></tr></table></div>
+<p>The model sits on a pyramid: IaaS at the base, PaaS in the middle, SaaS on top (each higher level builds on the one below). Source of the slide: <i>Effectively and Securely Using the Cloud Computing Paradigm</i> by Peter Mell and Tim Grance.</p>
+<h3>Cloud taxonomy</h3>
+<p>The taxonomy diagram (OpenCrowd) groups cloud offerings into: Infrastructure Services (storage, compute, services management), Platform Services (general purpose, business intelligence, integration, development &amp; testing, database), Software Services (billing, financials, legal, HR, content management, backup &amp; recovery, CRM, social networks, collaboration, desktop productivity) and Cloud Software.</p>
+<div class="ex"><b>Analogy:</b> On-premise = you cook everything at home. IaaS = you rent the kitchen. PaaS = the kitchen and ingredients are ready, you cook. SaaS = you order the finished meal.</div></div>
+<div class="a" dir="rtl"><h2>5) مقارنة بين نماذج الخدمة</h2>
+<h3>من يدير كل طبقة؟ (حسب الرسم)</h3><div class="tw"><table><tr><th>الطبقة</th><th>On-premise</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr><tr><td>Applications</td><td class="y">أنت</td><td class="y">أنت</td><td class="y">أنت</td><td class="v">المزود</td></tr><tr><td>Data</td><td class="y">أنت</td><td class="y">أنت</td><td class="y">أنت</td><td class="v">المزود</td></tr><tr><td>Runtime</td><td class="y">أنت</td><td class="y">أنت</td><td class="v">المزود</td><td class="v">المزود</td></tr><tr><td>Middleware</td><td class="y">أنت</td><td class="y">أنت</td><td class="v">المزود</td><td class="v">المزود</td></tr><tr><td>OS</td><td class="y">أنت</td><td class="y">أنت</td><td class="v">المزود</td><td class="v">المزود</td></tr><tr><td>Virtualization</td><td class="y">أنت</td><td class="v">المزود</td><td class="v">المزود</td><td class="v">المزود</td></tr><tr><td>Servers</td><td class="y">أنت</td><td class="v">المزود</td><td class="v">المزود</td><td class="v">المزود</td></tr><tr><td>Storage</td><td class="y">أنت</td><td class="v">المزود</td><td class="v">المزود</td><td class="v">المزود</td></tr><tr><td>Networking</td><td class="y">أنت</td><td class="v">المزود</td><td class="v">المزود</td><td class="v">المزود</td></tr></table></div>
+<div class="tw"><table><tr><th>النموذج</th><th>ماذا يحتوي</th><th>المستخدمون</th></tr>
+<tr><td>SaaS</td><td>برمجيات جاهزة، OS وحزمة التطبيقات، سيرفرات، تخزين، شبكة</td><td>End users</td></tr>
+<tr><td>PaaS</td><td>OS وحزمة التطبيقات، سيرفرات، تخزين، شبكة</td><td>مطورو التطبيقات</td></tr>
+<tr><td>IaaS</td><td>سيرفر، تخزين، شبكة</td><td>مهندسو البنية التحتية والشبكات</td></tr></table></div>
+<div class="tw"><table><tr><th>النموذج</th><th>أمثلة على المزودين</th></tr><tr><td>SaaS</td><td>Salesforce CRM, LotusLive</td></tr><tr><td>PaaS</td><td>Google App Engine, Windows Azure</td></tr><tr><td>IaaS</td><td>Amazon Web Services, Rackspace</td></tr></table></div>
+<p>النماذج تشكّل هرماً: IaaS في القاعدة، PaaS في الوسط، SaaS في القمة (كل مستوى أعلى يبني على الذي تحته). مصدر الشريحة: <i>Effectively and Securely Using the Cloud Computing Paradigm</i> لـ Peter Mell وTim Grance.</p>
+<h3>تصنيف السحابة (Cloud Taxonomy)</h3>
+<p>مخطط OpenCrowd يجمع خدمات السحابة في: Infrastructure Services (تخزين، حوسبة، إدارة خدمات)، Platform Services (أغراض عامة، BI، تكامل، تطوير واختبار، قواعد بيانات)، Software Services (فواتير، مالية، قانوني، موارد بشرية، إدارة محتوى، نسخ احتياطي، CRM، شبكات اجتماعية، تعاون، إنتاجية) وCloud Software.</p>
+<div class="ex"><b>تشبيه:</b> On-premise = تطبخ كل شي ببيتك. IaaS = تستأجر المطبخ. PaaS = المطبخ والمكونات جاهزة وأنت تطبخ. SaaS = تطلب الوجبة جاهزة.</div></div>
+</section>
+
+<section id="a6">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>6) Advantages of Cloud Computing</h2><p>The slide lists six advantages around “Cloud Computing”. Before the cloud: messy server rooms. After: applications, services, storage (database), servers and the computer network all in the cloud.</p><div class="grid"><div class="box"><h4>Data security</h4>Vendors apply measures to prevent data loss and keep a safe multi-tenant environment: access restrictions to apps and resources; logging, monitoring and control of access and use; security-architecture models with app-level configuration; baseline protections such as user authentication, encryption, SSO and API controls.</div><div class="box"><h4>Mobility and availability</h4>Your data is available 24/7 if you have your credentials and any device with a stable internet connection. You can store, retrieve, recover and process data anywhere. Teams can collaborate on one shared project without multiple copies, wherever they are, and you can share files as web links instead of storing them on your device.</div><div class="box"><h4>Scalability</h4>On-premise servers can be like buying clothes you never wear: you may not need them, or in fast growth you need capacity now but must build new infrastructure. With on-demand, pay-as-you-go cloud platforms you use as many resources as needed at any moment. Great for small businesses that plan to grow fast or are unsure how many resources they need.</div><div class="box"><h4>Less trouble</h4>In-house hardware beyond a regular laptop needs an IT team. In the cloud, administration is fairly easy and providers take responsibility for maintaining systems, performance, security and control, and for managing updates and threats off-site.</div><div class="box"><h4>Remote data backup / disaster recovery</h4>On-premise data can be lost to malware, hardware crashes, user error, power cuts or natural disasters, costing revenue, brand and customer trust. In the cloud, data is stored on multiple servers and a reserve copy is made instantly and transferred regularly to a secondary off-site location, by settings or whenever data is updated.</div><div class="box"><h4>Cost efficiency</h4>The cloud can look more expensive than owning servers, but its benefits outweigh the costs. It avoids capital investment in hardware, IT staff salaries, rent for a bigger office with a server room, and electricity bills (servers and their air conditioners are power-hungry).</div></div><div class="key">Six advantages: Data security · Mobility &amp; availability · Scalability · Less trouble · Remote backup/DR · Cost efficiency.</div></div>
+<div class="a" dir="rtl"><h2>6) مزايا الحوسبة السحابية</h2><p>الشريحة تعرض ست مزايا حول "Cloud Computing". قبل السحابة: غرف سيرفرات فوضوية. بعدها: التطبيقات والخدمات والتخزين (قاعدة البيانات) والسيرفرات وشبكة الحاسوب كلها بالسحابة.</p><div class="grid"><div class="box"><h4>أمن البيانات</h4>يطبق المزودون إجراءات لمنع فقدان البيانات وضمان بيئة آمنة متعددة المستأجرين: تقييد الوصول للتطبيقات والموارد؛ التسجيل والمراقبة والتحكم بالوصول والاستخدام؛ نماذج معمارية أمنية بإعدادات على مستوى التطبيق؛ حمايات أساسية مثل المصادقة (authentication) والتشفير (encryption) وSSO والتحكم بالـ API.</div><div class="box"><h4>التنقل والإتاحة</h4>بياناتك متاحة 24/7 طالما معك بيانات الدخول وأي جهاز باتصال إنترنت مستقر. تخزّن وتسترجع وتعالج بياناتك بأي وقت ومكان. الفرق تتعاون على مشروع واحد مشترك بدون نسخ متعددة، وبأي مكان بالعالم، وتشارك الملفات كروابط ويب بدل تخزينها على جهازك.</div><div class="box"><h4>قابلية التوسع</h4>السيرفرات المحلية كشراء ملابس ما رح تلبسها: يمكن ما تحتاجها، أو عند النمو السريع تحتاج سعة فوراً لكن لازم تبني بنية جديدة. مع منصات السحابة حسب الطلب (pay-as-you-go) تستخدم من الموارد بقدر حاجتك بكل لحظة. ممتاز للشركات الصغيرة التي ستنمو بسرعة أو لا تعرف حاجتها بالضبط.</div><div class="box"><h4>متاعب أقل</h4>الأجهزة المحلية الأعقد من لابتوب عادي تحتاج فريق IT. في السحابة الإدارة سهلة نسبياً والمزود يتحمل مسؤولية صيانة الأنظمة والأداء والأمان والتحكم وإدارة التحديثات والتهديدات عن بعد.</div><div class="box"><h4>النسخ الاحتياطي عن بعد والتعافي من الكوارث</h4>بيانات السيرفرات المحلية قد تضيع بسبب malware أو أعطال أجهزة أو خطأ مستخدم أو انقطاع كهرباء أو كوارث طبيعية، فتكلّف الإيرادات والسمعة وثقة العملاء. في السحابة تُخزَّن البيانات على عدة سيرفرات وتُنشأ نسخة احتياطية فوراً وتُنقل دورياً لموقع ثانوي خارجي، حسب الإعدادات أو عند كل تحديث للبيانات.</div><div class="box"><h4>كفاءة التكلفة</h4>قد تبدو السحابة أغلى من امتلاك سيرفرات، لكن فوائدها تفوق تكلفتها. تتجنب استثمار رأس المال بالأجهزة، رواتب فريق IT، إيجار مكتب أكبر بغرفة سيرفرات، وفواتير الكهرباء (السيرفرات ومكيفاتها تستهلك الكثير).</div></div><div class="key">المزايا الست: أمن البيانات · التنقل والإتاحة · قابلية التوسع · متاعب أقل · النسخ الاحتياطي/التعافي · كفاءة التكلفة.</div></div>
+</section>
+
+<section id="a7">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>7) Disadvantages of Cloud Computing</h2><div class="grid"><div class="box"><h4>1) Internet connectivity</h4>All data (images, audio, video…) is stored in the cloud and reached through the internet. Without good connectivity you cannot access it, and there is no other way to access cloud data.</div><div class="box"><h4>2) Vendor lock-in</h4>The biggest disadvantage. Moving services from one vendor to another is hard because vendors provide different platforms.</div><div class="box"><h4>3) Limited control</h4>The infrastructure is completely owned, managed and monitored by the provider, so users have less control over how services function and execute.</div><div class="box"><h4>4) Security</h4>Even with the best standards, you send your organization’s sensitive information to a third party, and there is a chance it could be hacked.</div></div></div>
+<div class="a" dir="rtl"><h2>7) عيوب الحوسبة السحابية</h2><div class="grid"><div class="box"><h4>1) اتصال الإنترنت</h4>كل البيانات (صور، صوت، فيديو…) مخزنة بالسحابة ونصل لها عبر الإنترنت. بدون اتصال جيد ما تقدر توصل لها، ولا توجد طريقة أخرى للوصول.</div><div class="box"><h4>2) الارتباط بالمزود (Vendor lock-in)</h4>أكبر عيوب السحابة. نقل الخدمات من مزود لآخر صعب لأن لكل مزود منصات مختلفة.</div><div class="box"><h4>3) تحكم محدود</h4>البنية التحتية مملوكة ومُدارة ومراقَبة بالكامل من المزود، فيقل تحكم المستخدمين بعمل الخدمات وتنفيذها.</div><div class="box"><h4>4) الأمان</h4>حتى مع أفضل المعايير، أنت ترسل معلومات مؤسستك الحساسة لطرف ثالث، وهناك احتمال أن تُخترق.</div></div></div>
+</section>
+
+<section id="a8">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>8) Interactive Practice Questions</h2>
+<p>Pick an answer: you get instant feedback and the correct answer with an explanation.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>Essay questions</h3>
+<div class="q"><p>1) Define SaaS, PaaS and IaaS and give an example of each.<br>2) Who manages which layers in IaaS, PaaS and SaaS?<br>3) Explain any three advantages of cloud computing.<br>4) Explain vendor lock-in and limited control.<br>5) Compare on-premise and cloud for backup and disaster recovery.</p><details><summary>Hint</summary><div>Review sections 2–5, 6, and 7.</div></details></div></div>
+<div class="a" dir="rtl"><h2>8) أسئلة تدريبية تفاعلية</h2>
+<p>اختر إجابة: بتطلع لك النتيجة فوراً مع الإجابة الصحيحة والشرح.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>أسئلة مقالية</h3>
+<div class="q"><p>1) عرّف SaaS وPaaS وIaaS مع مثال لكل واحد.<br>2) من يدير أي طبقات في IaaS وPaaS وSaaS؟<br>3) اشرح ثلاث مزايا للحوسبة السحابية.<br>4) اشرح Vendor lock-in والتحكم المحدود.<br>5) قارن بين On-premise والسحابة بالنسخ الاحتياطي والتعافي من الكوارث.</p><details><summary>إرشاد</summary><div>ارجع للأقسام 2–5 و6 و7.</div></details></div></div>
+</section>
+</main>
+<footer>Good luck in the exam! · بالتوفيق 💙</footer>
+<script>
+function m(qe,qa,oe,oa,a,xe,xa){return{q:[qe,qa],o:[oe,oa||oe],a:a,x:[xe,xa]}}
+var TF=[['True','False'],['صح','خطأ']];
+function tf(qe,qa,t,xe,xa){return{q:[qe,qa],o:TF,a:t?0:1,x:[xe,xa]}}
+var Q=[
+m('Which model is also called “software on demand”?','أي نموذج يُسمّى أيضاً "software on demand"؟',['SaaS','PaaS','IaaS','VPN'],0,0,'SaaS is also referred to as software on demand.','يُسمّى SaaS أيضاً software on demand.'),
+m('Which model is summarized as “BUILD”?','أي نموذج يُلخَّص بكلمة "BUILD"؟',['IaaS','PaaS','SaaS','Hybrid'],0,1,'IaaS = Host, PaaS = Build, SaaS = Consume.','IaaS = Host، PaaS = Build، SaaS = Consume.'),
+m('Which model is summarized as “CONSUME”?','أي نموذج يُلخَّص بكلمة "CONSUME"؟',['IaaS','PaaS','SaaS','Private'],0,2,'SaaS: you consume ready-made software.','SaaS: تستهلك برنامجاً جاهزاً.'),
+m('In SaaS, the customer accesses the applications over:','في SaaS، العميل يصل للتطبيقات عبر:',['the internet','a USB cable','a local printer','a private building network only'],['الإنترنت','كابل USB','طابعة محلية','شبكة المبنى الخاصة فقط'],0,'SaaS applications are accessed over the internet.','تطبيقات SaaS يُوصل لها عبر الإنترنت.'),
+m('SaaS services are typically offered:','خدمات SaaS تُقدَّم عادةً:',['for a fee, pay-as-you-go, or free','only free','only with a lifetime license','only to governments'],['بمقابل أو حسب الاستخدام أو مجاناً','مجاناً فقط','بترخيص دائم فقط','للحكومات فقط'],0,'Fee, pay-as-you-go, or a no-charge model.','بمقابل، أو pay-as-you-go، أو مجاناً.'),
+m('Which model outsources infrastructure, platform AND software?','أي نموذج يفوّض البنية التحتية والمنصة والبرمجيات كلها؟',['SaaS','PaaS','IaaS','On-premise'],0,0,'SaaS outsources all three.','SaaS يفوّض الثلاثة كلها.'),
+m('PaaS facilitates deploying applications without:','يسهّل PaaS نشر التطبيقات بدون:',['the cost and complexity of buying and managing the hardware and software','writing any code','using the internet','any developers'],['كلفة وتعقيد شراء وإدارة الأجهزة والبرمجيات','كتابة أي كود','استخدام الإنترنت','أي مطورين'],0,'That is the main benefit of PaaS.','هذه الفائدة الأساسية لـ PaaS.'),
+m('In PaaS, the customer uses:','في PaaS، العميل يستخدم:',['their own applications','only the provider’s applications','no applications','only the provider’s hardware logos'],['تطبيقاته الخاصة','تطبيقات المزود فقط','لا تطبيقات','شعارات المزود فقط'],0,'The customer deploys their own applications.','العميل ينشر تطبيقاته الخاصة.'),
+m('PaaS delivers a computing platform where developers can:','يوفر PaaS منصة حوسبة يستطيع المطورون فيها:',['develop their own applications','buy servers','rent buildings','repair networks'],['تطوير تطبيقاتهم الخاصة','شراء سيرفرات','استئجار مباني','إصلاح الشبكات'],0,'PaaS is a platform for developing applications.','PaaS منصة لتطوير التطبيقات.'),
+m('IaaS outsources basic infrastructure including:','يفوّض IaaS البنية التحتية الأساسية وتشمل:',['storage, hardware, servers, networking','only email','only websites','only antivirus'],['التخزين، الأجهزة، السيرفرات، الشبكات','البريد فقط','المواقع فقط','مضاد الفيروسات فقط'],0,'Storage, hardware, servers and networking components.','التخزين والأجهزة والسيرفرات ومكونات الشبكة.'),
+m('In IaaS, who owns and maintains the infrastructure equipment?','في IaaS، من يملك المعدات ويصونها؟',['The service provider','The customer','The end users','The government'],['مزود الخدمة','العميل','المستخدمون النهائيون','الحكومة'],0,'The provider houses, runs and maintains it.','المزود يؤويها ويشغلها ويصونها.'),
+m('IaaS customers typically pay:','عملاء IaaS يدفعون عادةً:',['on a per-use basis','a fixed lifetime fee','nothing','only on holidays'],['حسب الاستخدام (per-use)','رسماً ثابتاً مدى الحياة','لا شيء','فقط بالعطل'],0,'Pay per use.','الدفع حسب الاستخدام.'),
+m('In IaaS, the customer uses their own:','في IaaS، العميل يستخدم:',['platform (Windows, Unix) and applications','nothing of their own','only the provider’s software','only a browser'],['منصته (Windows, Unix) وتطبيقاته','لا شيء خاص به','برمجيات المزود فقط','المتصفح فقط'],0,'The customer brings their own OS platform and applications.','العميل يأتي بمنصته وتطبيقاته.'),
+m('Typical users of SaaS are:','المستخدمون المعتادون لـ SaaS:',['End users','Application developers','Infrastructure architects','Hardware vendors'],['المستخدمون النهائيون','مطورو التطبيقات','مهندسو البنية التحتية','موردو الأجهزة'],0,'End users.','المستخدمون النهائيون.'),
+m('Typical users of PaaS are:','المستخدمون المعتادون لـ PaaS:',['End users','Application developers','Network architects only','Nobody'],['المستخدمون النهائيون','مطورو التطبيقات','مهندسو الشبكات فقط','لا أحد'],0,'Application developers.','مطورو التطبيقات.'),
+m('Typical users of IaaS are:','المستخدمون المعتادون لـ IaaS:',['Infrastructure and network architects','End users only','Gamers','Teachers'],['مهندسو البنية التحتية والشبكات','المستخدمون النهائيون فقط','اللاعبون','المعلمون'],0,'Infrastructure and network architects.','مهندسو البنية التحتية والشبكات.'),
+m('Salesforce CRM is an example of:','Salesforce CRM مثال على:',['SaaS','PaaS','IaaS','VPN'],0,0,'Salesforce CRM and LotusLive are SaaS.','Salesforce CRM وLotusLive هما SaaS.'),
+m('Google App Engine is an example of:','Google App Engine مثال على:',['SaaS','PaaS','IaaS','On-premise'],0,1,'Google App Engine and Windows Azure are PaaS.','Google App Engine وWindows Azure هما PaaS.'),
+m('Amazon Web Services and Rackspace are examples of:','Amazon Web Services وRackspace أمثلة على:',['SaaS','PaaS','IaaS','Community cloud'],0,2,'They are IaaS providers.','هما مزودا IaaS.'),
+m('In IaaS, which layers does the vendor manage?','في IaaS، أي طبقات يديرها المزود؟',['Virtualization, servers, storage, networking','Applications and data','Applications only','Nothing'],['Virtualization والسيرفرات والتخزين والشبكات','التطبيقات والبيانات','التطبيقات فقط','لا شيء'],0,'You manage applications, data, runtime, middleware and OS.','أنت تدير التطبيقات والبيانات والـ runtime والـ middleware والـ OS.'),
+m('In PaaS, the customer manages:','في PaaS، العميل يدير:',['Applications and data','Everything','The servers','The network'],['التطبيقات والبيانات','كل شيء','السيرفرات','الشبكة'],0,'Everything below applications and data is vendor-managed.','كل ما تحت التطبيقات والبيانات يديره المزود.'),
+m('In SaaS, who manages all the layers?','في SaaS، من يدير كل الطبقات؟',['The vendor','The customer','The end user','Nobody'],['المزود','العميل','المستخدم النهائي','لا أحد'],0,'The vendor manages everything.','المزود يدير كل شيء.'),
+m('Which is NOT listed as an advantage of cloud computing?','أي مما يلي ليس من مزايا السحابة المذكورة؟',['Data security','Scalability','Cost efficiency','Vendor lock-in'],0,3,'Vendor lock-in is a disadvantage.','Vendor lock-in عيب.'),
+m('Which is a baseline cloud data-security protection?','أي مما يلي حماية أمنية أساسية بالسحابة؟',['Encryption','Public passwords','No logging','Open access'],['التشفير (Encryption)','كلمات سر عامة','بدون تسجيل','وصول مفتوح'],0,'Also authentication, SSO and API controls.','وأيضاً المصادقة وSSO والتحكم بالـ API.'),
+m('“Mobility and availability” means data is available:','"التنقل والإتاحة" تعني أن البيانات متاحة:',['24/7 with credentials and a stable internet connection','only in the office','only on one device','only offline'],['24/7 مع بيانات الدخول واتصال مستقر','بالمكتب فقط','على جهاز واحد فقط','Offline فقط'],0,'Anytime, anywhere, from any device.','بأي وقت ومكان ومن أي جهاز.'),
+m('Cloud collaboration allows teams to:','التعاون بالسحابة يتيح للفرق:',['work on one shared project without multiple copies','email files only','avoid sharing','use only paper'],['العمل على مشروع مشترك بدون نسخ متعددة','إرسال الملفات بالإيميل فقط','تجنب المشاركة','استخدام الورق فقط'],0,'Files can also be shared as web links.','ويمكن مشاركة الملفات كروابط ويب.'),
+m('Pay-as-you-go cloud scalability lets customers:','قابلية التوسع مع pay-as-you-go تتيح للعملاء:',['use as many resources as needed at a given moment','buy hardware first','be limited to fixed capacity','stop using the internet'],['استخدام موارد بقدر الحاجة بأي لحظة','شراء الأجهزة أولاً','التقيد بسعة ثابتة','التوقف عن استخدام الإنترنت'],0,'Ideal for fast-growing or uncertain small businesses.','مثالي للشركات الصغيرة سريعة النمو أو غير المتأكدة.'),
+m('“Less trouble” means the cloud provider handles:','"متاعب أقل" تعني أن مزود السحابة يتولى:',['maintenance, performance, security and updates','your personal files only','nothing','only marketing'],['الصيانة والأداء والأمان والتحديثات','ملفاتك الشخصية فقط','لا شيء','التسويق فقط'],0,'Admin is fairly easy for the customer.','الإدارة سهلة نسبياً على العميل.'),
+m('Cloud backup/disaster recovery works by:','النسخ الاحتياطي والتعافي بالسحابة يعمل عبر:',['storing data on multiple servers and copying to an off-site location','keeping one copy on one disk','deleting old data','manual USB backups only'],['تخزين البيانات على عدة سيرفرات ونسخها لموقع خارجي','نسخة واحدة على قرص واحد','حذف البيانات القديمة','نسخ USB يدوي فقط'],0,'A reserve copy is made instantly and transferred regularly.','تُنشأ نسخة احتياطية فوراً وتُنقل دورياً.'),
+m('Moving to the cloud helps avoid:','الانتقال للسحابة يساعد في تجنب:',['capital investment in hardware, IT salaries, server-room rent, electricity','all internet use','all software','all security'],['استثمار رأس المال بالأجهزة، رواتب IT، إيجار غرفة السيرفرات، الكهرباء','كل استخدام الإنترنت','كل البرمجيات','كل الأمان'],0,'These extra expenses are avoided.','تُتجنب هذه النفقات الإضافية.'),
+m('Which is described as the biggest disadvantage of cloud computing?','أي مما يلي يوصف بأنه أكبر عيوب السحابة؟',['Vendor lock-in','Scalability','Mobility','Backup'],['Vendor lock-in','قابلية التوسع','التنقل','النسخ الاحتياطي'],0,'Different vendors use different platforms, so moving is hard.','لكل مزود منصات مختلفة، فالنقل صعب.'),
+m('Why do cloud users have “limited control”?','لماذا يملك مستخدمو السحابة "تحكماً محدوداً"؟',['The provider owns, manages and monitors the infrastructure','Users own all hardware','There is no provider','Control is unlimited'],['المزود يملك البنية ويديرها ويراقبها','المستخدمون يملكون كل الأجهزة','لا يوجد مزود','التحكم غير محدود'],0,'Users have less control over how services execute.','تحكم المستخدمين أقل بتنفيذ الخدمات.'),
+m('What is the main security concern when adopting the cloud?','ما أبرز مخاوف الأمان عند اعتماد السحابة؟',['Sensitive data is sent to a third party and could be hacked','The cloud has no security at all','Data never leaves the building','Passwords are unnecessary'],['البيانات الحساسة تُرسل لطرف ثالث وقد تُخترق','السحابة بلا أمان أبداً','البيانات لا تغادر المبنى','كلمات السر غير ضرورية'],0,'Even with best standards, there is a chance of being hacked.','حتى مع أفضل المعايير هناك احتمال اختراق.'),
+tf('In SaaS, the customer manages the OS and runtime.','في SaaS العميل يدير الـ OS والـ runtime.',false,'False: the vendor manages all layers in SaaS.','خطأ: المزود يدير كل الطبقات في SaaS.'),
+tf('In PaaS, the customer uses their own applications.','في PaaS العميل يستخدم تطبيقاته الخاصة.',true,'True.','صح.'),
+tf('IaaS customers typically pay on a per-use basis.','عملاء IaaS يدفعون عادةً حسب الاستخدام.',true,'True.','صح.'),
+tf('The cloud always costs more than on-premise in total.','السحابة دائماً أغلى من On-premise إجمالاً.',false,'False: the benefits significantly outweigh the costs.','خطأ: الفوائد تفوق التكاليف بشكل كبير.'),
+tf('Vendor lock-in makes moving between cloud vendors easy.','Vendor lock-in يجعل الانتقال بين المزودين سهلاً.',false,'False: it makes moving difficult.','خطأ: يجعل الانتقال صعباً.'),
+tf('Cloud users have more control than on-premise users.','مستخدمو السحابة يملكون تحكماً أكبر من On-premise.',false,'False: they have less control.','خطأ: تحكمهم أقل.'),
+tf('A cloud backup copy is transferred to a secondary off-site location.','النسخة الاحتياطية بالسحابة تُنقل لموقع ثانوي خارجي.',true,'True.','صح.')
+];
+var st={};
+function render(){
+ var n=Object.keys(st).length,c=0;for(var k in st)if(st[k]===Q[k].a)c++;
+ [['e',0],['a',1]].forEach(function(p){
+  var L=p[1],box=document.querySelector('#a8 .'+p[0]);
+  var sc=box.querySelector('.score'),qs=box.querySelector('.qs');
+  sc.innerHTML='<span>'+(L?'النتيجة: ':'Score: ')+c+' / '+n+' ('+(L?'من ':'of ')+Q.length+')</span><button type="button">'+(L?'إعادة':'Reset')+'</button>';
+  sc.querySelector('button').onclick=function(){st={};render()};
+  qs.innerHTML='';
+  Q.forEach(function(q,i){
+   var d=document.createElement('div');d.className='q';
+   var o=q.o[L];
+   var h='<p class="n">'+(i+1)+') '+q.q[L]+'</p><div class="opts">';
+   o.forEach(function(t,j){
+    var cl='opt';if(i in st){if(j===q.a)cl+=' ok';else if(j===st[i])cl+=' bad'}
+    h+='<button type="button" class="'+cl+'" data-i="'+i+'" data-j="'+j+'"'+(i in st?' disabled':'')+'>'+t+'</button>'});
+   h+='</div>';
+   if(i in st){var r=st[i]===q.a;h+='<div class="fb">'+(r?(L?'✅ صح! ':'✅ Correct! '):(L?'❌ خطأ. الإجابة الصحيحة: '+o[q.a]+'. ':'❌ Wrong. Correct answer: '+o[q.a]+'. '))+q.x[L]+'</div>'}
+   d.innerHTML=h;qs.appendChild(d)});
+  qs.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){st[b.dataset.i]=+b.dataset.j;render()}})});
+}
+render();
+(function(){var secs=[].slice.call(document.querySelectorAll('section')),all=document.getElementById('all');
+function lab(s){s.querySelector('.tr').textContent=s.classList.contains('ar')?'English':'العربية'}
+function sync(){var n=secs.filter(function(s){return s.classList.contains('ar')}).length;all.textContent=n===secs.length?'Back to English':'ترجمة الكل للعربية'}
+secs.forEach(function(s){s.querySelector('.tr').onclick=function(){s.classList.toggle('ar');lab(s);sync()}});
+all.onclick=function(){var to=!secs.every(function(s){return s.classList.contains('ar')});secs.forEach(function(s){s.classList.toggle('ar',to);lab(s)});sync()}})();
+
+</script>
+</body>
+</html>
