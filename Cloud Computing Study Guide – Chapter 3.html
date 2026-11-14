@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing Study Guide – Chapter 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7fd;--card:#fff;--ink:#0b1220;--mut:#44536b;--blue:#1565d8;--blue2:#e3eeff;--black:#0b1220;--line:#cfdcf0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}}
+:root[data-theme="dark"]{--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.9;font-size:16px}
+header{background:var(--black);color:#fff;padding:40px 20px 30px;text-align:center;border-bottom:6px solid var(--blue)}
+header h1{margin:0 0 6px;font-size:clamp(24px,5vw,38px);font-weight:800}
+header p{margin:0;color:#9cc2ff;direction:ltr}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:var(--card);border-bottom:1px solid var(--line)}
+nav a{color:var(--blue);text-decoration:none;font-size:14px;font-weight:600;padding:4px 12px;border:1px solid var(--line);border-radius:20px}
+main{max-width:900px;margin:auto;padding:16px}
+section{background:var(--card);border:1px solid var(--line);border-inline-start:6px solid var(--blue);position:relative;border-radius:14px;padding:18px 20px;margin:18px 0}
+h2{margin:0 0 10px;color:var(--blue);font-size:24px;font-weight:800}
+h3{margin:16px 0 4px;font-size:18px;font-weight:700}
+.en{direction:ltr;unicode-bidi:embed;font-weight:600;color:var(--blue)}
+.def{background:var(--black);color:#fff;border-radius:10px;padding:12px 16px;margin:10px 0}
+.def .en{color:#8ec1ff;display:block;font-weight:400;margin-top:4px}
+.ex{background:var(--blue2);border-inline-start:4px solid var(--blue);border-radius:8px;padding:10px 14px;margin:10px 0}
+.ex b{color:var(--blue)}
+.key{border:1px dashed var(--blue);border-radius:8px;padding:8px 14px;margin:10px 0;font-weight:600}
+ul{padding-inline-start:22px;margin:6px 0}
+.tw{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th{background:var(--black);color:#fff;padding:8px 10px}
+td{padding:8px 10px;border:1px solid var(--line)}
+td:first-child{font-weight:700;background:var(--blue2)}
+.e{display:block}.a{display:none;text-align:right}
+section.ar .e{display:none}section.ar .a{display:block}
+.tr,#all{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:20px;padding:4px 14px;font-weight:700;font-size:14px}
+.tr{position:absolute;top:12px;inset-inline-end:14px}
+.e h2{padding-inline-end:90px}.a h2{padding-inline-start:90px}
+.a .q ol{direction:ltr}.e .q ol{direction:ltr;text-align:left}
+td:first-child{text-align:start}th{text-align:start}
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 52px);z-index:5;background:var(--black);color:#fff;border-radius:10px;padding:6px 14px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.score button{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:14px;padding:2px 12px}
+td.y{background:var(--blue2);color:var(--blue);font-weight:700;text-align:center}td.v{background:var(--black);color:#fff;text-align:center}
+.opts{display:grid;gap:6px;margin:6px 0}
+.top{position:sticky;top:0;z-index:20;direction:ltr;display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--black);color:#fff;padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;border-bottom:2px solid var(--blue)}
+.top a,.top summary{color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:var(--blue);padding:5px 14px;border-radius:18px;cursor:pointer;list-style:none;display:inline-block}
+.top summary::-webkit-details-marker{display:none}
+.top b{font-size:14px;color:#9cc2ff}
+.menu{position:relative}
+.mn{position:absolute;inset-inline-end:0;top:38px;width:min(320px,86vw);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mn a,.mn span{display:block;background:none;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:14px;font-weight:600}
+.mn a:hover{background:var(--blue2)}
+.mn .cur{background:var(--blue2);color:var(--blue)}
+.mn span{color:var(--mut);opacity:.8}
+.opt{font-family:inherit;font-size:15px;text-align:start;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.opt:not(:disabled):hover{border-color:var(--blue);background:var(--blue2)}
+.opt.ok{background:#12803c;color:#fff;border-color:#12803c}.opt.bad{background:#c62828;color:#fff;border-color:#c62828}
+.fb{margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--blue2);font-weight:600}
+.q p.n{color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.box{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:10px 14px}
+.box h4{margin:0;color:var(--blue)}
+.q{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.q p{margin:0 0 4px;font-weight:700}
+.q ol{margin:4px 0;padding-right:24px;list-style:upper-alpha;direction:ltr;text-align:left}
+details summary{cursor:pointer;color:var(--blue);font-weight:700}
+details div{background:var(--blue2);padding:8px 12px;border-radius:8px;margin-top:6px}
+footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="top"><a href="index.html">🏠 Home · الرئيسية</a><b>Chapter 3 · الشابتر 3</b><details class="menu"><summary>☰ Chapters · الشباتر</summary><div class="mn"><a href="ch1.html">01 Fundamentals of Cloud Computing – Part 1</a><a href="ch2.html">02 Fundamentals – Part 2</a><a class="cur" href="ch3.html">03 Cloud Deployment Models ✓</a><a href="ch4.html">04 Infrastructure as a Service (IaaS)</a><a href="ch5.html">05 Platform as a Service (PaaS)</a><a href="ch6.html">06 Software as a Service (SaaS)</a><a href="ch7.html">07 Virtual Private Networks (VPN)</a></div></details></div>
+<header>
+<h1>Cloud Computing Study Guide: Chapter 3</h1>
+<p>Cloud Deployment Models</p>
+</header>
+<nav><button id="all" type="button">ترجمة الكل للعربية</button><a href="#a1">Private</a><a href="#a2">Public vs Private</a><a href="#a3">Hybrid</a><a href="#a4">Community</a><a href="#a5">Ecosystem &amp; Others</a><a href="#a6">Summary</a><a href="#a7">Questions</a></nav>
+<main>
+<section id="a1">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>1) Private Cloud</h2>
+<div class="def">A private cloud is a cloud infrastructure operated exclusively for a single organization. Unlike public clouds, it provides dedicated resources, enabling more control and customization. It can be hosted on-premises or by a third-party provider, but is always restricted to authorized users.</div>
+<p><b>Overview:</b> benefits, drawbacks and use cases; and understanding private cloud infrastructure and its role in modern IT.</p>
+<h3>Why a private cloud?</h3>
+<p>Private clouds are ideal for organizations needing: <b>enhanced security</b> for sensitive data, <b>compliance</b> with industry regulations, and <b>customization</b> tailored to business needs. Many companies in regulated sectors, like finance and healthcare, choose private clouds for these demands.</p>
+<h3>Characteristics</h3>
+<div class="grid"><div class="box"><h4>Dedicated resources</h4>All resources (storage, processing power) are allocated to a single organization.</div><div class="box"><h4>Control and flexibility</h4>The organization controls its data, applications and infrastructure.</div><div class="box"><h4>Compliance-ready</h4>Can be set up to meet specific industry regulations.</div></div>
+<div class="ex"><b>Example:</b> A bank with private servers to protect customer data.</div>
+<h3>Architecture</h3>
+<div class="grid"><div class="box"><h4>On-premises setup</h4>Hosted within the company’s physical premises, giving more security and control.</div><div class="box"><h4>Third-party hosting</h4>Some organizations use third-party hosting with restricted access.</div></div>
+<h3>Key benefits</h3>
+<div class="grid"><div class="box"><h4>Enhanced data security</h4>Data remains protected within the organization’s control.</div><div class="box"><h4>Customization</h4>Resource allocation, storage and applications are configured to fit business needs.</div><div class="box"><h4>Better compliance</h4>Can be customized to meet industry standards.</div></div>
+<h3>Enhanced security (details)</h3>
+<ul><li><b>Isolated resources:</b> no data or resources shared with other organizations, reducing security risks.</li><li><b>Additional security layers:</b> custom measures such as firewalls, encryption and access controls.</li><li><b>Access control:</b> strict control over who accesses data and resources.</li></ul>
+<h3>Customization options</h3>
+<ul><li><b>Adaptable infrastructure:</b> customize virtual machines, storage and network configurations.</li><li><b>Software customization:</b> deploy custom applications and software based on business requirements.</li></ul>
+<div class="ex"><b>Example:</b> A manufacturing company customizing its private cloud for its ERP (Enterprise Resource Planning) system.</div>
+<h3>Disadvantages</h3>
+<ul><li><b>High costs:</b> initial investment in hardware, software and IT staff makes it costlier than public clouds.</li><li><b>Complex management:</b> maintaining and updating needs skilled IT personnel.</li><li><b>Limited scalability:</b> expanding requires additional infrastructure, which is complex and costly.</li></ul>
+<h3>Use cases</h3>
+<ul><li><b>Large enterprises:</b> organizations with high data-security needs, such as tech giants.</li><li><b>Regulated industries:</b> finance, healthcare and government need compliance.</li></ul>
+<div class="ex"><b>Examples:</b> A bank ensuring customer data privacy; a healthcare provider protecting patient records.</div>
+<h3>Example private cloud providers</h3>
+<ul><li><b>VMware:</b> private cloud solutions with high customization and security.</li><li><b>OpenStack:</b> open-source private cloud software used by many organizations for cost-effective solutions.</li><li><b>IBM Cloud for Financial Services:</b> private cloud designed for financial compliance.</li></ul></div>
+<div class="a" dir="rtl"><h2>1) السحابة الخاصة (Private Cloud)</h2>
+<div class="def">السحابة الخاصة بنية سحابية تُشغَّل حصرياً لمؤسسة واحدة. وعلى عكس العامة توفر موارد مخصصة (dedicated) تتيح تحكماً وتخصيصاً أكبر. قد تُستضاف داخل المؤسسة (on-premises) أو عند طرف ثالث، لكنها دائماً مقتصرة على المستخدمين المصرّح لهم.</div>
+<p><b>نظرة عامة:</b> الفوائد والعيوب وحالات الاستخدام، وفهم بنية السحابة الخاصة ودورها في تقنية المعلومات الحديثة.</p>
+<h3>لماذا السحابة الخاصة؟</h3>
+<p>مثالية للمؤسسات التي تحتاج: <b>أماناً معززاً</b> للبيانات الحساسة، و<b>التزاماً (compliance)</b> بأنظمة القطاع، و<b>تخصيصاً</b> حسب احتياج العمل. كثير من شركات القطاعات المنظَّمة مثل المال والصحة تختارها لهذه المتطلبات.</p>
+<h3>الخصائص</h3>
+<div class="grid"><div class="box"><h4>موارد مخصصة</h4>كل الموارد (تخزين، قوة معالجة) مخصصة لمؤسسة واحدة.</div><div class="box"><h4>تحكم ومرونة</h4>المؤسسة تتحكم ببياناتها وتطبيقاتها وبنيتها.</div><div class="box"><h4>جاهزة للامتثال</h4>يمكن إعدادها لتلبية أنظمة قطاع معيّنة.</div></div>
+<div class="ex"><b>مثال:</b> بنك لديه سيرفرات خاصة لحماية بيانات العملاء.</div>
+<h3>المعمارية</h3>
+<div class="grid"><div class="box"><h4>إعداد داخل المؤسسة (On-premises)</h4>تُستضاف داخل مباني الشركة، فتوفر أماناً وتحكماً أكبر.</div><div class="box"><h4>استضافة طرف ثالث</h4>بعض المؤسسات تستخدم استضافة طرف ثالث بوصول مقيّد.</div></div>
+<h3>أهم الفوائد</h3>
+<div class="grid"><div class="box"><h4>أمان بيانات معزز</h4>البيانات تبقى محمية ضمن سيطرة المؤسسة.</div><div class="box"><h4>التخصيص</h4>تخصيص الموارد والتخزين والتطبيقات لتناسب احتياجات العمل.</div><div class="box"><h4>امتثال أفضل</h4>يمكن تخصيصها لتلبية معايير القطاع.</div></div>
+<h3>الأمان المعزز (تفصيل)</h3>
+<ul><li><b>موارد معزولة:</b> لا بيانات أو موارد مشتركة مع مؤسسات أخرى، فتقل المخاطر.</li><li><b>طبقات أمان إضافية:</b> إجراءات مخصصة مثل firewalls والتشفير وضوابط الوصول.</li><li><b>التحكم بالوصول:</b> تحكم صارم بمن يصل للبيانات والموارد.</li></ul>
+<h3>خيارات التخصيص</h3>
+<ul><li><b>بنية قابلة للتكيف:</b> تخصيص الأجهزة الافتراضية والتخزين وإعدادات الشبكة.</li><li><b>تخصيص البرمجيات:</b> نشر تطبيقات وبرمجيات مخصصة حسب متطلبات العمل.</li></ul>
+<div class="ex"><b>مثال:</b> شركة تصنيع تخصص سحابتها الخاصة لنظام ERP (تخطيط موارد المؤسسة).</div>
+<h3>العيوب</h3>
+<ul><li><b>تكاليف عالية:</b> الاستثمار الأولي بالأجهزة والبرمجيات وفريق IT يجعلها أغلى من العامة.</li><li><b>إدارة معقدة:</b> الصيانة والتحديث يحتاجان كوادر IT ماهرة.</li><li><b>قابلية توسع محدودة:</b> التوسع يحتاج بنية إضافية، وهذا معقد ومكلف.</li></ul>
+<h3>حالات الاستخدام</h3>
+<ul><li><b>المؤسسات الكبرى:</b> الجهات ذات احتياج أمني عالٍ مثل شركات التقنية العملاقة.</li><li><b>القطاعات المنظَّمة:</b> المال والصحة والحكومة تحتاج الامتثال.</li></ul>
+<div class="ex"><b>أمثلة:</b> بنك يضمن خصوصية بيانات عملائه؛ مقدم رعاية صحية يحمي سجلات المرضى.</div>
+<h3>أمثلة على مزودي السحابة الخاصة</h3>
+<ul><li><b>VMware:</b> حلول سحابة خاصة بتخصيص وأمان عاليين.</li><li><b>OpenStack:</b> برنامج سحابة خاصة مفتوح المصدر تستخدمه مؤسسات كثيرة لحلول منخفضة التكلفة.</li><li><b>IBM Cloud for Financial Services:</b> سحابة خاصة مصممة للامتثال المالي.</li></ul></div>
+</section>
+
+<section id="a2">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>2) Public vs. Private</h2>
+<div class="tw"><table><tr><th>Aspect</th><th>Public Cloud</th><th>Private Cloud</th></tr>
+<tr><td>Infrastructure</td><td>Homogeneous</td><td>Heterogeneous</td></tr>
+<tr><td>Policy model</td><td>Commonly defined</td><td>Customized &amp; tailored</td></tr>
+<tr><td>Resource model</td><td>Shared &amp; multi-tenant</td><td>Dedicated</td></tr>
+<tr><td>Cost model</td><td>Operational expenditure (OpEx)</td><td>Capital expenditure (CapEx)</td></tr>
+<tr><td>Economy model</td><td>Large economy of scale</td><td>End-to-end control</td></tr></table></div>
+<div class="tw"><table><tr><th>Public Cloud</th><th>Private Cloud</th></tr>
+<tr><td>Publicly shared virtualised resources</td><td>Privately shared virtualised resources</td></tr>
+<tr><td>Supports multiple customers</td><td>Cluster of dedicated customers</td></tr>
+<tr><td>Connectivity over the internet</td><td>Connectivity over internet, fibre and private network</td></tr>
+<tr><td>Suited for less confidential information</td><td>Suited for secured confidential information and core systems</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>2) العامة مقابل الخاصة</h2>
+<div class="tw"><table><tr><th>الجانب</th><th>Public Cloud</th><th>Private Cloud</th></tr>
+<tr><td>البنية التحتية</td><td>متجانسة (Homogeneous)</td><td>غير متجانسة (Heterogeneous)</td></tr>
+<tr><td>نموذج السياسات</td><td>سياسات عامة موحدة</td><td>مخصصة ومفصّلة</td></tr>
+<tr><td>نموذج الموارد</td><td>مشتركة ومتعددة المستأجرين</td><td>مخصصة (Dedicated)</td></tr>
+<tr><td>نموذج التكلفة</td><td>نفقات تشغيلية (OpEx)</td><td>نفقات رأسمالية (CapEx)</td></tr>
+<tr><td>النموذج الاقتصادي</td><td>وفورات حجم كبيرة</td><td>تحكم شامل من البداية للنهاية</td></tr></table></div>
+<div class="tw"><table><tr><th>Public Cloud</th><th>Private Cloud</th></tr>
+<tr><td>موارد افتراضية مشتركة علناً</td><td>موارد افتراضية مشتركة بشكل خاص</td></tr>
+<tr><td>تدعم عدة عملاء</td><td>مجموعة عملاء مخصصين</td></tr>
+<tr><td>اتصال عبر الإنترنت</td><td>اتصال عبر الإنترنت والألياف وشبكة خاصة</td></tr>
+<tr><td>مناسبة للمعلومات الأقل سرية</td><td>مناسبة للمعلومات السرية والأنظمة الأساسية</td></tr></table></div></div>
+</section>
+
+<section id="a3">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>3) Hybrid Cloud</h2>
+<div class="def">A hybrid cloud is a composition of two cloud types: private and public. It lets organizations leverage the strengths of both environments. A private cloud keeps service availability high by scaling up with externally provisioned public-cloud resources during hardware failures.</div>
+<h3>Key characteristics</h3><ul><li>Integration of public and private clouds</li><li>Scalability and elasticity</li><li>Enhanced resource optimization</li></ul>
+<h3>Architecture</h3>
+<ul><li><b>Components:</b> private cloud, public cloud, middleware/integration tools.</li><li><b>How it works:</b> seamless data and workload transfer between environments, and on-demand scaling using public-cloud resources.</li></ul>
+<p>Diagram: the private/internal cloud sits on-premises; the public/external cloud is off-premises (third party); together they form the hybrid cloud.</p>
+<h3>Benefits</h3>
+<ul><li><b>Flexibility:</b> adapt workloads.</li><li><b>Cost efficiency:</b> pay-as-you-go for public-cloud usage.</li><li><b>Scalability:</b> expand resources dynamically.</li><li><b>Reliability:</b> use the public cloud for disaster recovery.</li><li><b>Security:</b> keep sensitive data in the private cloud.</li></ul>
+<h3>Challenges and limitations</h3>
+<ul><li><b>Complexity:</b> requires skilled management.</li><li><b>Latency.</b></li><li><b>Cost management:</b> balancing private and public cloud expenses.</li></ul>
+<h3>Use cases</h3>
+<div class="ex"><b>E-commerce:</b> scale during sales events like Black Friday.<br><b>Healthcare:</b> store sensitive patient data privately while analyzing trends on the public cloud.</div></div>
+<div class="a" dir="rtl"><h2>3) السحابة الهجينة (Hybrid Cloud)</h2>
+<div class="def">السحابة الهجينة تركيبة من نوعين: خاصة وعامة، وتتيح للمؤسسات الاستفادة من نقاط قوة الاثنين. السحابة الخاصة تحافظ على توفر الخدمة العالي بالتوسع باستخدام موارد خارجية من سحابة عامة وقت أعطال الأجهزة.</div>
+<h3>أهم الخصائص</h3><ul><li>تكامل السحابتين العامة والخاصة</li><li>قابلية التوسع والمرونة (Elasticity)</li><li>تحسين استخدام الموارد</li></ul>
+<h3>المعمارية</h3>
+<ul><li><b>المكونات:</b> سحابة خاصة، سحابة عامة، أدوات وسيطة/تكامل (Middleware).</li><li><b>كيف تعمل:</b> نقل سلس للبيانات وأحمال العمل بين البيئتين، وتوسع عند الطلب باستخدام موارد السحابة العامة.</li></ul>
+<p>الرسم: السحابة الخاصة/الداخلية داخل المؤسسة، والعامة/الخارجية خارجها عند طرف ثالث، والمجموع هو السحابة الهجينة.</p>
+<h3>الفوائد</h3>
+<ul><li><b>المرونة:</b> تكييف أحمال العمل.</li><li><b>كفاءة التكلفة:</b> الدفع حسب الاستخدام للسحابة العامة.</li><li><b>التوسع:</b> زيادة الموارد ديناميكياً.</li><li><b>الموثوقية:</b> استخدام العامة للتعافي من الكوارث.</li><li><b>الأمان:</b> إبقاء البيانات الحساسة بالسحابة الخاصة.</li></ul>
+<h3>التحديات</h3>
+<ul><li><b>التعقيد:</b> تحتاج إدارة ماهرة.</li><li><b>التأخير (Latency).</b></li><li><b>إدارة التكلفة:</b> الموازنة بين نفقات الخاصة والعامة.</li></ul>
+<h3>حالات الاستخدام</h3>
+<div class="ex"><b>التجارة الإلكترونية:</b> التوسع بمواسم التخفيضات مثل Black Friday.<br><b>الصحة:</b> تخزين بيانات المرضى الحساسة بشكل خاص وتحليل الاتجاهات على السحابة العامة.</div></div>
+</section>
+
+<section id="a4">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>4) Community Cloud</h2>
+<div class="def">A community cloud is a shared cloud infrastructure tailored for a specific group of organizations with common interests, needs or compliance requirements. It supports shared concerns such as mission, security requirements, policy and compliance considerations.</div>
+<div class="key">Key idea: it combines the benefits of private and public clouds while promoting collaboration among member organizations.</div>
+<h3>Key characteristics</h3>
+<ul><li><b>Shared resources.</b></li><li><b>Specific use cases:</b> organizations with shared goals.</li><li><b>Controlled access:</b> restricted to community members.</li><li><b>Cost sharing:</b> expenses are distributed among participants.</li><li><b>Customization:</b> tailored to the community’s needs.</li></ul>
+<div class="ex"><b>Use case, education:</b> universities pooling resources for research or learning platforms.</div></div>
+<div class="a" dir="rtl"><h2>4) السحابة المجتمعية (Community Cloud)</h2>
+<div class="def">السحابة المجتمعية بنية سحابية مشتركة مصممة لمجموعة محددة من المؤسسات لها اهتمامات أو احتياجات أو متطلبات امتثال مشتركة. تدعم اهتمامات مشتركة مثل المهمة والمتطلبات الأمنية والسياسات واعتبارات الامتثال.</div>
+<div class="key">الفكرة الأساسية: تجمع فوائد الخاصة والعامة مع تعزيز التعاون بين المؤسسات الأعضاء.</div>
+<h3>أهم الخصائص</h3>
+<ul><li><b>موارد مشتركة.</b></li><li><b>حالات استخدام محددة:</b> مؤسسات بأهداف مشتركة.</li><li><b>وصول مضبوط:</b> مقتصر على أعضاء المجتمع.</li><li><b>تقاسم التكلفة:</b> النفقات موزعة على المشاركين.</li><li><b>التخصيص:</b> حسب احتياجات المجتمع.</li></ul>
+<div class="ex"><b>حالة استخدام، التعليم:</b> جامعات تجمع مواردها لمنصات بحثية أو تعليمية.</div></div>
+</section>
+
+<section id="a5">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>5) Cloud Ecosystem &amp; Other Deployment Models</h2>
+<h3>Cloud ecosystem</h3>
+<p>The diagram shows Public, Private, Community and Hybrid clouds on top of the service layers: SaaS (e.g. Google Apps, Salesforce, Microsoft Dynamics CRM, IBM), PaaS (e.g. Windows Azure, Google App Engine, force.com) and IaaS (e.g. Eucalyptus Systems, AT&amp;T, GoGrid, Sun, Amazon Web Services).</p>
+<h3>Other deployment models</h3>
+<div class="grid"><div class="box"><h4>Distributed cloud</h4>Computing done by a distributed set of machines running at different locations but connected to a single network. Examples: BOINC and Folding@Home (voluntarily shared resources).</div><div class="box"><h4>Multicloud</h4>Multiple cloud vendors provide service together in a heterogeneous architecture. Reduces reliance on a single vendor, increases flexibility through choice, and mitigates disasters.</div><div class="box"><h4>Intercloud</h4>An interconnected cloud: a “cloud of clouds”, like the Internet is a “network of networks”. Mainly helps interoperability between public cloud providers (as with hybrid and multicloud).</div></div></div>
+<div class="a" dir="rtl"><h2>5) النظام البيئي للسحابة ونماذج نشر أخرى</h2>
+<h3>Cloud ecosystem</h3>
+<p>الرسم يعرض السحابات العامة والخاصة والمجتمعية والهجينة فوق طبقات الخدمة: SaaS (مثل Google Apps وSalesforce وMicrosoft Dynamics CRM وIBM)، PaaS (مثل Windows Azure وGoogle App Engine وforce.com) وIaaS (مثل Eucalyptus Systems وAT&amp;T وGoGrid وSun وAmazon Web Services).</p>
+<h3>نماذج نشر أخرى</h3>
+<div class="grid"><div class="box"><h4>Distributed cloud (موزعة)</h4>حوسبة تتم عبر مجموعة أجهزة موزعة بمواقع مختلفة ومتصلة بشبكة واحدة. أمثلة: BOINC وFolding@Home (موارد مشتركة طوعاً).</div><div class="box"><h4>Multicloud (متعددة)</h4>عدة مزودي سحابة يقدمون الخدمة معاً ببنية غير متجانسة. تقلل الاعتماد على مزود واحد، وتزيد المرونة بالخيارات، وتخفف أثر الكوارث.</div><div class="box"><h4>Intercloud (بينية)</h4>سحابة مترابطة: "سحابة السحب"، مثل الإنترنت "شبكة الشبكات". تساعد غالباً بالتشغيل البيني بين مزودي السحابة العامة (كما في hybrid وmulticloud).</div></div></div>
+</section>
+
+<section id="a6">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>6) Quick Comparison of the Four Models</h2>
+<p>Summary table (my own summary to help you revise):</p>
+<div class="tw"><table><tr><th>Model</th><th>Who uses it</th><th>Key point</th><th>Example</th></tr>
+<tr><td>Private</td><td>One organization</td><td>Dedicated, secure, costly</td><td>Bank, hospital</td></tr>
+<tr><td>Community</td><td>Several organizations with shared concerns</td><td>Shared cost and compliance</td><td>Universities</td></tr>
+<tr><td>Public</td><td>General public</td><td>Shared, OpEx, big economy of scale</td><td>AWS, Azure</td></tr>
+<tr><td>Hybrid</td><td>Private + public</td><td>Sensitive data private, scale on public</td><td>E-commerce, healthcare</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>6) مقارنة سريعة بين النماذج الأربعة</h2>
+<p>جدول ملخص (من عندي لمساعدتك بالمراجعة):</p>
+<div class="tw"><table><tr><th>النموذج</th><th>من يستخدمه</th><th>النقطة الأساسية</th><th>مثال</th></tr>
+<tr><td>Private</td><td>مؤسسة واحدة</td><td>مخصصة وآمنة ومكلفة</td><td>بنك، مستشفى</td></tr>
+<tr><td>Community</td><td>عدة مؤسسات باهتمامات مشتركة</td><td>تقاسم التكلفة والامتثال</td><td>جامعات</td></tr>
+<tr><td>Public</td><td>عامة الناس</td><td>مشتركة، OpEx، وفورات حجم كبيرة</td><td>AWS, Azure</td></tr>
+<tr><td>Hybrid</td><td>خاصة + عامة</td><td>الحساس بالخاصة والتوسع بالعامة</td><td>تجارة إلكترونية، صحة</td></tr></table></div></div>
+</section>
+
+<section id="a7">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>7) Interactive Practice Questions</h2>
+<p>Pick an answer: you get instant feedback and the correct answer with an explanation.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>Essay questions</h3>
+<div class="q"><p>1) Define a private cloud and list its benefits and disadvantages.<br>2) Compare public and private clouds in five aspects.<br>3) Explain the hybrid cloud, its components, benefits and challenges.<br>4) What is a community cloud? Give a use case.<br>5) Explain distributed cloud, multicloud and intercloud.</p><details><summary>Hint</summary><div>Review sections 1, 2, 3, 4 and 5.</div></details></div></div>
+<div class="a" dir="rtl"><h2>7) أسئلة تدريبية تفاعلية</h2>
+<p>اختر إجابة: بتطلع لك النتيجة فوراً مع الإجابة الصحيحة والشرح.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>أسئلة مقالية</h3>
+<div class="q"><p>1) عرّف السحابة الخاصة واذكر فوائدها وعيوبها.<br>2) قارن بين العامة والخاصة بخمسة جوانب.<br>3) اشرح السحابة الهجينة ومكوناتها وفوائدها وتحدياتها.<br>4) ما هي السحابة المجتمعية؟ أعطِ حالة استخدام.<br>5) اشرح distributed cloud وmulticloud وintercloud.</p><details><summary>إرشاد</summary><div>ارجع للأقسام 1 و2 و3 و4 و5.</div></details></div></div>
+</section>
+</main>
+<footer>Good luck in the exam! · بالتوفيق 💙</footer>
+<script>
+function m(qe,qa,oe,oa,a,xe,xa){return{q:[qe,qa],o:[oe,oa||oe],a:a,x:[xe,xa]}}
+var TF=[['True','False'],['صح','خطأ']];
+function tf(qe,qa,t,xe,xa){return{q:[qe,qa],o:TF,a:t?0:1,x:[xe,xa]}}
+var Q=[
+m('A private cloud is operated:','تُشغَّل السحابة الخاصة:',['exclusively for a single organization','for the general public','for several organizations','by anyone'],['حصرياً لمؤسسة واحدة','للعامة','لعدة مؤسسات','لأي شخص'],0,'Private cloud: solely for one organization.','Private cloud: لمؤسسة واحدة فقط.'),
+m('Compared with public clouds, private clouds provide:','مقارنة بالعامة، توفر الخاصة:',['dedicated resources with more control and customization','shared resources only','no control','no security'],['موارد مخصصة وتحكم وتخصيص أكبر','موارد مشتركة فقط','بدون تحكم','بدون أمان'],0,'Dedicated resources enable more control and customization.','الموارد المخصصة تتيح تحكماً وتخصيصاً أكبر.'),
+m('A private cloud can be hosted:','يمكن استضافة السحابة الخاصة:',['on-premises or by a third party, for authorized users only','only in public data centers for everyone','only on mobile phones','nowhere'],['داخل المؤسسة أو عند طرف ثالث، للمصرّح لهم فقط','فقط بمراكز عامة للجميع','فقط على الموبايل','لا مكان'],0,'Always restricted to authorized users.','دائماً مقتصرة على المستخدمين المصرّح لهم.'),
+m('Private clouds are ideal for organizations needing:','السحابة الخاصة مثالية للمؤسسات التي تحتاج:',['security, compliance and customization','the cheapest option','no control','public sharing'],['الأمان والامتثال والتخصيص','أرخص خيار','بدون تحكم','مشاركة عامة'],0,'Enhanced security, compliance and customization.','أمان معزز وامتثال وتخصيص.'),
+m('Which sectors commonly choose private clouds?','أي قطاعات تختار السحابة الخاصة عادة؟',['Finance and healthcare','Entertainment only','Sports only','None'],['المال والصحة','الترفيه فقط','الرياضة فقط','لا أحد'],0,'Regulated sectors like finance and healthcare.','القطاعات المنظَّمة مثل المال والصحة.'),
+m('“Compliance-ready” means a private cloud can be:','"جاهزة للامتثال" تعني أن الخاصة يمكن:',['set up to meet specific industry regulations','used without rules','shared with everyone','made free'],['إعدادها لتلبية أنظمة قطاع معيّنة','استخدامها بدون قواعد','مشاركتها مع الجميع','جعلها مجانية'],0,'It can be configured for specific industry regulations.','يمكن إعدادها لأنظمة قطاع محددة.'),
+m('The two private cloud architecture options are:','خياران لمعمارية السحابة الخاصة:',['on-premises setup and third-party hosting','public and hybrid','IaaS and SaaS','thin and thick'],['إعداد داخلي واستضافة طرف ثالث','عامة وهجينة','IaaS وSaaS','thin وthick'],0,'On-premises or third-party hosting with restricted access.','داخل المؤسسة أو استضافة طرف ثالث بوصول مقيّد.'),
+m('“Isolated resources” in a private cloud means:','"موارد معزولة" في السحابة الخاصة تعني:',['no data or resources shared with other organizations','everything is public','resources are deleted','only one user exists'],['لا بيانات أو موارد مشتركة مع مؤسسات أخرى','كل شيء عام','الموارد تُحذف','مستخدم واحد فقط'],0,'This reduces security risks.','وهذا يقلل المخاطر الأمنية.'),
+m('Which are additional security layers in private clouds?','أي مما يلي طبقات أمان إضافية في الخاصة؟',['Firewalls, encryption, access controls','Open ports','Shared passwords','No logging'],['Firewalls والتشفير وضوابط الوصول','منافذ مفتوحة','كلمات سر مشتركة','بدون تسجيل'],0,'Custom security measures.','إجراءات أمان مخصصة.'),
+m('A manufacturing company customizing its private cloud for ERP is an example of:','شركة تصنيع تخصص سحابتها الخاصة لـ ERP مثال على:',['customization options','a disadvantage','a hybrid cloud','a community cloud'],['خيارات التخصيص','عيب','سحابة هجينة','سحابة مجتمعية'],0,'Software customization based on business requirements.','تخصيص برمجيات حسب متطلبات العمل.'),
+m('Which is a disadvantage of private clouds?','أي مما يلي عيب للسحابة الخاصة؟',['High costs','Shared data with strangers','No customization','No security'],['تكاليف عالية','مشاركة البيانات مع غرباء','بدون تخصيص','بدون أمان'],0,'Initial investment in hardware, software and IT staff.','استثمار أولي بالأجهزة والبرمجيات وفريق IT.'),
+m('Why is private cloud management complex?','لماذا إدارة الخاصة معقدة؟',['It requires skilled IT personnel for maintenance and updates','It has no hardware','It is automatic','It needs no staff'],['تحتاج كوادر IT ماهرة للصيانة والتحديث','ليس لها أجهزة','تلقائية','لا تحتاج موظفين'],0,'Maintaining and updating needs skills.','الصيانة والتحديث يحتاجان مهارات.'),
+m('Limited scalability of private clouds means expanding requires:','قابلية التوسع المحدودة للخاصة تعني أن التوسع يحتاج:',['additional infrastructure, complex and costly','nothing','only a click','free resources'],['بنية إضافية، معقد ومكلف','لا شيء','ضغطة زر','موارد مجانية'],0,'Unlike the public cloud’s instant scaling.','بعكس التوسع الفوري بالعامة.'),
+m('Which is open-source private cloud software?','أي مما يلي برنامج سحابة خاصة مفتوح المصدر؟',['OpenStack','VMware','IBM Cloud','Salesforce'],0,0,'OpenStack is open source and cost-effective.','OpenStack مفتوح المصدر ومنخفض التكلفة.'),
+m('IBM Cloud for Financial Services is designed for:','IBM Cloud for Financial Services مصممة لـ:',['financial compliance','gaming','video streaming','education only'],['الامتثال المالي','الألعاب','بث الفيديو','التعليم فقط'],0,'Private cloud for financial compliance.','سحابة خاصة للامتثال المالي.'),
+m('Which cloud has a homogeneous infrastructure?','أي سحابة بنيتها التحتية متجانسة (Homogeneous)؟',['Public','Private','Both','Neither'],['Public','Private','كلاهما','لا أحد'],0,'Private is heterogeneous.','الخاصة غير متجانسة.'),
+m('The resource model of a private cloud is:','نموذج الموارد في الخاصة:',['Dedicated','Shared & multi-tenant','Random','None'],['Dedicated (مخصص)','مشترك ومتعدد المستأجرين','عشوائي','لا شيء'],0,'Public is shared and multi-tenant.','العامة مشتركة ومتعددة المستأجرين.'),
+m('The cost model of a public cloud is:','نموذج التكلفة في العامة:',['Operational expenditure','Capital expenditure','Free','Fixed lifetime'],['نفقات تشغيلية (OpEx)','نفقات رأسمالية (CapEx)','مجانية','ثابتة مدى الحياة'],0,'Private cloud uses CapEx.','الخاصة تستخدم CapEx.'),
+m('“Large economy of scale” describes the economy model of:','"وفورات حجم كبيرة" تصف النموذج الاقتصادي لـ:',['Public cloud','Private cloud','Neither','Both equally'],['Public cloud','Private cloud','لا أحد','الاثنين بالتساوي'],0,'Private cloud: end-to-end control.','الخاصة: تحكم شامل من البداية للنهاية.'),
+m('Which is suited for secured confidential information and core systems?','أيهما مناسب للمعلومات السرية والأنظمة الأساسية؟',['Private cloud','Public cloud','Neither','Both equally'],['Private cloud','Public cloud','لا أحد','الاثنان بالتساوي'],0,'Public clouds suit less confidential information.','العامة تناسب المعلومات الأقل سرية.'),
+m('A hybrid cloud is a composition of:','السحابة الهجينة تركيبة من:',['private and public clouds','two public clouds','two private clouds only','community only'],['سحابة خاصة وعامة','سحابتين عامتين','سحابتين خاصتين فقط','مجتمعية فقط'],0,'It leverages the strengths of both.','تستفيد من نقاط قوة الاثنين.'),
+m('How does a hybrid private cloud keep high availability during hardware failures?','كيف تحافظ الهجينة على توفر عالٍ وقت أعطال الأجهزة؟',['By scaling with externally provisioned public cloud resources','By shutting down','By deleting data','By buying servers instantly'],['بالتوسع بموارد خارجية من سحابة عامة','بالإيقاف','بحذف البيانات','بشراء سيرفرات فوراً'],0,'Public resources fill the gap.','موارد العامة تسد النقص.'),
+m('Hybrid cloud components include:','مكونات الهجينة تشمل:',['private cloud, public cloud, middleware/integration tools','only a browser','only printers','only SaaS'],['سحابة خاصة، عامة، أدوات middleware/تكامل','متصفح فقط','طابعات فقط','SaaS فقط'],0,'Middleware connects the two.','الـ middleware يربط بينهما.'),
+m('Which hybrid benefit keeps sensitive data in the private cloud?','أي فائدة هجينة تُبقي البيانات الحساسة بالخاصة؟',['Security','Cost efficiency','Flexibility','Latency'],['الأمان','كفاءة التكلفة','المرونة','التأخير'],0,'Security: sensitive data stays private.','الأمان: الحساس يبقى خاصاً.'),
+m('Hybrid “Reliability” means using the public cloud for:','"الموثوقية" بالهجينة تعني استخدام العامة لـ:',['disaster recovery','gaming','advertising','hardware repair'],['التعافي من الكوارث','الألعاب','الإعلانات','إصلاح الأجهزة'],0,'Disaster recovery.','التعافي من الكوارث.'),
+m('Which is a hybrid cloud challenge?','أي مما يلي تحدٍّ للهجينة؟',['Latency','Pay-as-you-go','Flexibility','Scalability'],['التأخير (Latency)','الدفع حسب الاستخدام','المرونة','التوسع'],0,'Also complexity and cost management.','وأيضاً التعقيد وإدارة التكلفة.'),
+m('Scaling during Black Friday is a hybrid use case in:','التوسع بـ Black Friday حالة استخدام هجينة في:',['E-commerce','Healthcare','Education','Government'],['التجارة الإلكترونية','الصحة','التعليم','الحكومة'],0,'E-commerce scales during sales events.','التجارة الإلكترونية تتوسع بمواسم التخفيضات.'),
+m('Hybrid healthcare use case:','حالة الاستخدام الهجينة بالصحة:',['sensitive data private, trend analysis on public cloud','everything public','everything on paper','no cloud'],['البيانات الحساسة خاصة وتحليل الاتجاهات على العامة','كل شيء عام','كل شيء على الورق','بلا سحابة'],0,'Best of both environments.','أفضل ما بالبيئتين.'),
+m('A community cloud is tailored for:','السحابة المجتمعية مصممة لـ:',['a specific group of organizations with common interests or compliance needs','one individual','the general public','nobody'],['مجموعة محددة من المؤسسات باهتمامات أو متطلبات امتثال مشتركة','فرد واحد','العامة','لا أحد'],0,'It promotes collaboration among members.','تعزز التعاون بين الأعضاء.'),
+m('In a community cloud, expenses are:','في السحابة المجتمعية، النفقات:',['distributed among participants','paid by one member','free always','paid by the public'],['موزعة على المشاركين','يدفعها عضو واحد','مجانية دائماً','يدفعها العامة'],0,'Cost sharing.','تقاسم التكلفة.'),
+m('Access to a community cloud is:','الوصول للسحابة المجتمعية:',['restricted to community members','open to everyone','blocked for all','random'],['مقتصر على أعضاء المجتمع','مفتوح للجميع','محظور للكل','عشوائي'],0,'Controlled access.','وصول مضبوط.'),
+m('Universities pooling resources for research is a use case of:','جامعات تجمع مواردها للبحث حالة استخدام لـ:',['Community cloud','Private cloud','Public cloud','Intercloud'],['Community cloud','Private cloud','Public cloud','Intercloud'],0,'Education use case.','حالة استخدام التعليم.'),
+m('BOINC and Folding@Home are examples of:','BOINC وFolding@Home أمثلة على:',['Distributed cloud','Multicloud','Intercloud','Private cloud'],0,0,'Voluntarily shared resources at different locations.','موارد مشتركة طوعاً بمواقع مختلفة.'),
+m('Multicloud helps by:','يساعد Multicloud عبر:',['reducing reliance on a single vendor and mitigating disasters','locking you to one vendor','removing the internet','buying hardware'],['تقليل الاعتماد على مزود واحد وتخفيف أثر الكوارث','ربطك بمزود واحد','إزالة الإنترنت','شراء أجهزة'],0,'Heterogeneous architecture with multiple vendors.','بنية غير متجانسة بعدة مزودين.'),
+m('The “cloud of clouds” is called:','"سحابة السحب" تُسمّى:',['Intercloud','Private cloud','Community cloud','Thin client'],0,0,'Like the Internet, a network of networks.','مثل الإنترنت، شبكة الشبكات.'),
+tf('A private cloud can be shared openly with the general public.','يمكن مشاركة السحابة الخاصة علناً مع العامة.',false,'False: private clouds are restricted to authorized users.','خطأ: مقتصرة على المصرّح لهم.'),
+tf('A hybrid cloud keeps sensitive data in the private cloud.','الهجينة تُبقي البيانات الحساسة بالسحابة الخاصة.',true,'True.','صح.'),
+tf('The public cloud cost model is capital expenditure.','نموذج تكلفة العامة هو النفقات الرأسمالية.',false,'False: it is operational expenditure.','خطأ: هو نفقات تشغيلية.'),
+tf('A community cloud serves a single organization.','السحابة المجتمعية تخدم مؤسسة واحدة.',false,'False: it serves several organizations with shared concerns.','خطأ: تخدم عدة مؤسسات باهتمامات مشتركة.'),
+tf('A private cloud is always off-premises.','السحابة الخاصة دائماً خارج المؤسسة.',false,'False: it can be on-premises or third-party hosted.','خطأ: قد تكون داخلية أو عند طرف ثالث.'),
+tf('Multicloud increases reliance on a single vendor.','Multicloud تزيد الاعتماد على مزود واحد.',false,'False: it reduces it.','خطأ: تقلله.'),
+tf('The private cloud economy model is end-to-end control.','النموذج الاقتصادي للخاصة هو تحكم شامل.',true,'True.','صح.')
+];
+var st={};
+function render(){
+ var n=Object.keys(st).length,c=0;for(var k in st)if(st[k]===Q[k].a)c++;
+ [['e',0],['a',1]].forEach(function(p){
+  var L=p[1],box=document.querySelector('#a7 .'+p[0]);
+  var sc=box.querySelector('.score'),qs=box.querySelector('.qs');
+  sc.innerHTML='<span>'+(L?'النتيجة: ':'Score: ')+c+' / '+n+' ('+(L?'من ':'of ')+Q.length+')</span><button type="button">'+(L?'إعادة':'Reset')+'</button>';
+  sc.querySelector('button').onclick=function(){st={};render()};
+  qs.innerHTML='';
+  Q.forEach(function(q,i){
+   var d=document.createElement('div');d.className='q';
+   var o=q.o[L];
+   var h='<p class="n">'+(i+1)+') '+q.q[L]+'</p><div class="opts">';
+   o.forEach(function(t,j){
+    var cl='opt';if(i in st){if(j===q.a)cl+=' ok';else if(j===st[i])cl+=' bad'}
+    h+='<button type="button" class="'+cl+'" data-i="'+i+'" data-j="'+j+'"'+(i in st?' disabled':'')+'>'+t+'</button>'});
+   h+='</div>';
+   if(i in st){var r=st[i]===q.a;h+='<div class="fb">'+(r?(L?'✅ صح! ':'✅ Correct! '):(L?'❌ خطأ. الإجابة الصحيحة: '+o[q.a]+'. ':'❌ Wrong. Correct answer: '+o[q.a]+'. '))+q.x[L]+'</div>'}
+   d.innerHTML=h;qs.appendChild(d)});
+  qs.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){st[b.dataset.i]=+b.dataset.j;render()}})});
+}
+render();
+(function(){var secs=[].slice.call(document.querySelectorAll('section')),all=document.getElementById('all');
+function lab(s){s.querySelector('.tr').textContent=s.classList.contains('ar')?'English':'العربية'}
+function sync(){var n=secs.filter(function(s){return s.classList.contains('ar')}).length;all.textContent=n===secs.length?'Back to English':'ترجمة الكل للعربية'}
+secs.forEach(function(s){s.querySelector('.tr').onclick=function(){s.classList.toggle('ar');lab(s);sync()}});
+all.onclick=function(){var to=!secs.every(function(s){return s.classList.contains('ar')});secs.forEach(function(s){s.classList.toggle('ar',to);lab(s)});sync()}})();
+
+</script>
+</body>
+</html>
