@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing Study Guide – Chapter 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7fd;--card:#fff;--ink:#0b1220;--mut:#44536b;--blue:#1565d8;--blue2:#e3eeff;--black:#0b1220;--line:#cfdcf0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}}
+:root[data-theme="dark"]{--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.9;font-size:16px}
+header{background:var(--black);color:#fff;padding:40px 20px 30px;text-align:center;border-bottom:6px solid var(--blue)}
+header h1{margin:0 0 6px;font-size:clamp(24px,5vw,38px);font-weight:800}
+header p{margin:0;color:#9cc2ff;direction:ltr}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:var(--card);border-bottom:1px solid var(--line)}
+nav a{color:var(--blue);text-decoration:none;font-size:14px;font-weight:600;padding:4px 12px;border:1px solid var(--line);border-radius:20px}
+main{max-width:900px;margin:auto;padding:16px}
+section{background:var(--card);border:1px solid var(--line);border-inline-start:6px solid var(--blue);position:relative;border-radius:14px;padding:18px 20px;margin:18px 0}
+h2{margin:0 0 10px;color:var(--blue);font-size:24px;font-weight:800}
+h3{margin:16px 0 4px;font-size:18px;font-weight:700}
+.def{background:var(--black);color:#fff;border-radius:10px;padding:12px 16px;margin:10px 0}
+.ex{background:var(--blue2);border-inline-start:4px solid var(--blue);border-radius:8px;padding:10px 14px;margin:10px 0}
+.ex b{color:var(--blue)}
+.key{border:1px dashed var(--blue);border-radius:8px;padding:8px 14px;margin:10px 0;font-weight:600}
+ul{padding-inline-start:22px;margin:6px 0}
+.tw{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th{background:var(--black);color:#fff;padding:8px 10px}
+td{padding:8px 10px;border:1px solid var(--line)}
+td:first-child{font-weight:700;background:var(--blue2)}
+.e{display:block}.a{display:none;text-align:right}
+section.ar .e{display:none}section.ar .a{display:block}
+.tr,#all{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:20px;padding:4px 14px;font-weight:700;font-size:14px}
+.tr{position:absolute;top:12px;inset-inline-end:14px}
+.e h2{padding-inline-end:90px}.a h2{padding-inline-start:90px}
+.a .q ol{direction:ltr}.e .q ol{direction:ltr;text-align:left}
+td:first-child{text-align:start}th{text-align:start}
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 52px);z-index:5;background:var(--black);color:#fff;border-radius:10px;padding:6px 14px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.score button{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:14px;padding:2px 12px}
+.opts{display:grid;gap:6px;margin:6px 0}
+.top{position:sticky;top:0;z-index:20;direction:ltr;display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--black);color:#fff;padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;border-bottom:2px solid var(--blue)}
+.top a,.top summary{color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:var(--blue);padding:5px 14px;border-radius:18px;cursor:pointer;list-style:none;display:inline-block}
+.top summary::-webkit-details-marker{display:none}
+.top b{font-size:14px;color:#9cc2ff}
+.menu{position:relative}
+.mn{position:absolute;inset-inline-end:0;top:38px;width:min(320px,86vw);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mn a{display:block;background:none;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:14px;font-weight:600}
+.mn a:hover{background:var(--blue2)}
+.mn .cur{background:var(--blue2);color:var(--blue)}
+.opt{font-family:inherit;font-size:15px;text-align:start;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.opt:not(:disabled):hover{border-color:var(--blue);background:var(--blue2)}
+.opt.ok{background:#12803c;color:#fff;border-color:#12803c}.opt.bad{background:#c62828;color:#fff;border-color:#c62828}
+.fb{margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--blue2);font-weight:600}
+.q p.n{color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.box{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:10px 14px}
+.box h4{margin:0;color:var(--blue)}
+.q{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.q p{margin:0 0 4px;font-weight:700}
+details summary{cursor:pointer;color:var(--blue);font-weight:700}
+details div{background:var(--blue2);padding:8px 12px;border-radius:8px;margin-top:6px}
+footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="top"><a href="index.html">🏠 Home · الرئيسية</a><b>Chapter 5 · الشابتر 5</b><details class="menu"><summary>☰ Chapters · الشباتر</summary><div class="mn"><a href="ch1.html">01 Fundamentals of Cloud Computing – Part 1</a><a href="ch2.html">02 Fundamentals – Part 2</a><a href="ch3.html">03 Cloud Deployment Models</a><a href="ch4.html">04 Infrastructure as a Service (IaaS)</a><a class="cur" href="ch5.html">05 Platform as a Service (PaaS) ✓</a><a href="ch6.html">06 Software as a Service (SaaS)</a><a href="ch7.html">07 Virtual Private Networks (VPN)</a></div></details></div>
+<header><h1>Cloud Computing Study Guide: Chapter 5</h1><p>Platform as a Service (PaaS)</p></header>
+<nav><button id="all" type="button">ترجمة الكل للعربية</button><a href="#a1">Cloud Layers</a><a href="#a2">What is PaaS</a><a href="#a3">Benefits</a><a href="#a4">Examples</a><a href="#a5">Challenges</a><a href="#a6">PaaS vs Others</a><a href="#a7">Summary</a><a href="#a8">Questions</a></nav>
+<main>
+<section id="a1">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>1) Cloud Computing Layers</h2>
+<p>Cloud computing is organized in four layers, from the physical machines at the bottom up to the applications at the top.</p>
+<div class="grid">
+<div class="box"><h4>Hardware Layer</h4>Manages the physical resources of the cloud: physical servers, routers, switches, power and cooling systems. Implemented in <b>data centers</b>, which contain thousands of servers organized in racks and connected through switches, routers or other fabrics. Typical issues: hardware configuration, fault tolerance, traffic management, power and cooling resource management. <i>(CPU, memory, disk, bandwidth)</i></div>
+<div class="box"><h4>Infrastructure Layer (IaaS)</h4>Also called the <b>virtualization layer</b>. Creates a pool of storage and computing resources by partitioning the physical resources using virtualization technologies such as VMware. Essential because key features like <b>dynamic resource assignment</b> are only available through virtualization. <i>(Computation VM, block storage)</i></div>
+<div class="box"><h4>Platform Layer (PaaS)</h4>Built on top of the infrastructure layer; consists of <b>operating systems and application frameworks</b>. Its purpose is to minimize the load of deploying applications directly into VM containers. Example: <b>Google App Engine</b>. <i>(Software framework Java/.NET, storage DB/file)</i></div>
+<div class="box"><h4>Application Layer (SaaS)</h4>The actual cloud applications. Unlike traditional applications, they can leverage <b>automatic scaling</b> to achieve better performance, availability and lower operating cost. <i>(Business applications, web services, multimedia)</i></div></div>
+<h3>Examples at each layer</h3>
+<div class="tw"><table><tr><th>Layer</th><th>Service model</th><th>Examples</th></tr>
+<tr><td>Application</td><td>SaaS</td><td>Google Apps, Facebook, YouTube, Salesforce.com</td></tr>
+<tr><td>Platform</td><td>PaaS</td><td>Microsoft Azure, Google App Engine, Amazon SimpleDB/S3</td></tr>
+<tr><td>Infrastructure</td><td>IaaS</td><td>Amazon EC2, GoGrid, Flexiscale</td></tr>
+<tr><td>Hardware</td><td>Data centers</td><td>Physical servers, networks</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>1) طبقات الحوسبة السحابية</h2>
+<p>الحوسبة السحابية مقسمة إلى أربع طبقات، من الأجهزة الفيزيائية بالأسفل إلى التطبيقات بالأعلى.</p>
+<div class="grid">
+<div class="box"><h4>طبقة العتاد (Hardware)</h4>تدير الموارد الفيزيائية للسحابة: سيرفرات، راوترات، سويتشات، أنظمة الطاقة والتبريد. تُنفَّذ في <b>مراكز البيانات</b> التي تحوي آلاف السيرفرات المنظمة في racks والمتصلة بسويتشات وراوترات. المشاكل الشائعة: إعداد العتاد، تحمل الأعطال، إدارة الترافيك، إدارة الطاقة والتبريد. <i>(CPU، ذاكرة، قرص، bandwidth)</i></div>
+<div class="box"><h4>طبقة البنية التحتية (IaaS)</h4>تُسمّى أيضاً <b>طبقة الـ virtualization</b>. تنشئ مجمّعاً (pool) من موارد التخزين والحوسبة عبر تقسيم الموارد الفيزيائية بتقنيات مثل VMware. أساسية لأن ميزات مثل <b>التخصيص الديناميكي للموارد</b> لا تتوفر إلا بالـ virtualization. <i>(أجهزة افتراضية، تخزين block)</i></div>
+<div class="box"><h4>طبقة المنصة (PaaS)</h4>مبنية فوق طبقة البنية التحتية؛ تتكون من <b>أنظمة تشغيل وأطر عمل للتطبيقات (frameworks)</b>. هدفها تقليل عبء نشر التطبيقات مباشرة داخل حاويات الـ VM. مثال: <b>Google App Engine</b>. <i>(إطار برمجي Java/.NET، تخزين DB/ملفات)</i></div>
+<div class="box"><h4>طبقة التطبيقات (SaaS)</h4>التطبيقات السحابية الفعلية. بعكس التطبيقات التقليدية، تستفيد من <b>التوسع التلقائي</b> لتحقيق أداء وتوفر أفضل وتكلفة تشغيل أقل. <i>(تطبيقات أعمال، web services، وسائط)</i></div></div>
+<h3>أمثلة على كل طبقة</h3>
+<div class="tw"><table><tr><th>الطبقة</th><th>نموذج الخدمة</th><th>أمثلة</th></tr>
+<tr><td>Application</td><td>SaaS</td><td>Google Apps, Facebook, YouTube, Salesforce.com</td></tr>
+<tr><td>Platform</td><td>PaaS</td><td>Microsoft Azure, Google App Engine, Amazon SimpleDB/S3</td></tr>
+<tr><td>Infrastructure</td><td>IaaS</td><td>Amazon EC2, GoGrid, Flexiscale</td></tr>
+<tr><td>Hardware</td><td>مراكز بيانات</td><td>سيرفرات وشبكات فيزيائية</td></tr></table></div></div>
+</section>
+<section id="a2">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>2) What is PaaS &amp; How Does It Work?</h2>
+<div class="def">Platform as a Service (PaaS) is a cloud computing model providing developers with a platform to build, deploy and manage applications without worrying about the underlying infrastructure.</div>
+<div class="ex"><b>Analogy:</b> the best-known software platforms for desktop software are Microsoft Windows and Mac OS. PaaS is the same idea in the cloud: a ready platform you build your applications on.</div>
+<h3>Who manages what?</h3>
+<div class="tw"><table><tr><th>Layer</th><th>On-premise</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>Applications, Data</td><td>You</td><td>You</td><td>You</td><td>Vendor</td></tr>
+<tr><td>Runtime, Middleware, OS</td><td>You</td><td>You</td><td>Vendor</td><td>Vendor</td></tr>
+<tr><td>Virtualization, Servers, Storage, Networking</td><td>You</td><td>Vendor</td><td>Vendor</td><td>Vendor</td></tr></table></div>
+<h3>How PaaS works</h3>
+<p>PaaS solutions are specific to application and software development and typically include:</p>
+<div class="grid"><div class="box"><h4>Cloud infrastructure</h4>Data centers, storage, network equipment and servers.</div><div class="box"><h4>Middleware software</h4>Operating systems, frameworks, development kits (SDK), libraries and more.</div><div class="box"><h4>User interface</h4>A graphical user interface (GUI), a command line interface (CLI) and an API interface.</div></div></div>
+<div class="a" dir="rtl"><h2>2) ما هي PaaS وكيف تعمل؟</h2>
+<div class="def">PaaS (المنصة كخدمة) نموذج حوسبة سحابية يوفر للمطورين منصة لبناء ونشر وإدارة التطبيقات دون الانشغال بالبنية التحتية الأساسية.</div>
+<div class="ex"><b>تشبيه:</b> أشهر منصات برمجيات سطح المكتب هي Microsoft Windows وMac OS. الـ PaaS نفس الفكرة بالسحابة: منصة جاهزة تبني عليها تطبيقاتك.</div>
+<h3>من يدير ماذا؟</h3>
+<div class="tw"><table><tr><th>الطبقة</th><th>On-premise</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>التطبيقات والبيانات</td><td>أنت</td><td>أنت</td><td>أنت</td><td>المزود</td></tr>
+<tr><td>Runtime وMiddleware وOS</td><td>أنت</td><td>أنت</td><td>المزود</td><td>المزود</td></tr>
+<tr><td>Virtualization وServers وStorage وNetworking</td><td>أنت</td><td>المزود</td><td>المزود</td><td>المزود</td></tr></table></div>
+<h3>كيف تعمل PaaS</h3>
+<p>حلول PaaS مخصصة لتطوير التطبيقات والبرمجيات وتتضمن عادةً:</p>
+<div class="grid"><div class="box"><h4>البنية التحتية السحابية</h4>مراكز بيانات، تخزين، معدات شبكة، وسيرفرات.</div><div class="box"><h4>برمجيات Middleware</h4>أنظمة تشغيل، frameworks، أدوات تطوير (SDK)، مكتبات وغيرها.</div><div class="box"><h4>واجهة المستخدم</h4>واجهة رسومية (GUI)، وواجهة سطر أوامر (CLI)، وواجهة API.</div></div></div>
+</section>
+<section id="a3">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>3) Key Benefits of PaaS</h2>
+<div class="grid"><div class="box"><h4>Cost efficiency</h4>Pay only for what you use.</div><div class="box"><h4>Low maintenance</h4>The provider maintains the platform.</div><div class="box"><h4>Scalability</h4>Automatic scaling based on demand.</div><div class="box"><h4>Faster time-to-market</h4>Pre-configured environments speed up development.</div><div class="box"><h4>Focus on development</h4>No need to manage servers or runtime.</div></div></div>
+<div class="a" dir="rtl"><h2>3) أهم فوائد PaaS</h2>
+<div class="grid"><div class="box"><h4>كفاءة التكلفة</h4>تدفع فقط مقابل ما تستخدمه.</div><div class="box"><h4>صيانة منخفضة</h4>المزود يصون المنصة.</div><div class="box"><h4>قابلية التوسع</h4>توسع تلقائي حسب الطلب.</div><div class="box"><h4>وصول أسرع للسوق</h4>بيئات مُعدّة مسبقاً تسرّع التطوير.</div><div class="box"><h4>التركيز على التطوير</h4>لا حاجة لإدارة السيرفرات أو الـ runtime.</div></div></div>
+</section>
+<section id="a4">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>4) Examples of PaaS Offerings</h2>
+<div class="tw"><table><tr><th>Provider</th><th>PaaS offering</th></tr>
+<tr><td>Microsoft Azure</td><td>Azure App Service</td></tr>
+<tr><td>Google Cloud</td><td>Google App Engine</td></tr>
+<tr><td>Amazon Web Services</td><td>AWS Elastic Beanstalk</td></tr></table></div>
+<p>Other PaaS examples in the deck’s pyramid: <b>Heroku</b>.</p></div>
+<div class="a" dir="rtl"><h2>4) أمثلة على عروض PaaS</h2>
+<div class="tw"><table><tr><th>المزود</th><th>عرض PaaS</th></tr>
+<tr><td>Microsoft Azure</td><td>Azure App Service</td></tr>
+<tr><td>Google Cloud</td><td>Google App Engine</td></tr>
+<tr><td>Amazon Web Services</td><td>AWS Elastic Beanstalk</td></tr></table></div>
+<p>مثال آخر على PaaS ضمن هرم الشرائح: <b>Heroku</b>.</p></div>
+</section>
+<section id="a5">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>5) Challenges of PaaS</h2>
+<ul><li><b>Vendor lock-in:</b> limited portability between providers.</li><li><b>Customization limits:</b> you work within what the platform allows.</li><li><b>Dependency on provider:</b> your application relies on the provider’s platform and availability.</li></ul></div>
+<div class="a" dir="rtl"><h2>5) تحديات PaaS</h2>
+<ul><li><b>Vendor lock-in:</b> قابلية نقل محدودة بين المزودين.</li><li><b>حدود التخصيص:</b> تعمل ضمن ما تسمح به المنصة.</li><li><b>الاعتماد على المزود:</b> تطبيقك يعتمد على منصة المزود وتوفرها.</li></ul></div>
+</section>
+<section id="a6">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>6) PaaS vs. Other Cloud Models</h2>
+<div class="tw"><table><tr><th>Feature</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>Managed by user</td><td>Applications, OS</td><td>Applications only</td><td>None (fully managed)</td></tr>
+<tr><td>Example</td><td>Azure VMs</td><td>Azure App Service</td><td>Microsoft 365</td></tr>
+<tr><td>Flexibility</td><td>High</td><td>Medium</td><td>Low</td></tr></table></div>
+<h3>The control pyramid</h3>
+<div class="tw"><table><tr><th>Model</th><th>Targets</th><th>Examples</th><th>Control</th></tr>
+<tr><td>SaaS</td><td>End users</td><td>Gmail, Trello, Salesforce CRM, Evernote, Office 365, Google Docs</td><td>Less</td></tr>
+<tr><td>PaaS</td><td>Software developers</td><td>Heroku, AWS Elastic Beanstalk, Google App Engine</td><td>Medium</td></tr>
+<tr><td>IaaS</td><td>IT administrators</td><td>AWS EC2, Microsoft Azure, Google Compute Engine</td><td>More</td></tr></table></div>
+<div class="key">Going from SaaS down to IaaS: control and flexibility increase, but so does your management responsibility.</div></div>
+<div class="a" dir="rtl"><h2>6) مقارنة PaaS مع النماذج الأخرى</h2>
+<div class="tw"><table><tr><th>الميزة</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>ما يديره المستخدم</td><td>التطبيقات وOS</td><td>التطبيقات فقط</td><td>لا شيء (مُدار بالكامل)</td></tr>
+<tr><td>مثال</td><td>Azure VMs</td><td>Azure App Service</td><td>Microsoft 365</td></tr>
+<tr><td>المرونة</td><td>عالية</td><td>متوسطة</td><td>منخفضة</td></tr></table></div>
+<h3>هرم التحكم</h3>
+<div class="tw"><table><tr><th>النموذج</th><th>المستهدفون</th><th>أمثلة</th><th>التحكم</th></tr>
+<tr><td>SaaS</td><td>المستخدمون النهائيون</td><td>Gmail, Trello, Salesforce CRM, Evernote, Office 365, Google Docs</td><td>أقل</td></tr>
+<tr><td>PaaS</td><td>مطورو البرمجيات</td><td>Heroku, AWS Elastic Beanstalk, Google App Engine</td><td>متوسط</td></tr>
+<tr><td>IaaS</td><td>مدراء الـ IT</td><td>AWS EC2, Microsoft Azure, Google Compute Engine</td><td>أكثر</td></tr></table></div>
+<div class="key">كلما نزلت من SaaS إلى IaaS يزيد التحكم والمرونة، لكن تزيد معه مسؤولية الإدارة عليك.</div></div>
+</section>
+<section id="a7">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>7) Quick Summary</h2>
+<p>My own summary to help you revise:</p>
+<div class="tw"><table><tr><th>Term</th><th>Remember</th></tr>
+<tr><td>PaaS</td><td>Platform to build, deploy and manage apps without managing infrastructure</td></tr>
+<tr><td>Hardware layer</td><td>Data centers, servers, power and cooling</td></tr>
+<tr><td>Infrastructure layer</td><td>Virtualization (VMware), dynamic resource assignment</td></tr>
+<tr><td>Platform layer</td><td>OS + frameworks, e.g. Google App Engine</td></tr>
+<tr><td>Application layer</td><td>Cloud apps with automatic scaling</td></tr>
+<tr><td>PaaS includes</td><td>Cloud infrastructure + middleware + user interface (GUI, CLI, API)</td></tr>
+<tr><td>Benefits</td><td>Cost, low maintenance, scalability, faster time-to-market, focus on development</td></tr>
+<tr><td>Challenges</td><td>Vendor lock-in, customization limits, provider dependency</td></tr>
+<tr><td>User manages</td><td>IaaS: apps + OS · PaaS: apps only · SaaS: nothing</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>7) ملخص سريع</h2>
+<p>من عندي لمساعدتك بالمراجعة:</p>
+<div class="tw"><table><tr><th>المصطلح</th><th>تذكّر</th></tr>
+<tr><td>PaaS</td><td>منصة لبناء ونشر وإدارة التطبيقات دون إدارة البنية التحتية</td></tr>
+<tr><td>طبقة العتاد</td><td>مراكز بيانات، سيرفرات، طاقة وتبريد</td></tr>
+<tr><td>طبقة البنية التحتية</td><td>Virtualization (VMware)، تخصيص ديناميكي للموارد</td></tr>
+<tr><td>طبقة المنصة</td><td>OS + frameworks، مثل Google App Engine</td></tr>
+<tr><td>طبقة التطبيقات</td><td>تطبيقات سحابية بتوسع تلقائي</td></tr>
+<tr><td>مكونات PaaS</td><td>بنية سحابية + middleware + واجهة (GUI، CLI، API)</td></tr>
+<tr><td>الفوائد</td><td>التكلفة، صيانة قليلة، توسع، وصول أسرع للسوق، تركيز على التطوير</td></tr>
+<tr><td>التحديات</td><td>Vendor lock-in، حدود التخصيص، الاعتماد على المزود</td></tr>
+<tr><td>ما يديره المستخدم</td><td>IaaS: تطبيقات + OS · PaaS: تطبيقات فقط · SaaS: لا شيء</td></tr></table></div></div>
+</section>
+<section id="a8">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>8) Interactive Practice Questions</h2>
+<p>Pick an answer: you get instant feedback and the correct answer with an explanation.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>Essay questions</h3>
+<div class="q"><p>1) Explain the four cloud computing layers.<br>2) Define PaaS and explain how it works (its three parts).<br>3) List the benefits and challenges of PaaS.<br>4) Give examples of PaaS offerings.<br>5) Compare IaaS, PaaS and SaaS (who manages what, example, flexibility).</p><details><summary>Hint</summary><div>Review sections 1, 2, 3, 5 and 6.</div></details></div></div>
+<div class="a" dir="rtl"><h2>8) أسئلة تدريبية تفاعلية</h2>
+<p>اختر إجابة: بتطلع لك النتيجة فوراً مع الإجابة الصحيحة والشرح.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>أسئلة مقالية</h3>
+<div class="q"><p>1) اشرح طبقات الحوسبة السحابية الأربع.<br>2) عرّف PaaS واشرح كيف تعمل (أجزاؤها الثلاثة).<br>3) اذكر فوائد وتحديات PaaS.<br>4) أعطِ أمثلة على عروض PaaS.<br>5) قارن بين IaaS وPaaS وSaaS (من يدير، مثال، المرونة).</p><details><summary>إرشاد</summary><div>ارجع للأقسام 1 و2 و3 و5 و6.</div></details></div></div>
+</section>
+</main>
+<footer>Good luck in the exam! · بالتوفيق 💙</footer>
+<script>
+function m(qe,qa,oe,oa,a,xe,xa){return{q:[qe,qa],o:[oe,oa||oe],a:a,x:[xe,xa]}}
+var TF=[['True','False'],['صح','خطأ']];
+function tf(qe,qa,t,xe,xa){return{q:[qe,qa],o:TF,a:t?0:1,x:[xe,xa]}}
+var Q=[
+m('PaaS stands for:','PaaS تعني:',['Platform as a Service','Program as a Service','Protocol as a Service','Private as a Service'],['Platform as a Service','Program as a Service','Protocol as a Service','Private as a Service'],0,'Platform-as-a-Service.','Platform-as-a-Service.'),
+m('PaaS provides developers with a platform to:','توفر PaaS للمطورين منصة لـ:',['build, deploy and manage applications','only store photos','only browse the web','build physical servers'],['بناء ونشر وإدارة التطبيقات','تخزين الصور فقط','تصفح الويب فقط','بناء سيرفرات فيزيائية'],0,'Without worrying about underlying infrastructure.','دون الانشغال بالبنية التحتية.'),
+m('The best-known desktop software platforms are:','أشهر منصات برمجيات سطح المكتب:',['Microsoft Windows and Mac OS','Gmail and Trello','AWS and Azure','Heroku and Salesforce'],['Microsoft Windows وMac OS','Gmail وTrello','AWS وAzure','Heroku وSalesforce'],0,'The deck uses them as an analogy for a platform.','تُستخدم كتشبيه للمنصة.'),
+m('How many layers does cloud computing have in this chapter?','كم عدد طبقات الحوسبة السحابية في هذا الشابتر؟',['Four','Two','Three','Six'],['أربع','اثنتان','ثلاث','ست'],0,'Hardware, infrastructure, platform, application.','العتاد، البنية التحتية، المنصة، التطبيقات.'),
+m('The hardware layer manages:','تدير طبقة العتاد:',['physical servers, routers, switches, power and cooling','applications','frameworks','virtual machines'],['السيرفرات والراوترات والسويتشات والطاقة والتبريد','التطبيقات','الـ frameworks','الأجهزة الافتراضية'],0,'Typically implemented in data centers.','تُنفَّذ عادةً في مراكز البيانات.'),
+m('A data center usually contains:','مركز البيانات يحتوي عادةً على:',['thousands of servers in racks connected by switches and routers','one laptop','only software','only printers'],['آلاف السيرفرات في racks متصلة بسويتشات وراوترات','لابتوب واحد','برمجيات فقط','طابعات فقط'],0,'Hardware-layer issues include fault tolerance and power/cooling.','مشاكلها: تحمل الأعطال والطاقة والتبريد.'),
+m('Which is a typical hardware-layer issue?','أي مما يلي مشكلة شائعة في طبقة العتاد؟',['Fault tolerance and power/cooling management','Writing application code','Choosing a UI color','Email design'],['تحمل الأعطال وإدارة الطاقة والتبريد','كتابة كود التطبيق','اختيار لون الواجهة','تصميم الإيميل'],0,'Also hardware configuration and traffic management.','وأيضاً إعداد العتاد وإدارة الترافيك.'),
+m('The infrastructure layer is also known as:','طبقة البنية التحتية تُعرف أيضاً بـ:',['the virtualization layer','the application layer','the hardware layer','the user layer'],['طبقة الـ virtualization','طبقة التطبيقات','طبقة العتاد','طبقة المستخدم'],0,'It partitions physical resources into pools.','تقسم الموارد الفيزيائية إلى pools.'),
+m('Which technology is given as an example of virtualization?','أي تقنية ذُكرت كمثال على الـ virtualization؟',['VMware','Heroku','Gmail','Trello'],['VMware','Heroku','Gmail','Trello'],0,'Used by the infrastructure layer.','تستخدمها طبقة البنية التحتية.'),
+m('Dynamic resource assignment is made available through:','التخصيص الديناميكي للموارد يتوفر عبر:',['virtualization technologies','paper forms','physical cables only','manual setup'],['تقنيات الـ virtualization','نماذج ورقية','كابلات فقط','إعداد يدوي'],0,'That is why the infrastructure layer is essential.','لذلك الطبقة أساسية.'),
+m('The platform layer consists of:','تتكون طبقة المنصة من:',['operating systems and application frameworks','physical servers','end-user apps only','cooling systems'],['أنظمة تشغيل وأطر عمل للتطبيقات','سيرفرات فيزيائية','تطبيقات المستخدم فقط','أنظمة تبريد'],0,'Built on top of the infrastructure layer.','مبنية فوق طبقة البنية التحتية.'),
+m('The purpose of the platform layer is to:','هدف طبقة المنصة هو:',['minimize the load of deploying applications directly into VM containers','replace the data center','sell hardware','remove the internet'],['تقليل عبء نشر التطبيقات مباشرة داخل حاويات الـ VM','استبدال مركز البيانات','بيع العتاد','إزالة الإنترنت'],0,'Example: Google App Engine.','مثال: Google App Engine.'),
+m('The application layer consists of:','تتكون طبقة التطبيقات من:',['the actual cloud applications','physical racks','virtual disks','network cables'],['التطبيقات السحابية الفعلية','racks فيزيائية','أقراص افتراضية','كابلات شبكة'],0,'They can use automatic scaling.','يمكنها استخدام التوسع التلقائي.'),
+m('Cloud applications differ from traditional ones because they can:','التطبيقات السحابية تختلف عن التقليدية لأنها يمكنها:',['leverage automatic scaling for better performance, availability and lower cost','run only offline','never scale','avoid servers entirely'],['الاستفادة من التوسع التلقائي لأداء وتوفر أفضل وتكلفة أقل','العمل بدون إنترنت فقط','عدم التوسع أبداً','تجنب السيرفرات تماماً'],0,'Automatic scaling is the key.','التوسع التلقائي هو الأساس.'),
+m('Which examples belong to the SaaS layer?','أي أمثلة تنتمي لطبقة SaaS؟',['Google Apps, Facebook, YouTube, Salesforce.com','Amazon EC2, GoGrid','Microsoft Azure, App Engine','VMware only'],['Google Apps وFacebook وYouTube وSalesforce.com','Amazon EC2 وGoGrid','Microsoft Azure وApp Engine','VMware فقط'],0,'EC2/GoGrid are IaaS; Azure/App Engine are PaaS.','EC2/GoGrid هي IaaS؛ وAzure/App Engine هي PaaS.'),
+m('Which examples belong to the IaaS layer?','أي أمثلة تنتمي لطبقة IaaS؟',['Amazon EC2, GoGrid, Flexiscale','Google Apps, YouTube','Heroku, App Engine','Office 365'],['Amazon EC2 وGoGrid وFlexiscale','Google Apps وYouTube','Heroku وApp Engine','Office 365'],0,'Computation (VM) and block storage.','حوسبة (VM) وتخزين block.'),
+m('PaaS solutions typically include which three parts?','حلول PaaS تتضمن عادةً أي ثلاثة أجزاء؟',['Cloud infrastructure, middleware software, user interface','Only hardware','Only apps','Only a browser'],['بنية سحابية، برمجيات middleware، واجهة مستخدم','عتاد فقط','تطبيقات فقط','متصفح فقط'],0,'Plus GUI, CLI and API interfaces.','مع واجهات GUI وCLI وAPI.'),
+m('Middleware in PaaS includes:','الـ Middleware في PaaS يشمل:',['operating systems, frameworks, SDKs, libraries','data center buildings','power systems','end-user email'],['أنظمة تشغيل وframeworks وSDKs ومكتبات','مباني مراكز البيانات','أنظمة الطاقة','إيميل المستخدم النهائي'],0,'Tools developers build with.','أدوات يبني بها المطورون.'),
+m('Which are PaaS user interfaces?','أي مما يلي واجهات مستخدم PaaS؟',['GUI, CLI, API','Only GUI','Only paper','None'],['GUI وCLI وAPI','GUI فقط','ورق فقط','لا شيء'],0,'Graphical, command line and API.','رسومية وسطر أوامر وAPI.'),
+m('Which is a benefit of PaaS?','أي مما يلي فائدة لـ PaaS؟',['Faster time-to-market','Vendor lock-in','Customization limits','Provider dependency'],['وصول أسرع للسوق','Vendor lock-in','حدود التخصيص','الاعتماد على المزود'],0,'Pre-configured environments speed up development.','بيئات مُعدّة مسبقاً تسرّع التطوير.'),
+m('“Pay only for what you use” is the benefit called:','"ادفع فقط مقابل ما تستخدمه" هي الفائدة المسماة:',['Cost efficiency','Scalability','Low maintenance','Time-to-market'],['كفاءة التكلفة','قابلية التوسع','صيانة منخفضة','وصول أسرع للسوق'],0,'Cost efficiency.','كفاءة التكلفة.'),
+m('PaaS scalability means:','قابلية التوسع في PaaS تعني:',['automatic scaling based on demand','fixed capacity','manual hardware purchase','no growth'],['توسع تلقائي حسب الطلب','سعة ثابتة','شراء عتاد يدوياً','لا نمو'],0,'Scale with demand.','التوسع مع الطلب.'),
+m('“Focus on development” means developers do not need to:','"التركيز على التطوير" تعني أن المطورين لا يحتاجون إلى:',['manage servers or runtime','write code','test apps','use the internet'],['إدارة السيرفرات أو الـ runtime','كتابة الكود','اختبار التطبيقات','استخدام الإنترنت'],0,'The provider manages them.','المزود يديرها.'),
+m('Azure App Service is a PaaS offering from:','Azure App Service عرض PaaS من:',['Microsoft Azure','Google Cloud','AWS','IBM'],['Microsoft Azure','Google Cloud','AWS','IBM'],0,'Microsoft’s PaaS.','PaaS من مايكروسوفت.'),
+m('Google’s PaaS offering is:','عرض PaaS من جوجل هو:',['Google App Engine','AWS Elastic Beanstalk','Azure App Service','Office 365'],['Google App Engine','AWS Elastic Beanstalk','Azure App Service','Office 365'],0,'Google Cloud: App Engine.','Google Cloud: App Engine.'),
+m('AWS’s PaaS offering is:','عرض PaaS من AWS هو:',['Elastic Beanstalk','Azure App Service','App Engine','Gmail'],['Elastic Beanstalk','Azure App Service','App Engine','Gmail'],0,'AWS Elastic Beanstalk.','AWS Elastic Beanstalk.'),
+m('Vendor lock-in means:','Vendor lock-in تعني:',['limited portability between providers','free switching','no provider needed','unlimited customization'],['قابلية نقل محدودة بين المزودين','تبديل حر','لا حاجة لمزود','تخصيص غير محدود'],0,'A challenge of PaaS.','من تحديات PaaS.'),
+m('Which is a challenge of PaaS?','أي مما يلي تحدٍّ لـ PaaS؟',['Customization limits','Pay-as-you-go','Low maintenance','Automatic scaling'],['حدود التخصيص','الدفع حسب الاستخدام','صيانة منخفضة','توسع تلقائي'],0,'Also vendor lock-in and provider dependency.','وأيضاً vendor lock-in والاعتماد على المزود.'),
+m('In PaaS the user manages:','في PaaS يدير المستخدم:',['applications only','applications and OS','nothing','servers and storage'],['التطبيقات فقط','التطبيقات وOS','لا شيء','السيرفرات والتخزين'],0,'IaaS: apps + OS; SaaS: none.','IaaS: تطبيقات + OS؛ SaaS: لا شيء.'),
+m('In IaaS the user manages:','في IaaS يدير المستخدم:',['applications and OS','nothing','applications only','data centers'],['التطبيقات وOS','لا شيء','التطبيقات فقط','مراكز البيانات'],0,'The vendor manages virtualization, servers, storage, networking.','المزود يدير virtualization وservers وstorage وnetworking.'),
+m('Which model is fully managed by the vendor?','أي نموذج يديره المزود بالكامل؟',['SaaS','PaaS','IaaS','On-premise'],['SaaS','PaaS','IaaS','On-premise'],0,'User manages none (e.g. Microsoft 365).','المستخدم لا يدير شيئاً (مثل Microsoft 365).'),
+m('Which model has the highest flexibility?','أي نموذج مرونته الأعلى؟',['IaaS','PaaS','SaaS','All equal'],['IaaS','PaaS','SaaS','كلها متساوية'],0,'IaaS high, PaaS medium, SaaS low.','IaaS عالية، PaaS متوسطة، SaaS منخفضة.'),
+m('Azure VMs are an example of:','Azure VMs مثال على:',['IaaS','PaaS','SaaS','Hardware layer'],['IaaS','PaaS','SaaS','طبقة العتاد'],0,'Azure App Service is PaaS.','Azure App Service هو PaaS.'),
+m('Microsoft 365 is an example of:','Microsoft 365 مثال على:',['SaaS','PaaS','IaaS','Hardware'],['SaaS','PaaS','IaaS','عتاد'],0,'Fully managed software.','برمجيات مُدارة بالكامل.'),
+m('In the control pyramid, SaaS targets:','في هرم التحكم، SaaS تستهدف:',['end users','software developers','IT administrators','hardware vendors'],['المستخدمين النهائيين','مطوري البرمجيات','مدراء الـ IT','بائعي العتاد'],0,'PaaS: developers; IaaS: IT administrators.','PaaS: المطورون؛ IaaS: مدراء الـ IT.'),
+m('In the control pyramid, PaaS targets:','في هرم التحكم، PaaS تستهدف:',['software developers','end users','IT administrators','nobody'],['مطوري البرمجيات','المستخدمين النهائيين','مدراء الـ IT','لا أحد'],0,'Heroku, Elastic Beanstalk, App Engine.','Heroku وElastic Beanstalk وApp Engine.'),
+m('Which model gives the most control?','أي نموذج يعطي أكبر تحكم؟',['IaaS','PaaS','SaaS','Same'],['IaaS','PaaS','SaaS','نفسه'],0,'Control increases towards IaaS.','التحكم يزيد باتجاه IaaS.'),
+tf('The platform layer is built on top of the infrastructure layer.','طبقة المنصة مبنية فوق طبقة البنية التحتية.',true,'True.','صح.'),
+tf('In PaaS the developer must manage the servers and runtime.','في PaaS على المطور إدارة السيرفرات والـ runtime.',false,'False: the provider manages them.','خطأ: المزود يديرها.'),
+tf('Google App Engine is an example of PaaS.','Google App Engine مثال على PaaS.',true,'True.','صح.'),
+tf('PaaS has no portability problems between providers.','PaaS ليس لها مشاكل قابلية نقل بين المزودين.',false,'False: vendor lock-in limits portability.','خطأ: vendor lock-in يحد من قابلية النقل.'),
+tf('SaaS has higher flexibility than IaaS.','SaaS مرونتها أعلى من IaaS.',false,'False: SaaS has the lowest flexibility.','خطأ: SaaS لها أقل مرونة.')
+];
+var st={};
+function render(){
+ var n=Object.keys(st).length,c=0;for(var k in st)if(st[k]===Q[k].a)c++;
+ [['e',0],['a',1]].forEach(function(p){
+  var L=p[1],box=document.querySelector('#a8 .'+p[0]);
+  var sc=box.querySelector('.score'),qs=box.querySelector('.qs');
+  sc.innerHTML='<span>'+(L?'النتيجة: ':'Score: ')+c+' / '+n+' ('+(L?'من ':'of ')+Q.length+')</span><button type="button">'+(L?'إعادة':'Reset')+'</button>';
+  sc.querySelector('button').onclick=function(){st={};render()};
+  qs.innerHTML='';
+  Q.forEach(function(q,i){
+   var d=document.createElement('div');d.className='q';
+   var o=q.o[L];
+   var h='<p class="n">'+(i+1)+') '+q.q[L]+'</p><div class="opts">';
+   o.forEach(function(t,j){
+    var cl='opt';if(i in st){if(j===q.a)cl+=' ok';else if(j===st[i])cl+=' bad'}
+    h+='<button type="button" class="'+cl+'" data-i="'+i+'" data-j="'+j+'"'+(i in st?' disabled':'')+'>'+t+'</button>'});
+   h+='</div>';
+   if(i in st){var r=st[i]===q.a;h+='<div class="fb">'+(r?(L?'✅ صح! ':'✅ Correct! '):(L?'❌ خطأ. الإجابة الصحيحة: '+o[q.a]+'. ':'❌ Wrong. Correct answer: '+o[q.a]+'. '))+q.x[L]+'</div>'}
+   d.innerHTML=h;qs.appendChild(d)});
+  qs.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){st[b.dataset.i]=+b.dataset.j;render()}})});
+}
+render();
+(function(){var secs=[].slice.call(document.querySelectorAll('section')),all=document.getElementById('all');
+function lab(s){s.querySelector('.tr').textContent=s.classList.contains('ar')?'English':'العربية'}
+function sync(){var n=secs.filter(function(s){return s.classList.contains('ar')}).length;all.textContent=n===secs.length?'Back to English':'ترجمة الكل للعربية'}
+secs.forEach(function(s){s.querySelector('.tr').onclick=function(){s.classList.toggle('ar');lab(s);sync()}});
+all.onclick=function(){var to=!secs.every(function(s){return s.classList.contains('ar')});secs.forEach(function(s){s.classList.toggle('ar',to);lab(s)});sync()}})();
+</script>
+</body>
+</html>
