@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing Study Guide – Chapter 7</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7fd;--card:#fff;--ink:#0b1220;--mut:#44536b;--blue:#1565d8;--blue2:#e3eeff;--black:#0b1220;--line:#cfdcf0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}}
+:root[data-theme="dark"]{--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.9;font-size:16px}
+header{background:var(--black);color:#fff;padding:40px 20px 30px;text-align:center;border-bottom:6px solid var(--blue)}
+header h1{margin:0 0 6px;font-size:clamp(24px,5vw,38px);font-weight:800}
+header p{margin:0;color:#9cc2ff;direction:ltr}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:var(--card);border-bottom:1px solid var(--line)}
+nav a{color:var(--blue);text-decoration:none;font-size:14px;font-weight:600;padding:4px 12px;border:1px solid var(--line);border-radius:20px}
+main{max-width:900px;margin:auto;padding:16px}
+section{background:var(--card);border:1px solid var(--line);border-inline-start:6px solid var(--blue);position:relative;border-radius:14px;padding:18px 20px;margin:18px 0}
+h2{margin:0 0 10px;color:var(--blue);font-size:24px;font-weight:800}
+h3{margin:16px 0 4px;font-size:18px;font-weight:700}
+.def{background:var(--black);color:#fff;border-radius:10px;padding:12px 16px;margin:10px 0}
+.ex{background:var(--blue2);border-inline-start:4px solid var(--blue);border-radius:8px;padding:10px 14px;margin:10px 0}
+.ex b{color:var(--blue)}
+.key{border:1px dashed var(--blue);border-radius:8px;padding:8px 14px;margin:10px 0;font-weight:600}
+ul{padding-inline-start:22px;margin:6px 0}
+.tw{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th{background:var(--black);color:#fff;padding:8px 10px}
+td{padding:8px 10px;border:1px solid var(--line)}
+td:first-child{font-weight:700;background:var(--blue2)}
+.e{display:block}.a{display:none;text-align:right}
+section.ar .e{display:none}section.ar .a{display:block}
+.tr,#all{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:20px;padding:4px 14px;font-weight:700;font-size:14px}
+.tr{position:absolute;top:12px;inset-inline-end:14px}
+.e h2{padding-inline-end:90px}.a h2{padding-inline-start:90px}
+.a .q ol{direction:ltr}.e .q ol{direction:ltr;text-align:left}
+td:first-child{text-align:start}th{text-align:start}
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 52px);z-index:5;background:var(--black);color:#fff;border-radius:10px;padding:6px 14px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.score button{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:14px;padding:2px 12px}
+.opts{display:grid;gap:6px;margin:6px 0}
+.top{position:sticky;top:0;z-index:20;direction:ltr;display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--black);color:#fff;padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;border-bottom:2px solid var(--blue)}
+.top a,.top summary{color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:var(--blue);padding:5px 14px;border-radius:18px;cursor:pointer;list-style:none;display:inline-block}
+.top summary::-webkit-details-marker{display:none}
+.top b{font-size:14px;color:#9cc2ff}
+.menu{position:relative}
+.mn{position:absolute;inset-inline-end:0;top:38px;width:min(320px,86vw);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mn a{display:block;background:none;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:14px;font-weight:600}
+.mn a:hover{background:var(--blue2)}
+.mn .cur{background:var(--blue2);color:var(--blue)}
+.opt{font-family:inherit;font-size:15px;text-align:start;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.opt:not(:disabled):hover{border-color:var(--blue);background:var(--blue2)}
+.opt.ok{background:#12803c;color:#fff;border-color:#12803c}.opt.bad{background:#c62828;color:#fff;border-color:#c62828}
+.fb{margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--blue2);font-weight:600}
+.q p.n{color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.box{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:10px 14px}
+.box h4{margin:0;color:var(--blue)}
+.q{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.q p{margin:0 0 4px;font-weight:700}
+details summary{cursor:pointer;color:var(--blue);font-weight:700}
+details div{background:var(--blue2);padding:8px 12px;border-radius:8px;margin-top:6px}
+footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="top"><a href="index.html">🏠 Home · الرئيسية</a><b>Chapter 7 · الشابتر 7</b><details class="menu"><summary>☰ Chapters · الشباتر</summary><div class="mn"><a href="ch1.html">01 Fundamentals of Cloud Computing – Part 1</a><a href="ch2.html">02 Fundamentals – Part 2</a><a href="ch3.html">03 Cloud Deployment Models</a><a href="ch4.html">04 Infrastructure as a Service (IaaS)</a><a href="ch5.html">05 Platform as a Service (PaaS)</a><a href="ch6.html">06 Software as a Service (SaaS)</a><a class="cur" href="ch7.html">07 Virtual Private Networks (VPN) ✓</a></div></details></div>
+<header><h1>Cloud Computing Study Guide: Chapter 7</h1><p>Virtual Private Networks (VPN)</p></header>
+<nav><button id="all" type="button">ترجمة الكل للعربية</button><a href="#a1">Virtualization</a><a href="#a2">What is VPN</a><a href="#a3">Functions &amp; Tunneling</a><a href="#a4">Protocols</a><a href="#a5">Types &amp; Devices</a><a href="#a6">Pros &amp; Cons</a><a href="#a7">Applications</a><a href="#a8">Summary</a><a href="#a9">Questions</a></nav>
+<main>
+<section id="a1">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>1) Virtual Machines &amp; Virtualization</h2>
+<div class="def">VM technology allows multiple virtual machines to run on a single physical machine. A <b>Virtual Machine Monitor (VMM) / Hypervisor</b> sits between the hardware and the guest operating systems (e.g. Linux, NetBSD, Windows) and their applications.</div>
+<p>Examples: Xen, VMware, UML, Denali. <b>Performance:</b> para-virtualization (e.g. Xen) is very close to raw physical performance.</p>
+<h3>Virtualization</h3>
+<ul><li><b>Virtual workspaces:</b> an abstraction of an execution environment made dynamically available to authorized clients through well-defined protocols, with a resource quota (CPU, memory share) and a software configuration (OS, provided services).</li><li><b>Implemented on VMs:</b> an abstraction of a physical host machine; the hypervisor intercepts and emulates VM instructions and allows managing the VMs (VMware, Xen).</li><li><b>Provides an infrastructure API:</b> plug-ins to hardware/support structures.</li><li>Virtualized stack: Hardware → Hypervisor → OS → Apps.</li></ul>
+<h3>Advantages of virtual machines</h3>
+<ul><li>Run operating systems where the physical hardware is unavailable.</li><li>Easier to create and back up machines.</li><li>Software testing with “clean” installs of OS and software.</li><li>Emulate more machines than are physically available.</li><li>Timeshare lightly loaded systems on one host.</li><li>Debug problems (suspend and resume the problem machine).</li><li>Easy migration of VMs (with or without shutdown).</li><li>Run legacy systems.</li></ul></div>
+<div class="a" dir="rtl"><h2>1) الأجهزة الافتراضية والـ Virtualization</h2>
+<div class="def">تقنية الـ VM تسمح بتشغيل عدة أجهزة افتراضية على جهاز فيزيائي واحد. يقع <b>Virtual Machine Monitor (VMM) / Hypervisor</b> بين العتاد وأنظمة التشغيل الضيفة (مثل Linux وNetBSD وWindows) وتطبيقاتها.</div>
+<p>أمثلة: Xen وVMware وUML وDenali. <b>الأداء:</b> الـ para-virtualization (مثل Xen) قريب جداً من أداء العتاد الفيزيائي الخام.</p>
+<h3>الـ Virtualization</h3>
+<ul><li><b>Virtual workspaces:</b> تجريد (abstraction) لبيئة تنفيذ تُتاح ديناميكياً للعملاء المصرّح لهم عبر بروتوكولات محددة، مع حصة موارد (CPU وذاكرة) وإعداد برمجي (OS والخدمات المقدمة).</li><li><b>تُنفَّذ على الـ VMs:</b> تجريد لجهاز مضيف فيزيائي؛ الـ hypervisor يعترض تعليمات الـ VMs ويحاكيها ويسمح بإدارتها (VMware وXen).</li><li><b>توفر infrastructure API:</b> إضافات (plug-ins) للعتاد وهياكل الدعم.</li><li>الـ stack الافتراضي: العتاد ← Hypervisor ← OS ← التطبيقات.</li></ul>
+<h3>مزايا الأجهزة الافتراضية</h3>
+<ul><li>تشغيل أنظمة تشغيل حيث العتاد الفيزيائي غير متوفر.</li><li>أسهل بإنشاء الأجهزة ونسخها احتياطياً.</li><li>اختبار البرمجيات بتثبيتات "نظيفة" من النظام والبرامج.</li><li>محاكاة أجهزة أكثر من المتوفرة فيزيائياً.</li><li>مشاركة الوقت (timeshare) للأنظمة قليلة الحمل على مضيف واحد.</li><li>تصحيح المشاكل (إيقاف مؤقت واستئناف الجهاز المشكل).</li><li>سهولة ترحيل الـ VMs (مع إيقاف أو بدونه).</li><li>تشغيل الأنظمة القديمة (legacy).</li></ul></div>
+</section>
+<section id="a2">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>2) What is a VPN?</h2>
+<div class="def">A Virtual Private Network (VPN) is a type of private network that uses public telecommunication, such as the Internet, instead of leased lines to communicate.</div>
+<p>VPNs became popular as more employees worked in remote locations.</p>
+<h3>Private networks vs. VPNs</h3>
+<ul><li>Employees can access the network (intranet) from remote locations.</li><li>Secured networks.</li><li>The Internet is used as the <b>backbone</b> for VPNs.</li><li>Saves cost tremendously by reducing equipment and maintenance costs.</li><li>Scalability.</li></ul>
+<h3>How it works (overview)</h3>
+<div class="grid"><div class="box"><h4>Two connections</h4>One to the Internet and a second to the VPN.</div><div class="box"><h4>Datagrams</h4>Contain data, destination and source information.</div><div class="box"><h4>Firewalls</h4>VPNs allow authorized users to pass through the firewalls.</div><div class="box"><h4>Protocols</h4>Protocols create the VPN tunnels.</div></div></div>
+<div class="a" dir="rtl"><h2>2) ما هي VPN؟</h2>
+<div class="def">الشبكة الخاصة الافتراضية (VPN) نوع من الشبكات الخاصة يستخدم اتصالات عامة مثل الإنترنت بدل الخطوط المؤجرة (leased lines) للتواصل.</div>
+<p>أصبحت الـ VPN شائعة مع زيادة عدد الموظفين الذين يعملون من مواقع بعيدة.</p>
+<h3>الشبكات الخاصة مقابل VPN</h3>
+<ul><li>يستطيع الموظفون الوصول للشبكة (intranet) من مواقع بعيدة.</li><li>شبكات آمنة.</li><li>يُستخدم الإنترنت كـ <b>backbone</b> للـ VPN.</li><li>توفير كبير بالتكلفة بتقليل المعدات والصيانة.</li><li>قابلية التوسع.</li></ul>
+<h3>كيف تعمل (نظرة عامة)</h3>
+<div class="grid"><div class="box"><h4>اتصالان</h4>الأول بالإنترنت والثاني بالـ VPN.</div><div class="box"><h4>Datagrams</h4>تحتوي البيانات ومعلومات الوجهة والمصدر.</div><div class="box"><h4>Firewalls</h4>الـ VPN تسمح للمستخدمين المصرّح لهم بالمرور عبر الجدران النارية.</div><div class="box"><h4>البروتوكولات</h4>البروتوكولات تنشئ أنفاق (tunnels) الـ VPN.</div></div></div>
+</section>
+<section id="a3">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>3) Four Critical Functions, Encryption &amp; Tunneling</h2>
+<div class="grid"><div class="box"><h4>Authentication</h4>Validates that the data was sent from the sender.</div><div class="box"><h4>Access control</h4>Limits unauthorized users from accessing the network.</div><div class="box"><h4>Confidentiality</h4>Prevents data from being read or copied while transported.</div><div class="box"><h4>Data integrity</h4>Ensures the data has not been altered.</div></div>
+<h3>Encryption</h3>
+<ul><li>A method of “scrambling” data before transmitting it onto the Internet.</li><li><b>Public key encryption</b> technique.</li><li><b>Digital signature</b> for authentication.</li></ul>
+<h3>Tunneling</h3>
+<div class="def">A virtual point-to-point connection made through a public network. It transports <b>encapsulated datagrams</b>.</div>
+<ul><li>Data encapsulation: the original datagram is encrypted as an inner datagram, placed in the data area of an outer datagram that has its own header.</li><li>Two types of end points: <b>Remote Access</b> and <b>Site-to-Site</b>.</li></ul></div>
+<div class="a" dir="rtl"><h2>3) الوظائف الأربع الحرجة والتشفير والـ Tunneling</h2>
+<div class="grid"><div class="box"><h4>Authentication (التوثيق)</h4>التحقق أن البيانات أُرسلت من المرسل الحقيقي.</div><div class="box"><h4>Access control (التحكم بالوصول)</h4>منع المستخدمين غير المصرّح لهم من الوصول للشبكة.</div><div class="box"><h4>Confidentiality (السرية)</h4>منع قراءة البيانات أو نسخها أثناء نقلها.</div><div class="box"><h4>Data integrity (سلامة البيانات)</h4>التأكد أن البيانات لم تتغير.</div></div>
+<h3>التشفير (Encryption)</h3>
+<ul><li>طريقة "تشويش" البيانات قبل إرسالها على الإنترنت.</li><li>تقنية <b>التشفير بالمفتاح العام (public key)</b>.</li><li><b>التوقيع الرقمي</b> للتوثيق.</li></ul>
+<h3>الـ Tunneling (النفقنة)</h3>
+<div class="def">اتصال افتراضي نقطة-لنقطة يتم عبر شبكة عامة. ينقل <b>datagrams مغلّفة (encapsulated)</b>.</div>
+<ul><li>التغليف: الـ datagram الأصلي يُشفَّر كـ datagram داخلي، ويوضع في منطقة بيانات datagram خارجي له header خاص.</li><li>نوعا نقاط النهاية: <b>Remote Access</b> و<b>Site-to-Site</b>.</li></ul></div>
+</section>
+<section id="a4">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>4) VPN Protocols</h2>
+<p>Four protocols are used in VPNs: <b>PPTP, L2TP, IPsec</b> and SOCKS (used less than the others).</p>
+<div class="tw"><table><tr><th>Protocol</th><th>Layer</th><th>Key points</th></tr>
+<tr><td>PPTP<br>Point-to-Point Tunneling Protocol</td><td>Layer 2</td><td>Remote access VPN distributed with the Windows product family; an addition to PPP; allows multiple Layer 3 protocols; proprietary authentication and encryption; limited user management and scalability; uses MPPE encryption.</td></tr>
+<tr><td>L2TP<br>Layer 2 Tunneling Protocol</td><td>Layer 2</td><td>Combines and extends PPTP and L2F (Cisco); weak authentication and encryption; an addition to PPP; must be combined with IPsec for enterprise-level security.</td></tr>
+<tr><td>IPsec<br>Internet Protocol Security</td><td>Layer 3</td><td>For remote access, intranet and extranet VPNs; the Internet standard for VPNs; flexible encryption and message authentication/integrity.</td></tr>
+<tr><td>SOCKS</td><td>-</td><td>Not used as much as the others.</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>4) بروتوكولات VPN</h2>
+<p>تُستخدم أربعة بروتوكولات في الـ VPN: <b>PPTP وL2TP وIPsec</b> وSOCKS (أقل استخداماً من البقية).</p>
+<div class="tw"><table><tr><th>البروتوكول</th><th>الطبقة</th><th>النقاط الأساسية</th></tr>
+<tr><td>PPTP<br>Point-to-Point Tunneling Protocol</td><td>Layer 2</td><td>VPN للوصول عن بُعد يأتي مع عائلة Windows؛ إضافة لـ PPP؛ يسمح بعدة بروتوكولات Layer 3؛ توثيق وتشفير خاصان (proprietary)؛ إدارة مستخدمين وتوسع محدودان؛ يستخدم تشفير MPPE.</td></tr>
+<tr><td>L2TP<br>Layer 2 Tunneling Protocol</td><td>Layer 2</td><td>يجمع ويوسّع PPTP وL2F (من Cisco)؛ توثيق وتشفير ضعيفان؛ إضافة لـ PPP؛ يجب دمجه مع IPsec لأمان بمستوى المؤسسات.</td></tr>
+<tr><td>IPsec<br>Internet Protocol Security</td><td>Layer 3</td><td>للوصول عن بُعد وشبكات intranet وextranet؛ هو معيار الإنترنت للـ VPN؛ تشفير مرن وتوثيق/سلامة للرسائل.</td></tr>
+<tr><td>SOCKS</td><td>-</td><td>أقل استخداماً من البقية.</td></tr></table></div></div>
+</section>
+<section id="a5">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>5) Types of Implementations &amp; Device Types</h2>
+<h3>Implementation types</h3>
+<div class="grid"><div class="box"><h4>Intranet</h4>Within an organization.</div><div class="box"><h4>Extranet</h4>Outside an organization.</div><div class="box"><h4>Remote access</h4>Employee to business.</div></div>
+<h3>Device types</h3>
+<div class="tw"><table><tr><th>Device</th><th>Pros</th><th>Cons</th></tr>
+<tr><td>Hardware<br>(usually a VPN-type router)</td><td>Highest network throughput; plug and play; dual-purpose</td><td>Cost; lack of flexibility</td></tr>
+<tr><td>Firewall</td><td>“Hardened” operating system; tri-purpose; cost-effective</td><td>Still relatively costly</td></tr>
+<tr><td>Software</td><td>Flexible; low relative cost</td><td>Lack of efficiency; more labor training required; lower productivity and higher labor costs</td></tr></table></div>
+<div class="key">Software VPN is ideal for two end points not in the same organization, and great when different firewalls are implemented.</div></div>
+<div class="a" dir="rtl"><h2>5) أنواع التطبيق وأنواع الأجهزة</h2>
+<h3>أنواع التطبيق (Implementations)</h3>
+<div class="grid"><div class="box"><h4>Intranet</h4>داخل المؤسسة.</div><div class="box"><h4>Extranet</h4>خارج المؤسسة.</div><div class="box"><h4>Remote access</h4>من الموظف إلى الشركة.</div></div>
+<h3>أنواع الأجهزة</h3>
+<div class="tw"><table><tr><th>الجهاز</th><th>المزايا</th><th>العيوب</th></tr>
+<tr><td>Hardware<br>(عادةً راوتر من نوع VPN)</td><td>أعلى throughput للشبكة؛ plug and play؛ ثنائي الغرض</td><td>التكلفة؛ قلة المرونة</td></tr>
+<tr><td>Firewall</td><td>نظام تشغيل "مُحصَّن"؛ ثلاثي الغرض؛ اقتصادي</td><td>ما زال مكلفاً نسبياً</td></tr>
+<tr><td>Software</td><td>مرن؛ تكلفة نسبية منخفضة</td><td>قلة الكفاءة؛ يحتاج تدريباً أكثر؛ إنتاجية أقل وتكاليف عمالة أعلى</td></tr></table></div>
+<div class="key">الـ Software VPN مثالي لنقطتي نهاية ليستا بنفس المؤسسة، وممتاز عند وجود جدران نارية مختلفة.</div></div>
+</section>
+<section id="a6">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>6) Advantages vs. Disadvantages</h2>
+<div class="grid"><div class="box"><h4>Advantages: cost savings</h4><ul><li>Eliminates expensive long-distance leased lines.</li><li>Reduces long-distance telephone charges for remote access.</li><li>Transfers the support burden to service providers.</li><li>Lower operational costs.</li></ul><h4>Advantages: scalability</h4><ul><li>Flexibility of growth.</li><li>Efficiency with broadband technology.</li></ul></div>
+<div class="box"><h4>Disadvantages</h4><ul><li>Requires in-depth understanding of public network security issues and proper precautions.</li><li>Availability and performance depend on factors largely outside your control.</li><li>Immature standards.</li><li>Must accommodate protocols other than IP and existing internal network technology.</li></ul></div></div></div>
+<div class="a" dir="rtl"><h2>6) المزايا مقابل العيوب</h2>
+<div class="grid"><div class="box"><h4>المزايا: توفير التكلفة</h4><ul><li>إلغاء الحاجة للخطوط المؤجرة المكلفة بعيدة المدى.</li><li>تقليل رسوم الاتصال الهاتفي بعيد المدى للوصول عن بُعد.</li><li>نقل عبء الدعم إلى مزودي الخدمة.</li><li>تكاليف تشغيلية أقل.</li></ul><h4>المزايا: قابلية التوسع</h4><ul><li>مرونة في النمو.</li><li>كفاءة مع تقنية broadband.</li></ul></div>
+<div class="box"><h4>العيوب</h4><ul><li>تتطلب فهماً عميقاً لمشاكل أمان الشبكات العامة وتطبيق الاحتياطات المناسبة.</li><li>التوفر والأداء يعتمدان على عوامل خارج سيطرتك إلى حد كبير.</li><li>معايير غير ناضجة.</li><li>يجب أن تستوعب بروتوكولات غير IP وتقنية الشبكة الداخلية الموجودة.</li></ul></div></div></div>
+</section>
+<section id="a7">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>7) Applications &amp; Industries</h2>
+<div class="grid"><div class="box"><h4>Site-to-Site VPN</h4>Large-scale encryption between multiple fixed sites such as remote offices and the central office. Traffic is sent over the branch office’s Internet connection, saving hardware and management expenses.</div><div class="box"><h4>Remote Access VPN</h4>Encrypted connections between mobile/remote users and their corporate networks. The user makes a local call to an ISP instead of a long-distance call to the corporate server. Ideal for telecommuters and mobile sales people; lets them use broadband (DSL, cable).</div></div>
+<h3>Industries that may use a VPN</h3>
+<div class="tw"><table><tr><th>Industry</th><th>Use</th></tr>
+<tr><td>Healthcare</td><td>Transfer confidential patient information within medical facilities and providers</td></tr>
+<tr><td>Manufacturing</td><td>Let suppliers view inventory and clients purchase online safely</td></tr>
+<tr><td>Retail</td><td>Securely transfer sales data or customer info between stores and headquarters</td></tr>
+<tr><td>Banking/Financial</td><td>Transfer account information safely between departments and branches</td></tr>
+<tr><td>General business</td><td>Secure communication between remote employees</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>7) التطبيقات والقطاعات</h2>
+<div class="grid"><div class="box"><h4>Site-to-Site VPN</h4>تشفير واسع النطاق بين عدة مواقع ثابتة مثل المكاتب البعيدة والمكتب الرئيسي. تُرسل الحركة عبر اتصال الإنترنت الخاص بالفرع، مما يوفر نفقات العتاد والإدارة.</div><div class="box"><h4>Remote Access VPN</h4>اتصالات مشفرة بين المستخدمين المتنقلين/البعيدين وشبكات شركاتهم. يجري المستخدم مكالمة محلية لمزود الإنترنت (ISP) بدل مكالمة بعيدة المدى لسيرفر الشركة. مثالي للعاملين عن بُعد ومندوبي المبيعات المتنقلين؛ ويتيح لهم استخدام broadband (DSL، كيبل).</div></div>
+<h3>القطاعات التي قد تستخدم VPN</h3>
+<div class="tw"><table><tr><th>القطاع</th><th>الاستخدام</th></tr>
+<tr><td>الصحة</td><td>نقل معلومات المرضى السرية داخل المنشآت الطبية ومقدمي الرعاية</td></tr>
+<tr><td>التصنيع</td><td>السماح للموردين بعرض المخزون وللعملاء بالشراء أونلاين بأمان</td></tr>
+<tr><td>التجزئة</td><td>نقل بيانات المبيعات أو معلومات العملاء بأمان بين المتاجر والمقر الرئيسي</td></tr>
+<tr><td>البنوك والمال</td><td>نقل معلومات الحسابات بأمان بين الأقسام والفروع</td></tr>
+<tr><td>الأعمال عموماً</td><td>تبادل آمن للتواصل بين الموظفين البعيدين</td></tr></table></div></div>
+</section>
+<section id="a8">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>8) Quick Summary</h2>
+<p>My own summary to help you revise:</p>
+<div class="tw"><table><tr><th>Term</th><th>Remember</th></tr>
+<tr><td>VPN</td><td>Private network over public infrastructure (Internet) instead of leased lines</td></tr>
+<tr><td>4 functions</td><td>Authentication, access control, confidentiality, data integrity</td></tr>
+<tr><td>Tunneling</td><td>Virtual point-to-point link carrying encapsulated datagrams</td></tr>
+<tr><td>PPTP / L2TP</td><td>Layer 2; L2TP needs IPsec for strong security</td></tr>
+<tr><td>IPsec</td><td>Layer 3; Internet standard for VPNs</td></tr>
+<tr><td>3 implementations</td><td>Intranet, extranet, remote access</td></tr>
+<tr><td>3 device types</td><td>Hardware, firewall, software</td></tr>
+<tr><td>2 end points</td><td>Remote access, site-to-site</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>8) ملخص سريع</h2>
+<p>من عندي لمساعدتك بالمراجعة:</p>
+<div class="tw"><table><tr><th>المصطلح</th><th>تذكّر</th></tr>
+<tr><td>VPN</td><td>شبكة خاصة فوق بنية عامة (الإنترنت) بدل الخطوط المؤجرة</td></tr>
+<tr><td>الوظائف الأربع</td><td>التوثيق، التحكم بالوصول، السرية، سلامة البيانات</td></tr>
+<tr><td>Tunneling</td><td>رابط افتراضي نقطة-لنقطة ينقل datagrams مغلّفة</td></tr>
+<tr><td>PPTP / L2TP</td><td>Layer 2؛ وL2TP يحتاج IPsec لأمان قوي</td></tr>
+<tr><td>IPsec</td><td>Layer 3؛ معيار الإنترنت للـ VPN</td></tr>
+<tr><td>3 تطبيقات</td><td>Intranet وextranet وremote access</td></tr>
+<tr><td>3 أنواع أجهزة</td><td>Hardware وfirewall وsoftware</td></tr>
+<tr><td>نقطتا نهاية</td><td>Remote access وsite-to-site</td></tr></table></div></div>
+</section>
+<section id="a9">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>9) Interactive Practice Questions</h2>
+<p>Pick an answer: you get instant feedback and the correct answer with an explanation.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>Essay questions</h3>
+<div class="q"><p>1) What is virtualization and what are the advantages of VMs?<br>2) Define a VPN and explain how it works.<br>3) List and explain the four critical functions of a VPN.<br>4) Explain encryption and tunneling.<br>5) Compare PPTP, L2TP and IPsec.<br>6) Explain the three implementation types and three device types.<br>7) List the advantages and disadvantages of VPNs.<br>8) Compare site-to-site and remote access VPNs and name industries that use VPNs.</p><details><summary>Hint</summary><div>Review sections 1 to 7.</div></details></div></div>
+<div class="a" dir="rtl"><h2>9) أسئلة تدريبية تفاعلية</h2>
+<p>اختر إجابة: بتطلع لك النتيجة فوراً مع الإجابة الصحيحة والشرح.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>أسئلة مقالية</h3>
+<div class="q"><p>1) ما هو الـ virtualization وما مزايا الـ VMs؟<br>2) عرّف الـ VPN واشرح كيف تعمل.<br>3) اذكر واشرح الوظائف الأربع الحرجة للـ VPN.<br>4) اشرح التشفير والـ tunneling.<br>5) قارن بين PPTP وL2TP وIPsec.<br>6) اشرح أنواع التطبيق الثلاثة وأنواع الأجهزة الثلاثة.<br>7) اذكر مزايا وعيوب الـ VPN.<br>8) قارن بين site-to-site وremote access واذكر قطاعات تستخدم الـ VPN.</p><details><summary>إرشاد</summary><div>ارجع للأقسام 1 إلى 7.</div></details></div></div>
+</section>
+</main>
+<footer>Good luck in the exam! · بالتوفيق 💙</footer>
+<script>
+function m(qe,qa,oe,oa,a,xe,xa){return{q:[qe,qa],o:[oe,oa||oe],a:a,x:[xe,xa]}}
+var TF=[['True','False'],['صح','خطأ']];
+function tf(qe,qa,t,xe,xa){return{q:[qe,qa],o:TF,a:t?0:1,x:[xe,xa]}}
+var Q=[
+m('VM technology allows:','تقنية الـ VM تسمح بـ:',['multiple virtual machines on a single physical machine','one OS only','no virtualization','physical servers only'],['عدة أجهزة افتراضية على جهاز فيزيائي واحد','نظام تشغيل واحد فقط','بدون virtualization','سيرفرات فيزيائية فقط'],0,'Managed by a hypervisor.','تُدار بواسطة hypervisor.'),
+m('The Virtual Machine Monitor (VMM) is also called:','الـ Virtual Machine Monitor (VMM) يُسمّى أيضاً:',['Hypervisor','Firewall','Router','Tunnel'],['Hypervisor','Firewall','Router','Tunnel'],0,'It sits between hardware and guest OSs.','يقع بين العتاد وأنظمة التشغيل الضيفة.'),
+m('Para-virtualization (e.g. Xen) performance is:','أداء الـ para-virtualization (مثل Xen):',['very close to raw physical performance','very slow','half of physical','not measurable'],['قريب جداً من الأداء الفيزيائي الخام','بطيء جداً','نصف الفيزيائي','غير قابل للقياس'],0,'Xen is the example.','Xen هو المثال.'),
+m('The hypervisor:','الـ hypervisor:',['intercepts and emulates VM instructions and allows managing VMs','prints documents','encrypts emails','sells hardware'],['يعترض تعليمات الـ VMs ويحاكيها ويسمح بإدارتها','يطبع المستندات','يشفر الإيميلات','يبيع العتاد'],0,'E.g. VMware, Xen.','مثل VMware وXen.'),
+m('Which is an advantage of VMs?','أي مما يلي ميزة للـ VMs؟',['Easy migration and backup of machines','Needs more hardware per OS','Cannot run legacy systems','No testing possible'],['سهولة ترحيل الأجهزة ونسخها احتياطياً','تحتاج عتاداً أكثر لكل OS','لا تشغل الأنظمة القديمة','لا اختبار ممكن'],0,'Also clean installs for testing and running legacy systems.','وأيضاً تثبيتات نظيفة للاختبار وتشغيل الأنظمة القديمة.'),
+m('A VPN uses which kind of network instead of leased lines?','تستخدم الـ VPN أي نوع من الشبكات بدل الخطوط المؤجرة؟',['A public network such as the Internet','Only paper mail','Only satellites','Only private cables'],['شبكة عامة مثل الإنترنت','بريد ورقي فقط','أقمار صناعية فقط','كابلات خاصة فقط'],0,'Public telecommunication.','اتصالات عامة.'),
+m('Why did VPNs become popular?','لماذا أصبحت الـ VPN شائعة؟',['More employees worked in remote locations','Leased lines became cheaper','The Internet disappeared','Firewalls were banned'],['زاد عدد الموظفين العاملين من مواقع بعيدة','أصبحت الخطوط المؤجرة أرخص','اختفى الإنترنت','مُنعت الجدران النارية'],0,'Remote work.','العمل عن بُعد.'),
+m('In a VPN, the Internet is used as the:','في الـ VPN يُستخدم الإنترنت كـ:',['backbone','firewall','server','printer'],['backbone','firewall','سيرفر','طابعة'],0,'This cuts equipment and maintenance costs.','وهذا يقلل تكاليف المعدات والصيانة.'),
+m('How many connections are made when using a VPN?','كم اتصالاً يتم عند استخدام VPN؟',['Two: one to the Internet and one to the VPN','One only','Three','None'],['اثنان: بالإنترنت وبالـ VPN','واحد فقط','ثلاثة','لا شيء'],0,'Then protocols create the tunnel.','ثم تنشئ البروتوكولات النفق.'),
+m('A datagram contains:','الـ datagram يحتوي على:',['data, destination and source information','only a password','only a picture','only hardware info'],['البيانات ومعلومات الوجهة والمصدر','كلمة مرور فقط','صورة فقط','معلومات عتاد فقط'],0,'The unit sent through the tunnel.','الوحدة المرسلة عبر النفق.'),
+m('VPNs allow authorized users to:','الـ VPN تسمح للمستخدمين المصرّح لهم بـ:',['pass through the firewalls','disable firewalls','delete firewalls','avoid authentication'],['المرور عبر الجدران النارية','تعطيل الجدران النارية','حذف الجدران النارية','تجنب التوثيق'],0,'Firewalls stay in place.','تبقى الجدران النارية قائمة.'),
+m('Which is NOT one of the four critical functions of a VPN?','أي مما يلي ليس من الوظائف الأربع الحرجة للـ VPN؟',['Compression','Authentication','Confidentiality','Data integrity'],['Compression (الضغط)','Authentication','Confidentiality','Data integrity'],0,'The four: authentication, access control, confidentiality, data integrity.','الأربع: التوثيق والتحكم بالوصول والسرية وسلامة البيانات.'),
+m('Authentication in a VPN:','الـ Authentication في الـ VPN:',['validates that the data was sent from the sender','prevents data being read','ensures data unaltered','limits unauthorized users'],['يتحقق أن البيانات أُرسلت من المرسل','يمنع قراءة البيانات','يضمن عدم تغير البيانات','يحد من المستخدمين غير المصرّح لهم'],0,'Digital signatures are used for it.','تُستخدم التواقيع الرقمية له.'),
+m('Access control means:','الـ Access control تعني:',['limiting unauthorized users from accessing the network','encrypting data','altering data','fast connections'],['منع المستخدمين غير المصرّح لهم من الوصول للشبكة','تشفير البيانات','تغيير البيانات','اتصالات سريعة'],0,'One of the four functions.','إحدى الوظائف الأربع.'),
+m('Confidentiality means:','السرية (Confidentiality) تعني:',['preventing data from being read or copied in transit','validating the sender','checking for changes','speeding transfer'],['منع قراءة البيانات أو نسخها أثناء النقل','التحقق من المرسل','فحص التغييرات','تسريع النقل'],0,'Achieved through encryption.','تتحقق بالتشفير.'),
+m('Data integrity means:','سلامة البيانات (Data integrity) تعني:',['ensuring the data has not been altered','hiding the data','deleting the data','copying the data'],['التأكد أن البيانات لم تتغير','إخفاء البيانات','حذف البيانات','نسخ البيانات'],0,'Not modified in transit.','لم تُعدَّل أثناء النقل.'),
+m('Encryption is:','التشفير هو:',['scrambling data before transmitting it onto the Internet','deleting data','compressing data','printing data'],['تشويش البيانات قبل إرسالها على الإنترنت','حذف البيانات','ضغط البيانات','طباعة البيانات'],0,'Uses a public key technique.','يستخدم تقنية المفتاح العام.'),
+m('A digital signature is used for:','التوقيع الرقمي يُستخدم لـ:',['authentication','compression','cooling','printing'],['التوثيق','الضغط','التبريد','الطباعة'],0,'Part of the encryption techniques.','جزء من تقنيات التشفير.'),
+m('Tunneling is:','الـ Tunneling هو:',['a virtual point-to-point connection through a public network','a physical cable','a firewall rule','a type of VM'],['اتصال افتراضي نقطة-لنقطة عبر شبكة عامة','كابل فيزيائي','قاعدة firewall','نوع من الـ VM'],0,'It transports encapsulated datagrams.','ينقل datagrams مغلّفة.'),
+m('The two types of tunnel end points are:','نوعا نقاط نهاية النفق:',['Remote Access and Site-to-Site','Intranet and Extranet','Hardware and Software','PPTP and L2TP'],['Remote Access وSite-to-Site','Intranet وExtranet','Hardware وSoftware','PPTP وL2TP'],0,'Both use tunneling.','كلاهما يستخدم الـ tunneling.'),
+m('Which is NOT a main VPN protocol?','أي مما يلي ليس بروتوكول VPN رئيسياً؟',['HTTP','PPTP','L2TP','IPsec'],['HTTP','PPTP','L2TP','IPsec'],0,'SOCKS is the fourth, used less.','SOCKS هو الرابع وأقل استخداماً.'),
+m('PPTP stands for:','PPTP تعني:',['Point-to-Point Tunneling Protocol','Private Packet Transfer Protocol','Public Port Transfer Protocol','Point-to-Point Transfer Package'],['Point-to-Point Tunneling Protocol','Private Packet Transfer Protocol','Public Port Transfer Protocol','Point-to-Point Transfer Package'],0,'Layer 2 protocol.','بروتوكول Layer 2.'),
+m('PPTP operates at:','يعمل PPTP على:',['Layer 2','Layer 3','Layer 7','Physical layer'],['Layer 2','Layer 3','Layer 7','الطبقة الفيزيائية'],0,'Layer 2 remote access VPN.','VPN للوصول عن بُعد من Layer 2.'),
+m('PPTP uses which encryption method?','أي طريقة تشفير يستخدمها PPTP؟',['MPPE','AES only','None','SSL only'],['MPPE','AES فقط','لا شيء','SSL فقط'],0,'With proprietary authentication.','مع توثيق خاص (proprietary).'),
+m('A limitation of PPTP is:','من قيود PPTP:',['limited user management and scalability','too strong security','no Windows support','Layer 3 only'],['إدارة مستخدمين وتوسع محدودان','أمان قوي جداً','لا دعم لـ Windows','Layer 3 فقط'],0,'It was distributed with Windows.','كان يأتي مع Windows.'),
+m('L2TP combines and extends:','يجمع L2TP ويوسّع:',['PPTP and L2F','IPsec and SOCKS','PPP and HTTP','VMware and Xen'],['PPTP وL2F','IPsec وSOCKS','PPP وHTTP','VMware وXen'],0,'L2F was supported by Cisco.','L2F كان مدعوماً من Cisco.'),
+m('L2TP must be combined with ___ for enterprise-level security.','يجب دمج L2TP مع ___ لأمان بمستوى المؤسسات.',['IPsec','PPTP','SOCKS','HTTP'],['IPsec','PPTP','SOCKS','HTTP'],0,'Because its own authentication and encryption are weak.','لأن توثيقه وتشفيره ضعيفان.'),
+m('IPsec operates at:','يعمل IPsec على:',['Layer 3','Layer 2','Layer 1','Application only'],['Layer 3','Layer 2','Layer 1','التطبيق فقط'],0,'Used for remote access, intranet and extranet VPNs.','للوصول عن بُعد وintranet وextranet.'),
+m('Which protocol is the Internet standard for VPNs?','أي بروتوكول هو معيار الإنترنت للـ VPN؟',['IPsec','PPTP','L2TP','SOCKS'],['IPsec','PPTP','L2TP','SOCKS'],0,'Flexible encryption and message authentication/integrity.','تشفير مرن وتوثيق/سلامة للرسائل.'),
+m('An intranet VPN implementation is:','تطبيق intranet للـ VPN هو:',['within an organization','outside an organization','employee to business','between countries only'],['داخل المؤسسة','خارج المؤسسة','من الموظف للشركة','بين الدول فقط'],0,'Extranet is outside; remote access is employee to business.','Extranet خارجها؛ وremote access من الموظف للشركة.'),
+m('Remote access VPN connects:','يربط Remote access VPN:',['an employee to the business','two companies only','two routers only','two VMs'],['الموظف بالشركة','شركتين فقط','راوترين فقط','جهازين افتراضيين'],0,'Ideal for telecommuters.','مثالي للعاملين عن بُعد.'),
+m('Which VPN device type has the highest network throughput?','أي نوع جهاز VPN له أعلى throughput؟',['Hardware','Firewall','Software','All equal'],['Hardware','Firewall','Software','كلها متساوية'],0,'Also plug and play, but costly and inflexible.','وأيضاً plug and play لكنه مكلف وغير مرن.'),
+m('Which VPN device type is flexible with low relative cost but less efficient?','أي نوع جهاز VPN مرن وتكلفته منخفضة نسبياً لكنه أقل كفاءة؟',['Software','Hardware','Firewall','Router'],['Software','Hardware','Firewall','Router'],0,'Ideal for end points not in the same org.','مثالي لنقاط نهاية ليست بنفس المؤسسة.'),
+m('A firewall VPN device is described as:','جهاز الـ firewall VPN يوصف بأنه:',['tri-purpose and cost-effective with a hardened OS','the fastest hardware','free','inflexible'],['ثلاثي الغرض واقتصادي بنظام تشغيل مُحصَّن','أسرع عتاد','مجاني','غير مرن'],0,'Still relatively costly.','ما زال مكلفاً نسبياً.'),
+m('Which is a cost advantage of VPNs?','أي مما يلي ميزة تكلفة للـ VPN؟',['Eliminating expensive long-distance leased lines','Buying more routers','Higher phone bills','More staff'],['إلغاء الخطوط المؤجرة بعيدة المدى المكلفة','شراء راوترات أكثر','فواتير هاتف أعلى','موظفون أكثر'],0,'Support burden moves to service providers.','عبء الدعم ينتقل لمزودي الخدمة.'),
+m('Which is a disadvantage of VPNs?','أي مما يلي عيب للـ VPN؟',['Immature standards','Cost savings','Scalability','Remote access'],['معايير غير ناضجة','توفير التكلفة','قابلية التوسع','الوصول عن بُعد'],0,'Also performance depending on outside factors.','وأيضاً الأداء يعتمد على عوامل خارجية.'),
+m('Site-to-Site VPNs provide large-scale encryption between:','تقدم Site-to-Site VPN تشفيراً واسعاً بين:',['multiple fixed sites such as remote offices and central offices','individual mobile users','two phones','two printers'],['عدة مواقع ثابتة مثل المكاتب البعيدة والمكتب الرئيسي','مستخدمين متنقلين','هاتفين','طابعتين'],0,'Traffic goes over the branch’s Internet connection.','تمر الحركة عبر اتصال الإنترنت للفرع.'),
+m('A remote access VPN user connects via:','مستخدم remote access VPN يتصل عبر:',['a local call to an ISP instead of a long-distance call','a leased line','a satellite only','a printer'],['مكالمة محلية لمزود إنترنت بدل مكالمة بعيدة المدى','خط مؤجر','قمر صناعي فقط','طابعة'],0,'Can use broadband like DSL or cable.','يمكنه استخدام broadband مثل DSL أو كيبل.'),
+m('In which industry do VPNs transfer confidential patient information?','في أي قطاع تنقل الـ VPN معلومات المرضى السرية؟',['Healthcare','Retail','Manufacturing','Banking'],['الصحة','التجزئة','التصنيع','البنوك'],0,'Within medical facilities and providers.','داخل المنشآت الطبية ومقدمي الرعاية.'),
+m('In which industry do VPNs let suppliers view inventory?','في أي قطاع تسمح الـ VPN للموردين بعرض المخزون؟',['Manufacturing','Healthcare','Banking','Education'],['التصنيع','الصحة','البنوك','التعليم'],0,'Also lets clients purchase online safely.','وتتيح للعملاء الشراء أونلاين بأمان.'),
+tf('A VPN uses leased lines instead of the Internet.','الـ VPN تستخدم خطوطاً مؤجرة بدل الإنترنت.',false,'False: it uses a public network such as the Internet instead of leased lines.','خطأ: تستخدم شبكة عامة مثل الإنترنت بدل الخطوط المؤجرة.'),
+tf('L2TP alone provides strong enterprise-level security.','L2TP وحده يوفر أماناً قوياً بمستوى المؤسسات.',false,'False: it must be combined with IPsec.','خطأ: يجب دمجه مع IPsec.'),
+tf('IPsec is a Layer 3 protocol.','IPsec بروتوكول Layer 3.',true,'True.','صح.'),
+tf('Hardware VPN devices offer the highest throughput.','أجهزة Hardware VPN توفر أعلى throughput.',true,'True, but they cost more and lack flexibility.','صح، لكنها أغلى وأقل مرونة.'),
+tf('VPN availability and performance are fully under your control.','توفر وأداء الـ VPN تحت سيطرتك بالكامل.',false,'False: they depend largely on outside factors.','خطأ: يعتمدان على عوامل خارجية إلى حد كبير.')
+];
+var st={};
+function render(){
+ var n=Object.keys(st).length,c=0;for(var k in st)if(st[k]===Q[k].a)c++;
+ [['e',0],['a',1]].forEach(function(p){
+  var L=p[1],box=document.querySelector('#a9 .'+p[0]);
+  var sc=box.querySelector('.score'),qs=box.querySelector('.qs');
+  sc.innerHTML='<span>'+(L?'النتيجة: ':'Score: ')+c+' / '+n+' ('+(L?'من ':'of ')+Q.length+')</span><button type="button">'+(L?'إعادة':'Reset')+'</button>';
+  sc.querySelector('button').onclick=function(){st={};render()};
+  qs.innerHTML='';
+  Q.forEach(function(q,i){
+   var d=document.createElement('div');d.className='q';
+   var o=q.o[L];
+   var h='<p class="n">'+(i+1)+') '+q.q[L]+'</p><div class="opts">';
+   o.forEach(function(t,j){
+    var cl='opt';if(i in st){if(j===q.a)cl+=' ok';else if(j===st[i])cl+=' bad'}
+    h+='<button type="button" class="'+cl+'" data-i="'+i+'" data-j="'+j+'"'+(i in st?' disabled':'')+'>'+t+'</button>'});
+   h+='</div>';
+   if(i in st){var r=st[i]===q.a;h+='<div class="fb">'+(r?(L?'✅ صح! ':'✅ Correct! '):(L?'❌ خطأ. الإجابة الصحيحة: '+o[q.a]+'. ':'❌ Wrong. Correct answer: '+o[q.a]+'. '))+q.x[L]+'</div>'}
+   d.innerHTML=h;qs.appendChild(d)});
+  qs.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){st[b.dataset.i]=+b.dataset.j;render()}})});
+}
+render();
+(function(){var secs=[].slice.call(document.querySelectorAll('section')),all=document.getElementById('all');
+function lab(s){s.querySelector('.tr').textContent=s.classList.contains('ar')?'English':'العربية'}
+function sync(){var n=secs.filter(function(s){return s.classList.contains('ar')}).length;all.textContent=n===secs.length?'Back to English':'ترجمة الكل للعربية'}
+secs.forEach(function(s){s.querySelector('.tr').onclick=function(){s.classList.toggle('ar');lab(s);sync()}});
+all.onclick=function(){var to=!secs.every(function(s){return s.classList.contains('ar')});secs.forEach(function(s){s.classList.toggle('ar',to);lab(s)});sync()}})();
+</script>
+</body>
+</html>
