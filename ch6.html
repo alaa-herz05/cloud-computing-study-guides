@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloud Computing Study Guide – Chapter 6</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7fd;--card:#fff;--ink:#0b1220;--mut:#44536b;--blue:#1565d8;--blue2:#e3eeff;--black:#0b1220;--line:#cfdcf0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}}
+:root[data-theme="dark"]{--bg:#070b14;--card:#10192b;--ink:#e8eefb;--mut:#9fb0cb;--blue:#4c9aff;--blue2:#14264a;--black:#000;--line:#22345a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,Arial,sans-serif;line-height:1.9;font-size:16px}
+header{background:var(--black);color:#fff;padding:40px 20px 30px;text-align:center;border-bottom:6px solid var(--blue)}
+header h1{margin:0 0 6px;font-size:clamp(24px,5vw,38px);font-weight:800}
+header p{margin:0;color:#9cc2ff;direction:ltr}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:var(--card);border-bottom:1px solid var(--line)}
+nav a{color:var(--blue);text-decoration:none;font-size:14px;font-weight:600;padding:4px 12px;border:1px solid var(--line);border-radius:20px}
+main{max-width:900px;margin:auto;padding:16px}
+section{background:var(--card);border:1px solid var(--line);border-inline-start:6px solid var(--blue);position:relative;border-radius:14px;padding:18px 20px;margin:18px 0}
+h2{margin:0 0 10px;color:var(--blue);font-size:24px;font-weight:800}
+h3{margin:16px 0 4px;font-size:18px;font-weight:700}
+.def{background:var(--black);color:#fff;border-radius:10px;padding:12px 16px;margin:10px 0}
+.ex{background:var(--blue2);border-inline-start:4px solid var(--blue);border-radius:8px;padding:10px 14px;margin:10px 0}
+.ex b{color:var(--blue)}
+.key{border:1px dashed var(--blue);border-radius:8px;padding:8px 14px;margin:10px 0;font-weight:600}
+ul{padding-inline-start:22px;margin:6px 0}
+.tw{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th{background:var(--black);color:#fff;padding:8px 10px}
+td{padding:8px 10px;border:1px solid var(--line)}
+td:first-child{font-weight:700;background:var(--blue2)}
+.e{display:block}.a{display:none;text-align:right}
+section.ar .e{display:none}section.ar .a{display:block}
+.tr,#all{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:20px;padding:4px 14px;font-weight:700;font-size:14px}
+.tr{position:absolute;top:12px;inset-inline-end:14px}
+.e h2{padding-inline-end:90px}.a h2{padding-inline-start:90px}
+.a .q ol{direction:ltr}.e .q ol{direction:ltr;text-align:left}
+td:first-child{text-align:start}th{text-align:start}
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 52px);z-index:5;background:var(--black);color:#fff;border-radius:10px;padding:6px 14px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+.score button{font-family:inherit;cursor:pointer;background:var(--blue);color:#fff;border:0;border-radius:14px;padding:2px 12px}
+.opts{display:grid;gap:6px;margin:6px 0}
+.top{position:sticky;top:0;z-index:20;direction:ltr;display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--black);color:#fff;padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;border-bottom:2px solid var(--blue)}
+.top a,.top summary{color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:var(--blue);padding:5px 14px;border-radius:18px;cursor:pointer;list-style:none;display:inline-block}
+.top summary::-webkit-details-marker{display:none}
+.top b{font-size:14px;color:#9cc2ff}
+.menu{position:relative}
+.mn{position:absolute;inset-inline-end:0;top:38px;width:min(320px,86vw);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.mn a{display:block;background:none;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:14px;font-weight:600}
+.mn a:hover{background:var(--blue2)}
+.mn .cur{background:var(--blue2);color:var(--blue)}
+.opt{font-family:inherit;font-size:15px;text-align:start;cursor:pointer;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.opt:not(:disabled):hover{border-color:var(--blue);background:var(--blue2)}
+.opt.ok{background:#12803c;color:#fff;border-color:#12803c}.opt.bad{background:#c62828;color:#fff;border-color:#c62828}
+.fb{margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--blue2);font-weight:600}
+.q p.n{color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.box{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:10px 14px}
+.box h4{margin:0;color:var(--blue)}
+.q{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.q p{margin:0 0 4px;font-weight:700}
+details summary{cursor:pointer;color:var(--blue);font-weight:700}
+details div{background:var(--blue2);padding:8px 12px;border-radius:8px;margin-top:6px}
+footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="top"><a href="index.html">🏠 Home · الرئيسية</a><b>Chapter 6 · الشابتر 6</b><details class="menu"><summary>☰ Chapters · الشباتر</summary><div class="mn"><a href="ch1.html">01 Fundamentals of Cloud Computing – Part 1</a><a href="ch2.html">02 Fundamentals – Part 2</a><a href="ch3.html">03 Cloud Deployment Models</a><a href="ch4.html">04 Infrastructure as a Service (IaaS)</a><a href="ch5.html">05 Platform as a Service (PaaS)</a><a class="cur" href="ch6.html">06 Software as a Service (SaaS) ✓</a><a href="ch7.html">07 Virtual Private Networks (VPN)</a></div></details></div>
+<header><h1>Cloud Computing Study Guide: Chapter 6</h1><p>Software as a Service (SaaS)</p></header>
+<nav><button id="all" type="button">ترجمة الكل للعربية</button><a href="#a1">What is SaaS</a><a href="#a2">vs Traditional</a><a href="#a3">Applicability</a><a href="#a4">Benefits</a><a href="#a5">Design</a><a href="#a6">Maturity</a><a href="#a7">Providers</a><a href="#a8">Pros &amp; Cons</a><a href="#a9">Challenges</a><a href="#a10">Summary</a><a href="#a11">Questions</a></nav>
+<main>
+<section id="a1">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>1) What is SaaS?</h2>
+<div class="def">Software as a Service (SaaS), also called on-demand software, is a software delivery model in which software and its associated data are hosted centrally and accessed using a <b>thin client</b>, usually a web browser, over the internet.</div>
+<p>Simply put, SaaS delivers software as a web-based service with remote access. It can be bought with a monthly fee (pay as you go). Typically it is offered for a fee, pay-as-you-go, or at no charge.</p>
+<h3>Key features</h3>
+<div class="grid"><div class="box"><h4>No installation</h4>No need for physical installation.</div><div class="box"><h4>Browser access</h4>Accessible via web browsers.</div><div class="box"><h4>Subscription pricing</h4>Subscription-based pricing.</div></div>
+<h3>Who manages what?</h3>
+<div class="tw"><table><tr><th>Layer</th><th>On-premise</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>Applications, Data</td><td>You</td><td>You</td><td>You</td><td>Vendor</td></tr>
+<tr><td>Runtime, Middleware, OS</td><td>You</td><td>You</td><td>Vendor</td><td>Vendor</td></tr>
+<tr><td>Virtualization, Servers, Storage, Networking</td><td>You</td><td>Vendor</td><td>Vendor</td><td>Vendor</td></tr></table></div>
+<div class="key">Pyramid: SaaS serves <b>end users</b> (Gmail, Trello, Salesforce, Evernote, Office 365); PaaS serves developers; IaaS serves IT administrators.</div></div>
+<div class="a" dir="rtl"><h2>1) ما هي SaaS؟</h2>
+<div class="def">SaaS (البرمجيات كخدمة)، وتُسمّى أيضاً on-demand software، نموذج لتسليم البرمجيات تُستضاف فيه البرمجيات وبياناتها مركزياً ويُوصل إليها عبر <b>thin client</b>، عادةً متصفح ويب، عبر الإنترنت.</div>
+<p>ببساطة، SaaS طريقة لتقديم البرمجيات كخدمة ويب بوصول عن بُعد. يمكن شراؤها برسم شهري (ادفع حسب الاستخدام). وتُقدَّم عادةً مقابل رسوم أو بنظام pay-as-you-go أو مجاناً.</p>
+<h3>أهم الخصائص</h3>
+<div class="grid"><div class="box"><h4>بدون تثبيت</h4>لا حاجة لتثبيت فيزيائي.</div><div class="box"><h4>وصول بالمتصفح</h4>يمكن الوصول عبر متصفحات الويب.</div><div class="box"><h4>تسعير بالاشتراك</h4>تسعير قائم على الاشتراك.</div></div>
+<h3>من يدير ماذا؟</h3>
+<div class="tw"><table><tr><th>الطبقة</th><th>On-premise</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>التطبيقات والبيانات</td><td>أنت</td><td>أنت</td><td>أنت</td><td>المزود</td></tr>
+<tr><td>Runtime وMiddleware وOS</td><td>أنت</td><td>أنت</td><td>المزود</td><td>المزود</td></tr>
+<tr><td>Virtualization وServers وStorage وNetworking</td><td>أنت</td><td>المزود</td><td>المزود</td><td>المزود</td></tr></table></div>
+<div class="key">الهرم: SaaS تخدم <b>المستخدمين النهائيين</b> (Gmail, Trello, Salesforce, Evernote, Office 365)؛ وPaaS تخدم المطورين؛ وIaaS تخدم مدراء الـ IT.</div></div>
+</section>
+<section id="a2">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>2) SaaS vs. Traditional Software</h2>
+<div class="tw"><table><tr><th>Aspect</th><th>SaaS</th><th>Traditional software</th></tr>
+<tr><td>Deployment</td><td>Cloud-based</td><td>On-premise installation</td></tr>
+<tr><td>Payment model</td><td>Subscription-based</td><td>One-time purchase</td></tr>
+<tr><td>Maintenance</td><td>Handled by provider</td><td>Handled by user organization</td></tr>
+<tr><td>Accessibility</td><td>Requires internet</td><td>Internet not required</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>2) SaaS مقابل البرمجيات التقليدية</h2>
+<div class="tw"><table><tr><th>الجانب</th><th>SaaS</th><th>البرمجيات التقليدية</th></tr>
+<tr><td>النشر</td><td>سحابي</td><td>تثبيت داخل المؤسسة</td></tr>
+<tr><td>نموذج الدفع</td><td>اشتراك</td><td>شراء لمرة واحدة</td></tr>
+<tr><td>الصيانة</td><td>يتولاها المزود</td><td>تتولاها مؤسسة المستخدم</td></tr>
+<tr><td>إمكانية الوصول</td><td>تحتاج إنترنت</td><td>لا تحتاج إنترنت</td></tr></table></div></div>
+</section>
+<section id="a3">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>3) Applicability &amp; Use Cases</h2>
+<div class="grid"><div class="box"><h4>Enterprise software application</h4>Sharing data between internal and external users. e.g. Salesforce CRM.</div><div class="box"><h4>Single-user software application</h4>Runs on one user’s computer and serves one user at a time. e.g. Microsoft Office.</div><div class="box"><h4>Business utility SaaS</h4>Used by businesses and individuals to manage and collect data, streamline collaboration and give actionable analysis. Use cases: <b>CRM, Human Resources, Accounting</b>.</div><div class="box"><h4>Social networking SaaS</h4>Used by individuals for networking and sharing information, photos, videos. e.g. Facebook.</div></div>
+<h3>Use cases in education</h3>
+<ul><li><b>Learning Management Systems:</b> Moodle, Google Classroom.</li><li><b>Collaboration tools:</b> Microsoft Teams, Zoom.</li><li><b>Assessment platforms:</b> Kahoot.</li></ul></div>
+<div class="a" dir="rtl"><h2>3) قابلية التطبيق وحالات الاستخدام</h2>
+<div class="grid"><div class="box"><h4>تطبيقات المؤسسات (Enterprise)</h4>مشاركة البيانات بين مستخدمين داخليين وخارجيين. مثل Salesforce CRM.</div><div class="box"><h4>تطبيقات المستخدم الواحد</h4>تعمل على جهاز مستخدم واحد وتخدمه وحده بكل مرة. مثل Microsoft Office.</div><div class="box"><h4>SaaS لأدوات الأعمال</h4>تستخدمها الشركات والأفراد لإدارة وجمع البيانات وتبسيط التعاون وتقديم تحليلات مفيدة. حالات: <b>CRM والموارد البشرية والمحاسبة</b>.</div><div class="box"><h4>SaaS للشبكات الاجتماعية</h4>يستخدمها الأفراد للتواصل ومشاركة المعلومات والصور والفيديو. مثل Facebook.</div></div>
+<h3>حالات الاستخدام في التعليم</h3>
+<ul><li><b>أنظمة إدارة التعلم:</b> Moodle وGoogle Classroom.</li><li><b>أدوات التعاون:</b> Microsoft Teams وZoom.</li><li><b>منصات التقييم:</b> Kahoot.</li></ul></div>
+</section>
+<section id="a4">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>4) Benefits of SaaS</h2>
+<div class="grid"><div class="box"><h4>For users</h4><ul><li>Lower costs (no hardware or maintenance).</li><li>Accessibility (anywhere, anytime).</li><li>Faster feature updates.</li></ul></div><div class="box"><h4>For vendors</h4><ul><li>Larger market reach.</li><li>Lower development costs.</li><li>Recurring revenue.</li></ul></div></div>
+<h3>Helps you grow</h3>
+<ul><li>Lets your business move at whatever speed it needs to reach the market.</li><li>No installing hardware and software.</li><li>No dependence on an IT team to install and keep it running.</li><li>Instant provisioning of resources and extra services when needed.</li><li>On-site systems need a high level of support for modifications; cloud systems need less customization because they are already flexible.</li><li>Services can be smaller or larger as per user requirement.</li></ul>
+<h3>It’s safer</h3>
+<ul><li>Cloud providers have higher and more resilient systems than a typical self-managed setup.</li><li>Hardware theft or local disasters cannot damage your data.</li><li>Your data is protected by far more sophisticated systems than you probably have locally.</li></ul></div>
+<div class="a" dir="rtl"><h2>4) فوائد SaaS</h2>
+<div class="grid"><div class="box"><h4>للمستخدمين</h4><ul><li>تكاليف أقل (بدون أجهزة أو صيانة).</li><li>سهولة الوصول (أي مكان وأي وقت).</li><li>تحديثات ميزات أسرع.</li></ul></div><div class="box"><h4>للمزودين</h4><ul><li>وصول لسوق أكبر.</li><li>تكاليف تطوير أقل.</li><li>إيرادات متكررة.</li></ul></div></div>
+<h3>تساعدك على النمو</h3>
+<ul><li>تسمح لعملك بالتحرك بالسرعة التي يحتاجها للوصول للسوق.</li><li>بدون تثبيت أجهزة وبرمجيات.</li><li>بدون الاعتماد على فريق IT لتثبيتها وتشغيلها.</li><li>توفير فوري للموارد والخدمات الإضافية عند الحاجة.</li><li>الأنظمة المحلية تحتاج دعماً عالياً لأي تعديل؛ أما السحابية فتحتاج تخصيصاً أقل لأنها مرنة أصلاً.</li><li>يمكن للخدمات أن تصغر أو تكبر حسب احتياج المستخدم.</li></ul>
+<h3>أكثر أماناً</h3>
+<ul><li>مزودو السحابة لديهم أنظمة أقوى وأكثر مرونة من الإعداد الذاتي المعتاد.</li><li>سرقة الأجهزة أو الكوارث المحلية لا تضر ببياناتك.</li><li>بياناتك محمية بأنظمة أكثر تطوراً مما لديك محلياً.</li></ul></div>
+</section>
+<section id="a5">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>5) Design Factors of a Good SaaS Application</h2>
+<p>Three points separate a well-designed SaaS application from a poorly designed one: <b>scalability</b>, <b>multi-tenant efficiency</b> and <b>configurability</b>.</p>
+<div class="grid"><div class="box"><h4>Scalability</h4>Maximizing concurrency and efficient use of resources: optimizing locking duration, statelessness, sharing pooled resources (threads, network connections), caching reference data and partitioning large databases.</div><div class="box"><h4>Multi-tenancy</h4>An architectural shift from isolated single-tenant applications. One application instance accommodates users from multiple companies at the same time, with transparency. Requires an architecture that maximizes sharing of resources across tenants.</div><div class="box"><h4>Configurable</h4>One instance serves several companies, so customizing it for one customer would change it for all. Instead of code changes, each customer uses <b>metadata</b> to configure appearance and behavior. Configuration must be simple, without extra development or operation costs.</div></div></div>
+<div class="a" dir="rtl"><h2>5) عوامل التصميم الجيد لتطبيق SaaS</h2>
+<p>ثلاث نقاط تفرّق بين تطبيق SaaS جيد التصميم وسيئه: <b>قابلية التوسع</b> و<b>كفاءة تعدد المستأجرين</b> و<b>قابلية الإعداد</b>.</p>
+<div class="grid"><div class="box"><h4>Scalability</h4>تعظيم التزامن (concurrency) والاستخدام الكفء للموارد: تحسين مدة الـ locking، الـ statelessness، مشاركة موارد مجمّعة (threads واتصالات الشبكة)، تخزين البيانات المرجعية مؤقتاً (caching)، وتجزئة قواعد البيانات الكبيرة.</div><div class="box"><h4>Multi-tenancy</h4>تحول معماري من التطبيقات المعزولة أحادية المستأجر. نسخة تطبيق واحدة تستوعب مستخدمين من عدة شركات بنفس الوقت مع الشفافية. تتطلب معمارية تعظّم مشاركة الموارد بين المستأجرين.</div><div class="box"><h4>Configurable</h4>نسخة واحدة تخدم عدة شركات، فتخصيصها لعميل يغيّرها للجميع. بدل تعديل الكود، يستخدم كل عميل <b>metadata</b> لإعداد مظهر التطبيق وسلوكه. ويجب أن يكون الإعداد بسيطاً دون تكاليف تطوير أو تشغيل إضافية.</div></div></div>
+</section>
+<section id="a6">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>6) SaaS Maturity Model</h2>
+<div class="tw"><table><tr><th>Level</th><th>Description</th></tr>
+<tr><td>Level 1</td><td>Ad-hoc / custom: one instance per customer</td></tr>
+<tr><td>Level 2</td><td>Configurable per customer</td></tr>
+<tr><td>Level 3</td><td>Configurable and multi-tenant-efficient</td></tr>
+<tr><td>Level 4</td><td>Scalable, configurable and multi-tenant-efficient</td></tr></table></div>
+<p>Source: Chong and Carraro, “Architecture Strategies for Catching the Long Tail”.</p></div>
+<div class="a" dir="rtl"><h2>6) نموذج نضج SaaS (Maturity Model)</h2>
+<div class="tw"><table><tr><th>المستوى</th><th>الوصف</th></tr>
+<tr><td>المستوى 1</td><td>Ad-hoc / مخصص: نسخة لكل عميل</td></tr>
+<tr><td>المستوى 2</td><td>قابل للإعداد لكل عميل</td></tr>
+<tr><td>المستوى 3</td><td>قابل للإعداد وكفء بتعدد المستأجرين</td></tr>
+<tr><td>المستوى 4</td><td>قابل للتوسع والإعداد وكفء بتعدد المستأجرين</td></tr></table></div>
+<p>المصدر: Chong وCarraro، "Architecture Strategies for Catching the Long Tail".</p></div>
+</section>
+<section id="a7">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>7) SaaS Providers &amp; Salesforce</h2>
+<p>Examples of providers: Salesforce.com, Concur, Microsoft Office 365, RightNow, SuccessFactors, Mimecast, NetSuite.</p>
+<h3>Salesforce.com</h3>
+<ul><li>Salesforce CRM is a complete solution with features for marketing, sales, services, partner management and community management.</li><li>CRM was originally software for managing customer interaction: scheduling tasks, emailing, texting and more.</li><li>Salesforce grew into a cloud solution and acquired other companies for PaaS and SaaS.</li><li>Its services are layered: Salesforce apps (Sales Cloud, Service Cloud, Jigsaw, Chatter, Force.com) over the Chatter social platform, the Force.com development platform and the Force.com infrastructure.</li></ul></div>
+<div class="a" dir="rtl"><h2>7) مزودو SaaS وSalesforce</h2>
+<p>أمثلة على المزودين: Salesforce.com وConcur وMicrosoft Office 365 وRightNow وSuccessFactors وMimecast وNetSuite.</p>
+<h3>Salesforce.com</h3>
+<ul><li>Salesforce CRM حل متكامل بميزات للتسويق والمبيعات والخدمات وإدارة الشركاء وإدارة المجتمع.</li><li>الـ CRM كان أصلاً برنامجاً لإدارة التفاعل مع العملاء: جدولة المهام والإيميل والرسائل وغيرها.</li><li>تطورت Salesforce إلى حل سحابي واستحوذت على شركات أخرى لـ PaaS وSaaS.</li><li>خدماتها طبقات: تطبيقات Salesforce (Sales Cloud وService Cloud وJigsaw وChatter وForce.com) فوق منصة Chatter الاجتماعية ومنصة تطوير Force.com وبنية Force.com التحتية.</li></ul></div>
+</section>
+<section id="a8">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>8) Advantages &amp; Disadvantages</h2>
+<div class="grid"><div class="box"><h4>Advantages</h4><ul><li><b>Easy to use:</b> usually only a web browser is needed.</li><li><b>Cheap:</b> pay-as-you-go suits small businesses and individuals.</li><li><b>Scalability:</b> easily scaled up or down without worrying about infrastructure.</li><li>Less prone to data loss since data is stored in the cloud.</li><li>Not clunky: no installing/uninstalling binary code.</li><li>Runs on a wide variety of devices.</li><li>Better collaboration: data in a central location.</li><li>Fast velocity of change; favors <b>Agile</b> development. Most services update about every 2 weeks, often unnoticed by users.</li></ul></div>
+<div class="box"><h4>Disadvantages</h4><ul><li><b>Robustness:</b> may be less functional than traditional software due to browser limitations (Google Docs vs Microsoft Office).</li><li><b>Privacy:</b> all data in the cloud raises privacy concerns; providers are targets of hack exploits.</li><li><b>Security:</b> attack detection, malicious code detection.</li><li><b>Reliability:</b> if a provider goes down, many dependent clients are affected. Example: when Amazon EC2 went down in April 2011, it took down Foursquare, Reddit, Quora and others.</li></ul></div></div></div>
+<div class="a" dir="rtl"><h2>8) المزايا والعيوب</h2>
+<div class="grid"><div class="box"><h4>المزايا</h4><ul><li><b>سهلة الاستخدام:</b> غالباً تحتاج متصفح ويب فقط.</li><li><b>رخيصة:</b> الدفع حسب الاستخدام يناسب الشركات الصغيرة والأفراد.</li><li><b>قابلية التوسع:</b> تُكبَّر وتُصغَّر بسهولة دون الانشغال بالبنية التحتية.</li><li>أقل عرضة لفقدان البيانات لأنها مخزنة بالسحابة.</li><li>غير ثقيلة: لا تثبيت أو إزالة لكود ثنائي.</li><li>تعمل على أجهزة متنوعة.</li><li>تعاون أفضل: البيانات بمكان مركزي.</li><li>سرعة تغيير عالية؛ تفضّل تطوير <b>Agile</b>. معظم الخدمات تُحدَّث كل أسبوعين تقريباً وغالباً بدون أن يلاحظ المستخدم.</li></ul></div>
+<div class="box"><h4>العيوب</h4><ul><li><b>المتانة (Robustness):</b> قد تكون أقل وظائفياً من البرمجيات التقليدية بسبب قيود المتصفح (Google Docs مقابل Microsoft Office).</li><li><b>الخصوصية:</b> وجود كل البيانات بالسحابة يثير مخاوف خصوصية؛ والمزودون أهداف للهجمات.</li><li><b>الأمان:</b> كشف الهجمات وكشف الكود الخبيث.</li><li><b>الموثوقية:</b> إذا تعطل المزود يتأثر عدد كبير من العملاء. مثال: عندما تعطلت Amazon EC2 في أبريل 2011 أوقفت Foursquare وReddit وQuora وغيرها.</li></ul></div></div></div>
+</section>
+<section id="a9">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>9) Challenges &amp; SaaS Architecture</h2>
+<h3>Challenges</h3>
+<ul><li><b>Data security.</b></li><li><b>Dependence on internet connectivity.</b></li><li><b>Customization limitations.</b></li></ul>
+<h3>Architecture</h3>
+<div class="grid"><div class="box"><h4>Cloud infrastructure</h4>The base the application runs on.</div><div class="box"><h4>Multi-tenant model</h4>One application, multiple users.</div><div class="box"><h4>API integration</h4>Connecting two or more applications or systems using APIs (Application Programming Interfaces).</div></div></div>
+<div class="a" dir="rtl"><h2>9) التحديات ومعمارية SaaS</h2>
+<h3>التحديات</h3>
+<ul><li><b>أمان البيانات.</b></li><li><b>الاعتماد على الاتصال بالإنترنت.</b></li><li><b>قيود التخصيص.</b></li></ul>
+<h3>المعمارية</h3>
+<div class="grid"><div class="box"><h4>البنية التحتية السحابية</h4>الأساس الذي يعمل عليه التطبيق.</div><div class="box"><h4>نموذج Multi-tenant</h4>تطبيق واحد، مستخدمون متعددون.</div><div class="box"><h4>تكامل API</h4>ربط تطبيقين أو أكثر أو أنظمة باستخدام APIs (واجهات برمجة التطبيقات).</div></div></div>
+</section>
+<section id="a10">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>10) Summary &amp; Quick Comparison</h2>
+<ul><li>SaaS greatly enhances developers’ ability to scale applications on demand and suit customer needs.</li><li>It encourages Agile practice: frequent updates and patches without waiting for major release cycles.</li><li>But SaaS is susceptible to privacy, security and reliability concerns.</li><li>Hybrid environments (SaaS + traditional) may suit extremely sensitive data or cases needing constant uptime.</li></ul>
+<p>My own comparison to help you revise:</p>
+<div class="tw"><table><tr><th>Model</th><th>User manages</th><th>Example</th><th>Flexibility</th></tr>
+<tr><td>IaaS</td><td>Applications, OS</td><td>Azure VMs, EC2</td><td>High</td></tr>
+<tr><td>PaaS</td><td>Applications only</td><td>App Engine</td><td>Medium</td></tr>
+<tr><td>SaaS</td><td>Nothing</td><td>Office 365, Salesforce</td><td>Low</td></tr></table></div></div>
+<div class="a" dir="rtl"><h2>10) الخلاصة ومقارنة سريعة</h2>
+<ul><li>SaaS تحسّن كثيراً قدرة المطورين على توسيع تطبيقاتهم عند الطلب وتلبية احتياجات العملاء.</li><li>تشجّع ممارسات Agile: تحديثات وإصلاحات متكررة دون انتظار دورات إصدار كبيرة.</li><li>لكن SaaS عرضة لمخاوف الخصوصية والأمان والموثوقية.</li><li>البيئات الهجينة (SaaS + تقليدية) قد تناسب البيانات شديدة الحساسية أو الحالات التي تحتاج تشغيلاً مستمراً.</li></ul>
+<p>مقارنة من عندي لمساعدتك بالمراجعة:</p>
+<div class="tw"><table><tr><th>النموذج</th><th>ما يديره المستخدم</th><th>مثال</th><th>المرونة</th></tr>
+<tr><td>IaaS</td><td>التطبيقات وOS</td><td>Azure VMs, EC2</td><td>عالية</td></tr>
+<tr><td>PaaS</td><td>التطبيقات فقط</td><td>App Engine</td><td>متوسطة</td></tr>
+<tr><td>SaaS</td><td>لا شيء</td><td>Office 365, Salesforce</td><td>منخفضة</td></tr></table></div></div>
+</section>
+<section id="a11">
+<button class="tr" type="button">العربية</button>
+<div class="e"><h2>11) Interactive Practice Questions</h2>
+<p>Pick an answer: you get instant feedback and the correct answer with an explanation.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>Essay questions</h3>
+<div class="q"><p>1) Define SaaS and list its key features.<br>2) Compare SaaS with traditional software.<br>3) Explain the three design factors of a good SaaS application.<br>4) Describe the four levels of the SaaS maturity model.<br>5) List the advantages and disadvantages of SaaS.<br>6) What is Salesforce and what does it offer?<br>7) Explain SaaS architecture (multi-tenancy, API integration).</p><details><summary>Hint</summary><div>Review sections 1, 2, 5, 6, 7, 8 and 9.</div></details></div></div>
+<div class="a" dir="rtl"><h2>11) أسئلة تدريبية تفاعلية</h2>
+<p>اختر إجابة: بتطلع لك النتيجة فوراً مع الإجابة الصحيحة والشرح.</p>
+<div class="score"></div><div class="qs"></div>
+<h3>أسئلة مقالية</h3>
+<div class="q"><p>1) عرّف SaaS واذكر خصائصها.<br>2) قارن بين SaaS والبرمجيات التقليدية.<br>3) اشرح عوامل التصميم الثلاثة لتطبيق SaaS جيد.<br>4) صف المستويات الأربعة لنموذج نضج SaaS.<br>5) اذكر مزايا وعيوب SaaS.<br>6) ما هي Salesforce وماذا تقدم؟<br>7) اشرح معمارية SaaS (multi-tenancy وتكامل API).</p><details><summary>إرشاد</summary><div>ارجع للأقسام 1 و2 و5 و6 و7 و8 و9.</div></details></div></div>
+</section>
+</main>
+<footer>Good luck in the exam! · بالتوفيق 💙</footer>
+<script>
+function m(qe,qa,oe,oa,a,xe,xa){return{q:[qe,qa],o:[oe,oa||oe],a:a,x:[xe,xa]}}
+var TF=[['True','False'],['صح','خطأ']];
+function tf(qe,qa,t,xe,xa){return{q:[qe,qa],o:TF,a:t?0:1,x:[xe,xa]}}
+var Q=[
+m('SaaS stands for:','SaaS تعني:',['Software as a Service','System as a Service','Storage as a Service','Server as a Service'],['Software as a Service','System as a Service','Storage as a Service','Server as a Service'],0,'Software-as-a-Service, also called on-demand software.','Software-as-a-Service وتُسمّى on-demand software.'),
+m('In SaaS, software and data are:','في SaaS، البرمجيات والبيانات:',['hosted centrally and accessed over the internet','installed on every PC','stored on paper','offline only'],['مستضافة مركزياً ويُوصل إليها عبر الإنترنت','مثبتة على كل جهاز','على ورق','بدون إنترنت فقط'],0,'Accessed via a thin client, usually a browser.','عبر thin client عادةً متصفح.'),
+m('SaaS is usually accessed using:','يُوصل إلى SaaS عادةً عبر:',['a thin client such as a web browser','a special cable','a physical server','a printer'],['thin client مثل متصفح الويب','كابل خاص','سيرفر فيزيائي','طابعة'],0,'No physical installation needed.','بدون تثبيت فيزيائي.'),
+m('Which is a key feature of SaaS?','أي مما يلي خاصية رئيسية لـ SaaS؟',['Subscription-based pricing','One-time purchase only','Physical installation','Offline use only'],['تسعير بالاشتراك','شراء لمرة واحدة فقط','تثبيت فيزيائي','استخدام بدون إنترنت فقط'],0,'Also no installation and browser access.','وأيضاً بدون تثبيت ووصول بالمتصفح.'),
+m('SaaS can be offered:','يمكن تقديم SaaS:',['for a fee, pay-as-you-go, or at no charge','only for a fee','only free','only by contract'],['برسوم أو pay-as-you-go أو مجاناً','برسوم فقط','مجاناً فقط','بعقد فقط'],0,'Several pricing options.','عدة خيارات تسعير.'),
+m('In SaaS the user manages:','في SaaS يدير المستخدم:',['nothing (fully managed by vendor)','applications and OS','only the OS','servers'],['لا شيء (مُدار بالكامل من المزود)','التطبيقات وOS','الـ OS فقط','السيرفرات'],0,'The vendor manages all layers.','المزود يدير كل الطبقات.'),
+m('In the cloud pyramid, SaaS serves:','في هرم السحابة، SaaS تخدم:',['end users','developers','IT administrators','hardware vendors'],['المستخدمين النهائيين','المطورين','مدراء الـ IT','بائعي العتاد'],0,'Gmail, Trello, Office 365.','Gmail وTrello وOffice 365.'),
+m('SaaS deployment is:','نشر SaaS:',['cloud-based','on-premise installation','offline','manual'],['سحابي','تثبيت داخل المؤسسة','بدون إنترنت','يدوي'],0,'Traditional software is installed on-premise.','التقليدية تُثبَّت داخل المؤسسة.'),
+m('The payment model of traditional software is:','نموذج الدفع في البرمجيات التقليدية:',['one-time purchase','subscription','pay-as-you-go','free'],['شراء لمرة واحدة','اشتراك','pay-as-you-go','مجاني'],0,'SaaS is subscription-based.','SaaS قائمة على الاشتراك.'),
+m('Who handles maintenance in SaaS?','من يتولى الصيانة في SaaS؟',['The provider','The user organization','The government','Nobody'],['المزود','مؤسسة المستخدم','الحكومة','لا أحد'],0,'In traditional software, the user organization does.','في التقليدية مؤسسة المستخدم تتولاها.'),
+m('SaaS accessibility:','الوصول إلى SaaS:',['requires internet','does not require internet','works only offline','is impossible'],['يحتاج إنترنت','لا يحتاج إنترنت','يعمل بدون إنترنت فقط','مستحيل'],0,'Traditional software does not need internet.','التقليدية لا تحتاج إنترنت.'),
+m('Salesforce CRM is an example of:','Salesforce CRM مثال على:',['an enterprise software application','a single-user application','a social network','hardware'],['تطبيق مؤسسات (Enterprise)','تطبيق مستخدم واحد','شبكة اجتماعية','عتاد'],0,'Shares data between internal and external users.','يشارك البيانات بين مستخدمين داخليين وخارجيين.'),
+m('Microsoft Office is given as an example of:','Microsoft Office ذُكر كمثال على:',['a single-user software application','a social network','enterprise SaaS only','an IaaS'],['تطبيق مستخدم واحد','شبكة اجتماعية','SaaS مؤسسات فقط','IaaS'],0,'Runs on one computer, serves one user at a time.','يعمل على جهاز واحد ويخدم مستخدماً واحداً.'),
+m('Which are business utility SaaS use cases?','أي مما يلي حالات استخدام SaaS لأدوات الأعمال؟',['CRM, Human Resources, Accounting','Games only','Printing','Hardware repair'],['CRM والموارد البشرية والمحاسبة','الألعاب فقط','الطباعة','إصلاح الأجهزة'],0,'Managing data and streamlining collaboration.','إدارة البيانات وتبسيط التعاون.'),
+m('Facebook is an example of:','Facebook مثال على:',['social networking SaaS','business utility SaaS','IaaS','PaaS'],['SaaS للشبكات الاجتماعية','SaaS لأدوات الأعمال','IaaS','PaaS'],0,'For networking and sharing information, photos, videos.','للتواصل ومشاركة المعلومات والصور والفيديو.'),
+m('Moodle and Google Classroom are:','Moodle وGoogle Classroom هما:',['Learning Management Systems','assessment platforms','collaboration tools','social networks'],['أنظمة إدارة التعلم','منصات تقييم','أدوات تعاون','شبكات اجتماعية'],0,'Education use case.','حالة استخدام بالتعليم.'),
+m('Kahoot is an example of an education:','Kahoot مثال تعليمي على:',['assessment platform','learning management system','collaboration tool','hardware'],['منصة تقييم','نظام إدارة تعلم','أداة تعاون','عتاد'],0,'Teams and Zoom are collaboration tools.','Teams وZoom أدوات تعاون.'),
+m('Which is a SaaS benefit for vendors?','أي مما يلي فائدة SaaS للمزودين؟',['Recurring revenue','Higher hardware cost','Smaller market','No updates'],['إيرادات متكررة','تكلفة عتاد أعلى','سوق أصغر','بدون تحديثات'],0,'Also larger market reach and lower development costs.','وأيضاً سوق أكبر وتكلفة تطوير أقل.'),
+m('Which is a SaaS benefit for users?','أي مما يلي فائدة SaaS للمستخدمين؟',['Lower costs and access anywhere, anytime','Must install hardware','Slower updates','Offline only'],['تكاليف أقل ووصول بأي مكان ووقت','يجب تثبيت أجهزة','تحديثات أبطأ','بدون إنترنت فقط'],0,'Plus faster feature updates.','بالإضافة لتحديثات ميزات أسرع.'),
+m('SaaS is “safer” because:','SaaS "أكثر أماناً" لأن:',['hardware theft or local disasters cannot damage your data','it has no security','data is on paper','it is offline'],['سرقة الأجهزة أو الكوارث المحلية لا تضر ببياناتك','لا أمان فيها','البيانات على ورق','تعمل بدون إنترنت'],0,'Providers have more resilient, sophisticated systems.','المزودون لديهم أنظمة أقوى وأكثر تطوراً.'),
+m('Which are the three design factors of a good SaaS application?','ما عوامل التصميم الثلاثة لتطبيق SaaS جيد؟',['Scalability, multi-tenant efficiency, configurability','Speed, color, size','Price, brand, logo','Hardware, OS, network'],['قابلية التوسع، كفاءة تعدد المستأجرين، قابلية الإعداد','السرعة واللون والحجم','السعر والعلامة والشعار','العتاد وOS والشبكة'],0,'These separate good from poor design.','تفرّق بين التصميم الجيد والسيئ.'),
+m('Scalability in SaaS design means:','قابلية التوسع في تصميم SaaS تعني:',['maximizing concurrency and efficient use of resources','buying more printers','one user per instance','no caching'],['تعظيم التزامن والاستخدام الكفء للموارد','شراء طابعات أكثر','مستخدم واحد لكل نسخة','بدون caching'],0,'Statelessness, pooled resources, caching, partitioning databases.','Statelessness وموارد مجمّعة وcaching وتجزئة قواعد البيانات.'),
+m('Multi-tenancy means:','Multi-tenancy تعني:',['one application instance serves users from multiple companies at once','one instance per customer','no sharing','one user only'],['نسخة تطبيق واحدة تخدم مستخدمين من عدة شركات بنفس الوقت','نسخة لكل عميل','بدون مشاركة','مستخدم واحد فقط'],0,'Maximizes sharing of resources across tenants.','تعظّم مشاركة الموارد بين المستأجرين.'),
+m('Why must SaaS customization avoid code changes?','لماذا يجب أن يتجنب تخصيص SaaS تعديل الكود؟',['Changing the single instance would change it for other customers','Code is illegal','Customers like code','No reason'],['تغيير النسخة الواحدة يغيّرها لبقية العملاء','الكود ممنوع','العملاء يحبون الكود','لا سبب'],0,'So each customer configures using metadata.','لذلك يُعدّ كل عميل عبر metadata.'),
+m('Customers configure the look and behavior of a SaaS app using:','يُعدّ العملاء مظهر وسلوك تطبيق SaaS باستخدام:',['metadata','source code','hardware','paper forms'],['metadata','الكود المصدري','العتاد','نماذج ورقية'],0,'Simple, with no extra development or operation costs.','بسيط وبدون تكاليف تطوير أو تشغيل إضافية.'),
+m('SaaS maturity Level 1 is:','المستوى 1 في نموذج نضج SaaS هو:',['ad-hoc/custom: one instance per customer','configurable per customer','multi-tenant-efficient','scalable and multi-tenant'],['Ad-hoc/مخصص: نسخة لكل عميل','قابل للإعداد لكل عميل','كفء بتعدد المستأجرين','قابل للتوسع ومتعدد المستأجرين'],0,'The least mature level.','أقل مستويات النضج.'),
+m('SaaS maturity Level 2 is:','المستوى 2 في نموذج نضج SaaS هو:',['configurable per customer','one instance per customer','scalable only','multi-tenant only'],['قابل للإعداد لكل عميل','نسخة لكل عميل','قابل للتوسع فقط','متعدد المستأجرين فقط'],0,'Configuration via metadata.','الإعداد عبر metadata.'),
+m('SaaS maturity Level 4 is:','المستوى 4 في نموذج نضج SaaS هو:',['scalable, configurable and multi-tenant-efficient','ad-hoc','configurable only','one instance per customer'],['قابل للتوسع والإعداد وكفء بتعدد المستأجرين','Ad-hoc','قابل للإعداد فقط','نسخة لكل عميل'],0,'The most mature level.','أعلى مستويات النضج.'),
+m('Salesforce CRM originally was software for:','كان Salesforce CRM في الأصل برنامجاً لـ:',['managing customer interaction','printing','gaming','hardware design'],['إدارة التفاعل مع العملاء','الطباعة','الألعاب','تصميم العتاد'],0,'Scheduling tasks, emailing, texting, and more.','جدولة المهام والإيميل والرسائل وغيرها.'),
+m('Salesforce grew and acquired companies for:','نمت Salesforce واستحوذت على شركات لـ:',['PaaS and SaaS','only hardware','only printers','IaaS only'],['PaaS وSaaS','العتاد فقط','الطابعات فقط','IaaS فقط'],0,'It became a cloud software solution.','أصبحت حلاً برمجياً سحابياً.'),
+m('Which is an advantage of SaaS?','أي مما يلي ميزة لـ SaaS؟',['Easy to use: usually only a web browser is needed','Requires binary installation','Fixed hardware','Slow updates'],['سهلة الاستخدام: غالباً تحتاج متصفحاً فقط','تتطلب تثبيت كود ثنائي','عتاد ثابت','تحديثات بطيئة'],0,'Also cheap, scalable, collaborative.','وأيضاً رخيصة وقابلة للتوسع وتعاونية.'),
+m('How often are most SaaS services updated?','كم مرة تُحدَّث معظم خدمات SaaS؟',['About every 2 weeks','Once a decade','Never','Every 5 years'],['تقريباً كل أسبوعين','مرة كل عقد','أبداً','كل 5 سنوات'],0,'Users are often unaware of the changes.','غالباً لا يلاحظ المستخدمون.'),
+m('SaaS favors which development life cycle?','أي دورة تطوير تفضّلها SaaS؟',['Agile','Waterfall only','No cycle','Yearly release only'],['Agile','Waterfall فقط','بدون دورة','إصدار سنوي فقط'],0,'Frequent, on-demand changes.','تغييرات متكررة وعند الطلب.'),
+m('Which is a disadvantage of SaaS?','أي مما يلي عيب لـ SaaS؟',['Privacy and security concerns','Requires installation','Expensive hardware','No collaboration'],['مخاوف الخصوصية والأمان','تتطلب تثبيتاً','عتاد مكلف','لا تعاون'],0,'Also robustness and reliability.','وأيضاً المتانة والموثوقية.'),
+m('The April 2011 Amazon EC2 outage is an example of a problem of:','انقطاع Amazon EC2 في أبريل 2011 مثال على مشكلة:',['reliability','price','color','robustness only'],['الموثوقية','السعر','اللون','المتانة فقط'],0,'It took down Foursquare, Reddit, Quora and others.','أوقف Foursquare وReddit وQuora وغيرها.'),
+m('API integration means:','تكامل API يعني:',['connecting two or more applications or systems using APIs','deleting data','buying hardware','printing reports'],['ربط تطبيقين أو أكثر أو أنظمة باستخدام APIs','حذف البيانات','شراء عتاد','طباعة تقارير'],0,'Part of SaaS architecture.','جزء من معمارية SaaS.'),
+tf('SaaS requires installing the software on every user’s machine.','SaaS تتطلب تثبيت البرنامج على جهاز كل مستخدم.',false,'False: no physical installation is needed.','خطأ: لا حاجة لتثبيت فيزيائي.'),
+tf('In SaaS, customizing the application for one customer should not change it for others.','في SaaS تخصيص التطبيق لعميل لا يجب أن يغيّره لغيره.',true,'True: configuration is done with metadata.','صح: الإعداد يتم بالـ metadata.'),
+tf('SaaS works without internet connectivity.','SaaS تعمل بدون اتصال بالإنترنت.',false,'False: it depends on internet connectivity.','خطأ: تعتمد على الإنترنت.'),
+tf('Hybrid SaaS and traditional environments may suit extremely sensitive data.','البيئات الهجينة (SaaS + تقليدية) قد تناسب البيانات شديدة الحساسية.',true,'True, as stated in the summary.','صح كما في الخلاصة.'),
+tf('Traditional software is paid by monthly subscription.','البرمجيات التقليدية تُدفع باشتراك شهري.',false,'False: it is a one-time purchase.','خطأ: هي شراء لمرة واحدة.')
+];
+var st={};
+function render(){
+ var n=Object.keys(st).length,c=0;for(var k in st)if(st[k]===Q[k].a)c++;
+ [['e',0],['a',1]].forEach(function(p){
+  var L=p[1],box=document.querySelector('#a11 .'+p[0]);
+  var sc=box.querySelector('.score'),qs=box.querySelector('.qs');
+  sc.innerHTML='<span>'+(L?'النتيجة: ':'Score: ')+c+' / '+n+' ('+(L?'من ':'of ')+Q.length+')</span><button type="button">'+(L?'إعادة':'Reset')+'</button>';
+  sc.querySelector('button').onclick=function(){st={};render()};
+  qs.innerHTML='';
+  Q.forEach(function(q,i){
+   var d=document.createElement('div');d.className='q';
+   var o=q.o[L];
+   var h='<p class="n">'+(i+1)+') '+q.q[L]+'</p><div class="opts">';
+   o.forEach(function(t,j){
+    var cl='opt';if(i in st){if(j===q.a)cl+=' ok';else if(j===st[i])cl+=' bad'}
+    h+='<button type="button" class="'+cl+'" data-i="'+i+'" data-j="'+j+'"'+(i in st?' disabled':'')+'>'+t+'</button>'});
+   h+='</div>';
+   if(i in st){var r=st[i]===q.a;h+='<div class="fb">'+(r?(L?'✅ صح! ':'✅ Correct! '):(L?'❌ خطأ. الإجابة الصحيحة: '+o[q.a]+'. ':'❌ Wrong. Correct answer: '+o[q.a]+'. '))+q.x[L]+'</div>'}
+   d.innerHTML=h;qs.appendChild(d)});
+  qs.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){st[b.dataset.i]=+b.dataset.j;render()}})});
+}
+render();
+(function(){var secs=[].slice.call(document.querySelectorAll('section')),all=document.getElementById('all');
+function lab(s){s.querySelector('.tr').textContent=s.classList.contains('ar')?'English':'العربية'}
+function sync(){var n=secs.filter(function(s){return s.classList.contains('ar')}).length;all.textContent=n===secs.length?'Back to English':'ترجمة الكل للعربية'}
+secs.forEach(function(s){s.querySelector('.tr').onclick=function(){s.classList.toggle('ar');lab(s);sync()}});
+all.onclick=function(){var to=!secs.every(function(s){return s.classList.contains('ar')});secs.forEach(function(s){s.classList.toggle('ar',to);lab(s)});sync()}})();
+</script>
+</body>
+</html>
