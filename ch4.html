@@ -72,7 +72,7 @@ footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
 <h1>Cloud Computing Study Guide: Chapter 4</h1>
 <p>Infrastructure as a Service (IaaS) · Amazon EC2</p>
 </header>
-<nav><button id="all" type="button">ترجمة الكل للعربية</button><a href="#a1">What is IaaS</a><a href="#a2">Features &amp; Benefits</a><a href="#a3">Highlights</a><a href="#a4">EC2</a><a href="#a5">AMI &amp; Instance</a><a href="#a6">Regions</a><a href="#a7">Storage</a><a href="#a8">Network &amp; Security</a><a href="#a9">Monitoring</a><a href="#a10">Access</a><a href="#a11">Summary</a><a href="#a12">Questions</a></nav>
+<nav><button id="all" type="button">ترجمة الكل للعربية</button><a href="#a1">What is IaaS</a><a href="#a2">Features &amp; Benefits</a><a href="#a3">Highlights</a><a href="#a4">EC2</a><a href="#a5">AMI &amp; Instance</a><a href="#a6">Regions</a><a href="#a7">Storage</a><a href="#a8">Network &amp; Security</a><a href="#a9">Monitoring</a><a href="#a11">Summary</a><a href="#a12">Questions</a></nav>
 <main>
 
 <section id="a1">
@@ -89,7 +89,7 @@ footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
 <tr><td>Runtime, Middleware, OS</td><td>You</td><td>You</td><td>Vendor</td><td>Vendor</td></tr>
 <tr><td>Virtualization, Servers, Storage, Networking</td><td>You</td><td>Vendor</td><td>Vendor</td><td>Vendor</td></tr></table></div>
 <p>The cloud stack: <b>Cloud Clients</b> (browser, mobile app, thin client, terminal emulator) → <b>SaaS</b> (CRM, email, virtual desktop, communication, games) → <b>PaaS</b> (execution runtime, database, web server, development tools) → <b>IaaS</b> (virtual machines, servers, storage, load balancers, network).</p>
-<div class="key">IaaS clouds often add: VM disk-image library, block and file-based storage, firewalls, load balancers, IP addresses, VLANs and software bundles.</div></div>
+</div>
 <div class="a" dir="rtl"><h2>1) ما هي IaaS؟</h2>
 <div class="def">IaaS (البنية التحتية كخدمة) نموذج خدمة يعتمد على إسناد البنية التحتية الأساسية لدعم العمليات (تخزين، أجهزة، سيرفرات، مكونات شبكة) لطرف خارجي. وتوفر موارد حوسبة افتراضية (virtualized) عبر الإنترنت.</div>
 <ul><li>مزود الخدمة <b>يملك</b> المعدات ومسؤول عن إيوائها وتشغيلها وصيانتها.</li><li>العميل عادةً <b>يدفع حسب الاستخدام</b> (per-use).</li><li>العميل يستخدم <b>منصته الخاصة</b> (Windows, Unix) وتطبيقاته.</li></ul>
@@ -102,7 +102,7 @@ footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
 <tr><td>Runtime وMiddleware وOS</td><td>أنت</td><td>أنت</td><td>المزود</td><td>المزود</td></tr>
 <tr><td>Virtualization وServers وStorage وNetworking</td><td>أنت</td><td>المزود</td><td>المزود</td><td>المزود</td></tr></table></div>
 <p>الـ Stack: <b>Cloud Clients</b> (متصفح، تطبيق موبايل، thin client) ← <b>SaaS</b> (CRM، إيميل، ألعاب...) ← <b>PaaS</b> (runtime، قاعدة بيانات، web server، أدوات تطوير) ← <b>IaaS</b> (أجهزة افتراضية، سيرفرات، تخزين، load balancers، شبكة).</p>
-<div class="key">سحابات IaaS غالباً تضيف: مكتبة disk images للـ VM، تخزين block وfile، firewalls، load balancers، عناوين IP، VLANs، وحزم برمجيات.</div></div>
+</div>
 </section>
 
 <section id="a2">
@@ -150,13 +150,13 @@ footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
 <ul><li>From one AMI you can launch <b>multiple instances</b>, which are running copies of the AMI.</li><li>An <b>instance</b> is an AMI running on virtual servers in the cloud.</li><li>Each <b>instance type</b> offers different compute and memory capabilities (a different operating environment).</li></ul>
 <h3>Sources of AMIs</h3>
 <ul><li>Amazon publishes many AMIs for public use.</li><li>Custom AMIs provided by community members.</li><li>Users can create their own AMI.</li></ul>
-<div class="key">Amazon’s bet: by statistically multiplexing multiple instances onto a single physical box, that box can be rented to many customers who generally won’t interfere with each other.</div></div>
+<h3>Instance types (table from the slides)</h3><div class="tw"><table><tr><th>Type</th><th>CPU</th><th>Memory</th><th>Local storage</th><th>Platform</th><th>I/O</th><th>API name</th></tr><tr><td>Small</td><td>1 ECU (1 virtual core)</td><td>1.7 GB</td><td>160 GB</td><td>32-bit</td><td>Moderate</td><td>m1.small</td></tr><tr><td>Large</td><td>4 ECU (2 cores × 2)</td><td>7.5 GB</td><td>850 GB</td><td>64-bit</td><td>High</td><td>m1.large</td></tr><tr><td>Extra Large</td><td>8 ECU (4 cores × 2)</td><td>15 GB</td><td>1690 GB</td><td>64-bit</td><td>High</td><td>m1.xlarge</td></tr><tr><td>Micro</td><td>Up to 2 ECU (short bursts)</td><td>613 MB</td><td>None (use EBS)</td><td>32 or 64-bit</td><td>Low</td><td>t1.micro</td></tr><tr><td>High-CPU Medium</td><td>5 ECU (2 cores × 2.5)</td><td>1.7 GB</td><td>350 GB</td><td>32-bit</td><td>Moderate</td><td>c1.medium</td></tr></table></div><div class="key">ECU = EC2 Compute Unit (a measure of CPU power). Local storage = instance storage + 10 GB root partition. Micro has no local storage, so it uses Amazon EBS. Other families: High-Memory (Extra Large, Double XL), Cluster Compute, Cluster GPU.</div></div>
 <div class="a" dir="rtl"><h2>5) AMI وInstance</h2>
 <div class="def">الـ AMI (Amazon Machine Image) تمثيل ثابت (immutable) لمجموعة أقراص تحوي نظام تشغيل وتطبيقات و/أو بيانات. وهو قالب (template) لإعدادات البرمجيات (OS، application server، التطبيقات).</div>
 <ul><li>من AMI واحد تستطيع تشغيل <b>عدة instances</b>، وهي نسخ شغّالة منه.</li><li>الـ <b>Instance</b> هو AMI يعمل على سيرفرات افتراضية في السحابة.</li><li>كل <b>instance type</b> يوفر قدرات معالجة وذاكرة مختلفة (بيئة تشغيل مختلفة).</li></ul>
 <h3>مصادر الـ AMI</h3>
 <ul><li>أمازون تنشر AMIs كثيرة للاستخدام العام.</li><li>AMIs مخصصة من أعضاء المجتمع.</li><li>المستخدم يقدر ينشئ AMI خاص به.</li></ul>
-<div class="key">رهان أمازون: دمج عدة instances إحصائياً (statistical multiplexing) على جهاز فيزيائي واحد، فيُؤجَّر لعدة عملاء دون أن يتداخلوا عادةً.</div></div>
+<h3>أنواع الـ Instances (جدول الشرائح)</h3><div class="tw"><table><tr><th>النوع</th><th>المعالج</th><th>الذاكرة</th><th>التخزين المحلي</th><th>المنصة</th><th>I/O</th><th>الاسم في الـ API</th></tr><tr><td>Small</td><td>1 ECU (1 virtual core)</td><td>1.7 GB</td><td>160 GB</td><td>32-bit</td><td>Moderate</td><td>m1.small</td></tr><tr><td>Large</td><td>4 ECU (2 cores × 2)</td><td>7.5 GB</td><td>850 GB</td><td>64-bit</td><td>High</td><td>m1.large</td></tr><tr><td>Extra Large</td><td>8 ECU (4 cores × 2)</td><td>15 GB</td><td>1690 GB</td><td>64-bit</td><td>High</td><td>m1.xlarge</td></tr><tr><td>Micro</td><td>Up to 2 ECU (short bursts)</td><td>613 MB</td><td>None (use EBS)</td><td>32 or 64-bit</td><td>Low</td><td>t1.micro</td></tr><tr><td>High-CPU Medium</td><td>5 ECU (2 cores × 2.5)</td><td>1.7 GB</td><td>350 GB</td><td>32-bit</td><td>Moderate</td><td>c1.medium</td></tr></table></div><div class="key">ECU = وحدة حوسبة EC2 (مقياس قوة المعالج). التخزين المحلي = instance storage + 10 GB root partition. الـ Micro بدون تخزين محلي فيستخدم EBS. عائلات أخرى: High-Memory (Extra Large و Double XL) و Cluster Compute و Cluster GPU.</div></div>
 </section>
 
 <section id="a6">
@@ -173,22 +173,22 @@ footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
 <p>EC2 provides three storage options: <b>Amazon EBS</b>, <b>Amazon S3</b> and <b>Instance Storage</b>. Amazon SimpleDB is a related data service.</p>
 <div class="grid"><div class="box"><h4>Amazon EBS (Elastic Block Store)</h4><ul><li>Persistent, <b>block-level</b> storage: basically an additional hard disk you attach to an instance.</li><li>Suited for databases, file systems and raw block-level access.</li><li>Operations: <b>create, attach, detach, delete</b>.</li><li>An EBS volume is a read/write disk created from an AMI and mounted by an instance.</li><li><b>Snapshots</b> are stored in S3; a new EBS volume can be re-created from a snapshot.</li></ul></div>
 <div class="box"><h4>Amazon S3 (Simple Storage Service)</h4><ul><li>A SOA (Service-Oriented Architecture) providing online storage via web services.</li><li>Read, write and delete permissions on <b>objects</b>.</li><li>Uses <b>REST and SOAP</b> protocols for messaging.</li></ul></div>
-<div class="box"><h4>Amazon SimpleDB</h4><ul><li>Highly available, flexible, scalable <b>non-relational</b> data store that offloads database administration.</li><li>Automatically creates multiple <b>geographically distributed replicas</b> for availability and durability.</li><li>Charges only for resources actually consumed.</li></ul></div></div></div>
+<div class="box"><h4>Amazon SimpleDB</h4><ul><li>Highly available, flexible, scalable <b>non-relational</b> data store that offloads database administration.</li><li>Automatically creates multiple <b>geographically distributed replicas</b> for availability and durability.</li><li>Charges only for resources actually consumed.</li></ul></div></div><h3>Instance Store &amp; EBS lifecycle</h3><ul><li><b>Instance Store</b>: disks on the host computer (ephemeral0 to ephemeral3); data is lost when the instance is terminated.</li><li>EBS operations: <b>Create, Attach, Detach, Delete</b>.</li><li>Snapshot flow: EBS volume of Instance A → <b>snapshot stored in S3</b> → create a new volume → attach to Instance B.</li></ul><h3>Comparison</h3><div class="tw"><table><tr><th></th><th>Type</th><th>Durability</th><th>Use</th></tr><tr><td>Instance Store</td><td>Block, on the host</td><td>Temporary (ephemeral0–3)</td><td>Temporary data</td></tr><tr><td>EBS</td><td>Block, attached to an instance</td><td>Persistent</td><td>Databases, file systems, raw block storage</td></tr><tr><td>S3</td><td>Objects via web services (REST/SOAP)</td><td>Persistent</td><td>Online storage, EBS snapshots</td></tr></table></div></div>
 <div class="a" dir="rtl"><h2>7) التخزين (Storage)</h2>
 <p>توفر EC2 ثلاثة خيارات تخزين: <b>Amazon EBS</b> و<b>Amazon S3</b> و<b>Instance Storage</b>. وهناك خدمة Amazon SimpleDB لقواعد البيانات.</p>
 <div class="grid"><div class="box"><h4>Amazon EBS (Elastic Block Store)</h4><ul><li>تخزين دائم (persistent) على مستوى <b>block</b>: ببساطة هارد ديسك إضافي تربطه بالـ instance.</li><li>مناسب لقواعد البيانات ونظم الملفات والوصول الخام للـ block.</li><li>العمليات: <b>إنشاء، ربط، فصل، حذف</b>.</li><li>الـ EBS volume قرص قراءة/كتابة يُنشأ من AMI ويُركَّب على instance.</li><li>الـ <b>Snapshots</b> تُخزَّن في S3، ويمكن إعادة إنشاء EBS جديد منها.</li></ul></div>
 <div class="box"><h4>Amazon S3 (Simple Storage Service)</h4><ul><li>SOA (معمارية موجهة للخدمات) توفر تخزين أونلاين عبر web services.</li><li>صلاحيات قراءة وكتابة وحذف على <b>objects</b>.</li><li>تستخدم بروتوكولي <b>REST وSOAP</b> للمراسلة.</li></ul></div>
-<div class="box"><h4>Amazon SimpleDB</h4><ul><li>مخزن بيانات <b>غير علائقي</b> عالي التوفر ومرن وقابل للتوسع، يخفف عبء إدارة قواعد البيانات.</li><li>ينشئ تلقائياً عدة <b>نسخ موزعة جغرافياً</b> للتوفر والمتانة.</li><li>تدفع فقط مقابل الموارد المستهلكة فعلياً.</li></ul></div></div></div>
+<div class="box"><h4>Amazon SimpleDB</h4><ul><li>مخزن بيانات <b>غير علائقي</b> عالي التوفر ومرن وقابل للتوسع، يخفف عبء إدارة قواعد البيانات.</li><li>ينشئ تلقائياً عدة <b>نسخ موزعة جغرافياً</b> للتوفر والمتانة.</li><li>تدفع فقط مقابل الموارد المستهلكة فعلياً.</li></ul></div></div><h3>Instance Store وعمليات EBS</h3><ul><li><b>Instance Store</b>: أقراص على الجهاز المضيف (ephemeral0 إلى ephemeral3) وتضيع البيانات عند إنهاء الـ instance.</li><li>عمليات EBS: <b>Create, Attach, Detach, Delete</b>.</li><li>مسار الـ Snapshot: EBS لـ Instance A ← <b>snapshot يُخزَّن في S3</b> ← إنشاء volume جديد ← ربطه بـ Instance B.</li></ul><h3>مقارنة</h3><div class="tw"><table><tr><th></th><th>النوع</th><th>الدوام</th><th>الاستخدام</th></tr><tr><td>Instance Store</td><td>Block على الجهاز المضيف</td><td>مؤقت</td><td>بيانات مؤقتة</td></tr><tr><td>EBS</td><td>Block يُربط بـ instance</td><td>دائم</td><td>قواعد بيانات وملفات النظام</td></tr><tr><td>S3</td><td>Objects عبر web services (REST/SOAP)</td><td>دائم</td><td>تخزين أونلاين ولقطات EBS</td></tr></table></div></div>
 </section>
 
 <section id="a8">
 <button class="tr" type="button">العربية</button>
 <div class="e"><h2>8) Networking &amp; Security</h2>
 <ul><li>Instances launch on one of two platforms: <b>EC2-Classic</b> or <b>EC2-VPC</b>.</li><li>Each instance gets <b>two addresses</b>: a private address and a public IP address.</li><li>The IP is <b>dynamic</b>: a new one is assigned every time an instance is launched, and a replacement instance has a different public IP.</li><li><b>Elastic IP</b> = static IP address for dynamic cloud computing. Remap it to a new instance to <b>mask failure</b>. Separate pools for EC2-Classic and VPC.</li><li><b>Security Groups</b> control access to instances.</li></ul>
-<div class="grid"><div class="box"><h4>VPC</h4>Launch AWS resources into a virtual network you define: choose the IP range, create subnets, configure route tables, network gateways and security settings.</div><div class="box"><h4>Security Group</h4>Specifies the protocols, ports and source IP ranges allowed to reach your instances. Create several groups and assign each instance to a group to determine its traffic.</div></div></div>
+<div class="grid"><div class="box"><h4>VPC</h4>Launch AWS resources into a virtual network you define: choose the IP range, create subnets, configure route tables, network gateways and security settings.</div><div class="box"><h4>Security Group</h4>Specifies the protocols, ports and source IP ranges allowed to reach your instances. Create several groups and assign each instance to a group to determine its traffic.</div></div><div class="ex"><b>From the console:</b> Security Group <b>80_22_open</b> = ports 80 (HTTP) and 22 (SSH) open. <b>Key Pair</b> (e.g. GSG_Keypair) is the key pair used to log in securely to the instance. Each instance gets a private and a public IP.</div></div>
 <div class="a" dir="rtl"><h2>8) الشبكات والأمان</h2>
 <ul><li>تُشغَّل الـ instances على منصتين: <b>EC2-Classic</b> أو <b>EC2-VPC</b>.</li><li>كل instance يحصل على <b>عنوانين</b>: عنوان خاص (private) وعنوان IP عام (public).</li><li>الـ IP <b>ديناميكي</b>: يُعطى عنوان جديد في كل مرة يُشغَّل فيها الـ instance، والـ instance البديل له IP عام مختلف.</li><li>الـ <b>Elastic IP</b> = عنوان IP ثابت للحوسبة السحابية الديناميكية. يُعاد ربطه بـ instance جديد <b>لإخفاء العطل</b>. مجموعتان منفصلتان لـ Classic وVPC.</li><li>الـ <b>Security Groups</b> تتحكم بالوصول للـ instances.</li></ul>
-<div class="grid"><div class="box"><h4>VPC</h4>تشغيل موارد AWS داخل شبكة افتراضية تحددها أنت: اختيار نطاق IP، إنشاء subnets، إعداد route tables وnetwork gateways وإعدادات الأمان.</div><div class="box"><h4>Security Group</h4>تحدد البروتوكولات والمنافذ ونطاقات IP المصدر المسموح لها بالوصول للـ instances. تنشئ عدة مجموعات وتعيّن كل instance لمجموعة لتحديد حركة المرور.</div></div></div>
+<div class="grid"><div class="box"><h4>VPC</h4>تشغيل موارد AWS داخل شبكة افتراضية تحددها أنت: اختيار نطاق IP، إنشاء subnets، إعداد route tables وnetwork gateways وإعدادات الأمان.</div><div class="box"><h4>Security Group</h4>تحدد البروتوكولات والمنافذ ونطاقات IP المصدر المسموح لها بالوصول للـ instances. تنشئ عدة مجموعات وتعيّن كل instance لمجموعة لتحديد حركة المرور.</div></div><div class="ex"><b>من الـ Console:</b> الـ Security Group <b>80_22_open</b> = فتح المنفذين 80 (HTTP) و 22 (SSH). الـ <b>Key Pair</b> (مثل GSG_Keypair) زوج مفاتيح للدخول الآمن للـ instance. وكل instance له private IP و public IP.</div></div>
 </section>
 
 <section id="a9">
@@ -199,17 +199,9 @@ footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
 <div class="grid"><div class="box"><h4>CloudWatch (المراقبة)</h4>يراقب إحصائيات الـ instances والـ EBS؛ يراقب ويدير وينشر metrics؛ ويضبط <b>تنبيهات (alarms)</b> بناءً عليها.</div><div class="box"><h4>Auto Scaling</h4>يزيد وينقص سعة EC2 تلقائياً <b>حسب قواعد</b>: يضيف/يزيل موارد حسب الطلب. مناسب للأعمال ذات الاستخدام المتغير.</div><div class="box"><h4>Elastic Load Balancing</h4>يوزع حركة الدخول على عدة instances.</div></div></div>
 </section>
 
-<section id="a10">
-<button class="tr" type="button">العربية</button>
-<div class="e"><h2>10) How to Access EC2</h2>
-<ul><li><b>AWS Management Console</b> (web): console.aws.amazon.com</li><li><b>Command-line tools</b></li><li><b>Programmatic interface:</b> EC2 APIs and the AWS SDK</li></ul></div>
-<div class="a" dir="rtl"><h2>10) كيف تصل إلى EC2</h2>
-<ul><li><b>AWS Management Console</b> (واجهة ويب): console.aws.amazon.com</li><li><b>أدوات سطر الأوامر</b> (Command-line tools)</li><li><b>واجهة برمجية:</b> EC2 APIs وAWS SDK</li></ul></div>
-</section>
-
 <section id="a11">
 <button class="tr" type="button">العربية</button>
-<div class="e"><h2>11) Quick Summary Table</h2>
+<div class="e"><h2>10) Quick Summary Table</h2>
 <p>My own summary to help you revise:</p>
 <div class="tw"><table><tr><th>Term</th><th>Meaning</th><th>Remember</th></tr>
 <tr><td>AMI</td><td>Template of OS + apps</td><td>Immutable</td></tr>
@@ -223,7 +215,7 @@ footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
 <tr><td>CloudWatch</td><td>Monitoring and alarms</td><td>Metrics</td></tr>
 <tr><td>Auto Scaling</td><td>Adds/removes instances by rules</td><td>Variable load</td></tr>
 <tr><td>ELB</td><td>Distributes traffic</td><td>Across instances</td></tr></table></div></div>
-<div class="a" dir="rtl"><h2>11) جدول ملخص سريع</h2>
+<div class="a" dir="rtl"><h2>10) جدول ملخص سريع</h2>
 <p>من عندي لمساعدتك بالمراجعة:</p>
 <div class="tw"><table><tr><th>المصطلح</th><th>المعنى</th><th>تذكّر</th></tr>
 <tr><td>AMI</td><td>قالب نظام تشغيل + تطبيقات</td><td>ثابت (Immutable)</td></tr>
@@ -241,12 +233,12 @@ footer{text-align:center;color:var(--mut);padding:24px;font-size:14px}
 
 <section id="a12">
 <button class="tr" type="button">العربية</button>
-<div class="e"><h2>12) Interactive Practice Questions</h2>
+<div class="e"><h2>11) Interactive Practice Questions</h2>
 <p>Pick an answer: you get instant feedback and the correct answer with an explanation.</p>
 <div class="score"></div><div class="qs"></div>
 <h3>Essay questions</h3>
-<div class="q"><p>1) Define IaaS, its components and who manages which layers.<br>2) List the key features, benefits and challenges of IaaS.<br>3) What is EC2 and why is it called “elastic”?<br>4) Explain AMI vs instance.<br>5) Explain regions and availability zones.<br>6) Compare EBS, S3 and SimpleDB.<br>7) Explain Elastic IP and Security Groups.<br>8) Explain CloudWatch, Auto Scaling and Elastic Load Balancing.</p><details><summary>Hint</summary><div>Review sections 1 to 10.</div></details></div></div>
-<div class="a" dir="rtl"><h2>12) أسئلة تدريبية تفاعلية</h2>
+<div class="q"><p>1) Define IaaS, its components and who manages which layers.<br>2) List the key features, benefits and challenges of IaaS.<br>3) What is EC2 and why is it called “elastic”?<br>4) Explain AMI vs instance.<br>5) Explain regions and availability zones.<br>6) Compare EBS, S3 and SimpleDB.<br>7) Explain Elastic IP and Security Groups.<br>8) Explain CloudWatch, Auto Scaling and Elastic Load Balancing.</p><details><summary>Hint</summary><div>Review sections 1 to 9.</div></details></div></div>
+<div class="a" dir="rtl"><h2>11) أسئلة تدريبية تفاعلية</h2>
 <p>اختر إجابة: بتطلع لك النتيجة فوراً مع الإجابة الصحيحة والشرح.</p>
 <div class="score"></div><div class="qs"></div>
 <h3>أسئلة مقالية</h3>
@@ -301,7 +293,12 @@ tf('In IaaS the provider manages the customer’s applications.','في IaaS ال
 tf('An AMI is a running virtual server.','الـ AMI هو سيرفر افتراضي شغّال.',false,'False: that is an instance; an AMI is the template.','خطأ: هذا الـ instance؛ الـ AMI قالب.'),
 tf('The public IP of an instance stays the same after it is replaced.','الـ IP العام للـ instance يبقى نفسه بعد استبداله.',false,'False: use an Elastic IP to keep it.','خطأ: استخدم Elastic IP للحفاظ عليه.'),
 tf('EBS is persistent block-level storage.','EBS تخزين دائم على مستوى block.',true,'True.','صح.'),
-tf('Prices of EC2 are the same in every region.','أسعار EC2 نفسها في كل region.',false,'False: they vary by region.','خطأ: تختلف حسب الـ region.')
+tf('Prices of EC2 are the same in every region.','أسعار EC2 نفسها في كل region.',false,'False: they vary by region.','خطأ: تختلف حسب الـ region.'),
+m('Which instance type has no local storage?','أي نوع instance ليس له تخزين محلي؟',['Micro', 'Small', 'Large', 'Extra Large'],['Micro', 'Small', 'Large', 'Extra Large'],0,'Micro uses EBS volumes.','الـ Micro يستخدم EBS.'),
+m('The API name of the Large instance is:','الاسم في الـ API للـ Large:',['m1.large', 't1.micro', 'c1.medium', 'm1.small'],['m1.large', 't1.micro', 'c1.medium', 'm1.small'],0,'m1.large: 4 ECU, 7.5 GB, 64-bit.','m1.large: \u200f4 ECU و 7.5 GB و 64-bit.'),
+m('Instance Store data is:','بيانات Instance Store:',['temporary (ephemeral)', 'persistent forever', 'stored in S3', 'replicated globally'],['مؤقتة (ephemeral)', 'دائمة للأبد', 'مخزنة في S3', 'مكررة عالمياً'],0,'Lost when the instance terminates.','تضيع عند إنهاء الـ instance.'),
+m('EBS snapshots are stored in:','الـ EBS snapshots تُخزَّن في:',['Amazon S3', 'SimpleDB', 'Instance Store', 'CloudWatch'],['Amazon S3', 'SimpleDB', 'Instance Store', 'CloudWatch'],0,'A new volume can be created from the snapshot.','ومنها يمكن إنشاء volume جديد.'),
+m('ECU stands for:','ECU تعني:',['EC2 Compute Unit', 'Elastic Cloud Unit', 'Extra Core Unit', 'EBS Capacity Unit'],['EC2 Compute Unit', 'Elastic Cloud Unit', 'Extra Core Unit', 'EBS Capacity Unit'],0,'A measure of CPU power.','مقياس لقوة المعالج.'),
 ];
 var st={};
 function render(){
